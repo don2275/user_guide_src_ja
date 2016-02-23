@@ -1,22 +1,22 @@
 ########################
-Generating Query Results
+クエリ結果の生成
 ########################
 
-There are several ways to generate query results:
+クエリ結果を生成する方法はいくつかあります:
 
 .. contents::
     :local:
     :depth: 2
 
 *************
-Result Arrays
+結果配列
 *************
 
 **result()**
 
-This method returns the query result as an array of **objects**, or
-**an empty array** on failure. Typically you'll use this in a foreach
-loop, like this::
+このメソッドは、結果を **オブジェクト** の配列として、
+または失敗した場合には **空の配列** を返します。
+典型的には、次のように、これをforeach ループで使用します::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -27,10 +27,10 @@ loop, like this::
 		echo $row->body;
 	}
 
-The above method is an alias of ``result_object()``.
+上の メソッド は ``result_object()`` の別名です。
 
-You can also pass a string to ``result()`` which represents a class to
-instantiate for each result object (note: this class must be loaded)
+``result()`` には各結果オブジェクトをインスタンス化したいクラス名の
+文字列を渡すこともできます(note: クラスはロードされていなければいけません)。
 
 ::
 
@@ -38,15 +38,15 @@ instantiate for each result object (note: this class must be loaded)
 
 	foreach ($query->result('User') as $user)
 	{
-		echo $user->name; // access attributes
-		echo $user->reverse_name(); // or methods defined on the 'User' class
+		echo $user->name; // 属性を呼び出す
+		echo $user->reverse_name(); // または 'User' クラスに定義されているメソッド
 	}
 
 **result_array()**
 
-This method returns the query result as a pure array, or an empty
-array when no result is produced. Typically you'll use this in a foreach
-loop, like this::
+このメソッドは、結果を純粋な配列として、あるいは結果が生成されなかった
+ときには空の配列を返します。典型的には、次のように、foreach
+ループで使用されます::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -58,14 +58,14 @@ loop, like this::
 	}
 
 ***********
-Result Rows
+結果行
 ***********
 
 **row()**
 
-This method returns a single result row. If your query has more than
-one row, it returns only the first row. The result is returned as an
-**object**. Here's a usage example::
+このメソッドは単一行を返します。クエリの応答が一つ以上の行になる場合は
+、最初の行だけが返ります。 結果は **オブジェクト** で返ります。
+使用方法の例です::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -78,24 +78,24 @@ one row, it returns only the first row. The result is returned as an
 		echo $row->body;
 	}
 
-If you want a specific row returned you can submit the row number as a
-digit in the first parameter::
+特定の行を返したいときは、第１引数に、行番号を数値として渡すことができ
+ます::
 
 	$row = $query->row(5);
 
-You can also add a second String parameter, which is the name of a class
-to instantiate the row with::
+第2引数に文字列を渡すこともでき、その列をインスタンス化するためのクラ
+ス名を指定します::
 
 	$query = $this->db->query("SELECT * FROM users LIMIT 1;");
 	$row = $query->row(0, 'User');
 	
-	echo $row->name; // access attributes
-	echo $row->reverse_name(); // or methods defined on the 'User' class
+	echo $row->name; // 属性を呼び出す
+	echo $row->reverse_name(); // または 'User' クラスに定義されているメソッド
 
 **row_array()**
 
-Identical to the above ``row()`` method, except it returns an array.
-Example::
+配列を返すこと以外は、上の ``row()`` メソッドと同じです。
+例::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -108,21 +108,21 @@ Example::
 		echo $row['body'];
 	}
 
-If you want a specific row returned you can submit the row number as a
-digit in the first parameter::
+特定の行を返したいときは、第１引数に、行番号を数値として渡すことができ
+ます::
 
 	$row = $query->row_array(5);
 
-In addition, you can walk forward/backwards/first/last through your
-results using these variations:
+さらに、次のようなバリエーションで、結果を
+進む/もどる/最初に移動/最後に移動 してデータを見ていくことができます:
 
 	| **$row = $query->first_row()**
 	| **$row = $query->last_row()**
 	| **$row = $query->next_row()**
 	| **$row = $query->previous_row()**
 
-By default they return an object unless you put the word "array" in the
-parameter:
+引数に"array"と指定しなければ、デフォルトでは、これらのメソッドはオブ
+ジェクトを返します:
 
 	| **$row = $query->first_row('array')**
 	| **$row = $query->last_row('array')**
@@ -135,9 +135,9 @@ parameter:
 
 **unbuffered_row()**
 
-This method returns a single result row without prefetching the whole
-result in memory as ``row()`` does. If your query has more than one row,
-it returns the current row and moves the internal data pointer ahead. 
+このメソッドは、``row()`` のように結果をすべてメモリにプリフェッチせずに
+単一行を返します。もしクエリに1行以上ある場合は、現在の行を返し、
+内部データポインタを移動します。
 
 ::
 
@@ -150,25 +150,25 @@ it returns the current row and moves the internal data pointer ahead.
 		echo $row->body;
 	}
 
-You can optionally pass 'object' (default) or 'array' in order to specify
-the returned value's type::
+オプションで 'object' (デフォルト) か 'array' を渡し、返り値の
+型を指定することができます::
 
 	$query->unbuffered_row();		// object
 	$query->unbuffered_row('object');	// object
 	$query->unbuffered_row('array');	// associative array
 
-*********************
-Custom Result Objects
-*********************
+************************
+カスタム結果オブジェクト
+************************
 
-You can have the results returned as an instance of a custom class instead
-of a ``stdClass`` or array, as the ``result()`` and ``result_array()``
-methods allow. This requires that the class is already loaded into memory.
-The object will have all values returned from the database set as properties.
-If these have been declared and are non-public then you should provide a
-``__set()`` method to allow them to be set.
+結果は配列か ``stdClass`` のインスタンスの代わりにカスタムクラスの
+インスタンスで受け取ることができます。これは ``result()`` と ``result_array()`` 
+メソッドで許可されています。クラスはすでにメモリにロードされていなければいけません。
+オブジェクトはデータベースから全ての値をプロパティとして返されます。
+もし非 public のプロパティとして宣言されている場合は、 ``__set()`` メソッド
+を提供しセットされるようにしてください。
 
-Example::
+例::
 
 	class User {
 
@@ -200,16 +200,16 @@ Example::
 		}
 	}
 
-In addition to the two methods listed below, the following methods also can
-take a class name to return the results as: ``first_row()``, ``last_row()``,
-``next_row()``, and ``previous_row()``.
+下記2つのメソッド以外にも、次のメソッドも結果を返すクラス名を指定する
+ことができます: ``first_row()`` , ``last_row()`` , ``next_row()`` 
+と ``previous_row()`` 。
 
 **custom_result_object()**
 
-Returns the entire result set as an array of instances of the class requested.
-The only parameter is the name of the class to instantiate.
+結果セットすべてを指定されたクラスのインスタンスの配列として返します。
+唯一のパラメータはインスタンス化したいクラス名です。
 
-Example::
+例::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -224,10 +224,10 @@ Example::
 
 **custom_row_object()**
 
-Returns a single row from your query results. The first parameter is the row
-number of the results. The second parameter is the class name to instantiate.
+クエリ結果から1行返します。第1引数は結果の行数です。第2引数はインスタンス化
+したいクラス名です。
 
-Example::
+例::
 
 	$query = $this->db->query("YOUR QUERY");
 
@@ -239,34 +239,34 @@ Example::
 		echo $row->last_login('Y-m-d');   // access class methods
 	}
 
-You can also use the ``row()`` method in exactly the same way.
+さらに、 ``row()`` メソッドもまったく同じ方法で使うことができます。
 
-Example::
+例::
 
 	$row = $query->custom_row_object(0, 'User');
 
 *********************
-Result Helper Methods
+結果ヘルパーメソッド
 *********************
 
 **num_rows()**
 
-The number of rows returned by the query. Note: In this example, $query
-is the variable that the query result object is assigned to::
+クエリで返された行数を取得します。Note: 下記の例では $query
+は、クエリの結果オブジェクトを代入した変数です::
 
 	$query = $this->db->query('SELECT * FROM my_table');
 
 	echo $query->num_rows();
 
-.. note:: Not all database drivers have a native way of getting the total
-	number of rows for a result set. When this is the case, all of
-	the data is prefetched and ``count()`` is manually called on the
-	resulting array in order to achieve the same result.
+.. note:: すべてのデータベースドライバが結果セットの全件数を取得する
+	ネイティブの方法を持っているわけではありません。その場合、全データは
+	プリフェッチされ結果配列に対して ``count()`` が手動で呼ばれることで
+	同じ結果を導いています。
 	
 **num_fields()**
 
-The number of FIELDS (columns) returned by the query. Make sure to call
-the method using your query result object::
+問い合わせ結果のフィールド数 (列数) を返します。このメソッドは、クエリ
+結果オブジェクトを使っていることを確かめてから呼び出してください::
 
 	$query = $this->db->query('SELECT * FROM my_table');
 
@@ -274,13 +274,13 @@ the method using your query result object::
 
 **free_result()**
 
-It frees the memory associated with the result and deletes the result
-resource ID. Normally PHP frees its memory automatically at the end of
-script execution. However, if you are running a lot of queries in a
-particular script you might want to free the result after each query
-result has been generated in order to cut down on memory consumption.
+結果に関連付けられたメモリを解放し、結果のリソースIDを削除します。ふつ
+うは、PHP は、スクリプトの実行を終えると、メモリを自動で解放します。
+しかし、特定のスクリプトで多くのクエリを実行しているとき、 メモリの使
+用量を削減するために、各クエリの結果が生成されたあとにメモリを開放した
+い場合があります。
 
-Example::
+例::
 
 	$query = $this->db->query('SELECT title FROM my_table');
 
@@ -299,11 +299,11 @@ Example::
 
 **data_seek()**
 
-This method sets the internal pointer for the next result row to be
-fetched. It is only useful in combination with ``unbuffered_row()``.
+このメソッドは次の結果行の内部ポインタをフェッチするようにします。
+``unbuffered_row()`` との組み合わせてのみ有効です。
 
-It accepts a positive integer value, which defaults to 0 and returns
-TRUE on success or FALSE on failure.
+メソッドは正の整数を受け付け（初期値は 0 ）、成功時は TRUE 、
+失敗時は FALSE を返します。 
 
 ::
 
@@ -311,197 +311,197 @@ TRUE on success or FALSE on failure.
 	$query->data_seek(5); // Skip the first 5 rows
 	$row = $query->unbuffered_row();
 
-.. note:: Not all database drivers support this feature and will return FALSE.
-	Most notably - you won't be able to use it with PDO.
+.. note:: すべてのデータベースドライバがこの機能をサポートしておらず、その場合
+	FALSE を返します。特筆すべきは PDO で使えないという点です。
 
-***************
-Class Reference
-***************
+*******************
+クラスリファレンス
+*******************
 
 .. php:class:: CI_DB_result
 
 	.. php:method:: result([$type = 'object'])
 
-		:param	string	$type: Type of requested results - array, object, or class name
-		:returns:	Array containing the fetched rows
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	フェッチされた行を含んだ配列
 		:rtype:	array
 
-		A wrapper for the ``result_array()``, ``result_object()``
-		and ``custom_result_object()`` methods.
+		``result_array()``, ``result_object()``, と 
+		``custom_result_object()`` のラッパーメソッド。
 
-		Usage: see `Result Arrays`_.
+		使い方: `結果配列`_ を参照。
 
 	.. php:method:: result_array()
 
-		:returns:	Array containing the fetched rows
+		:returns:	フェッチされた行を含んだ配列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is itself an associative array.
+		クエリ結果を配列として返し、各行は連想配列として
+		返します。
 
-		Usage: see `Result Arrays`_.
+		使い方: `結果配列`_ を参照。
 
 	.. php:method:: result_object()
 
-		:returns:	Array containing the fetched rows
+		:returns:	フェッチされた行を含んだ配列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is an object of type ``stdClass``.
+		クエリ結果を配列として返し、各行は ``stdClass()`` 
+		型のオブジェクトとして返します。
 
-		Usage: see `Result Arrays`_.
+		使い方: `結果配列`_ を参照。
 
 	.. php:method:: custom_result_object($class_name)
 
-		:param	string	$class_name: Class name for the resulting rows
-		:returns:	Array containing the fetched rows
+		:param	string	$class_name: 結果行のクラス名
+		:returns:	フェッチされた行を含んだ配列
 		:rtype:	array
 
-		Returns the query results as an array of rows, where each
-		row is an instance of the specified class.
+		クエリ結果を配列として返し、各行は指定されたクラスの
+		インスタンスとして返します。
 
 	.. php:method:: row([$n = 0[, $type = 'object']])
 
-		:param	int	$n: Index of the query results row to be returned
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 返ってくるクエリ結果行の添字
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	要求された行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		A wrapper for the ``row_array()``, ``row_object() and 
-		``custom_row_object()`` methods.
+		``row_array()``, ``row_object()``, と
+		``custom_row_object()`` ラッパーメソッド。
 
-		Usage: see `Result Rows`_.
+		使い方: `結果行`_ を参照。
 
 	.. php:method:: unbuffered_row([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Next row from the result set or NULL if it doesn't exist
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	要求された行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		Fetches the next result row and returns it in the
-		requested form.
+		次の結果行をフェッチし、要求された形式で
+		返します。
 
-		Usage: see `Result Rows`_.
+		使い方: `結果行`_ を参照。
 
 	.. php:method:: row_array([$n = 0])
 
-		:param	int	$n: Index of the query results row to be returned
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 返ってくるクエリ結果行の添字
+		:returns:	要求された行、あるいは存在しなければ NULL
 		:rtype:	array
 
-		Returns the requested result row as an associative array.
+		要求された結果行を連想配列として返します。
 
-		Usage: see `Result Rows`_.
+		使い方: `結果行`_ を参照。
 
 	.. php:method:: row_object([$n = 0])
 
-		:param	int	$n: Index of the query results row to be returned
-                :returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 返ってくるクエリ結果行の添字
+		        :returns:	要求された行、あるいは存在しなければ NULL
 		:rtype:	stdClass
 
-		Returns the requested result row as an object of type
-		``stdClass``.
+		要求された結果行を ``stdClass`` 型のオブジェクト
+		として返します。
 
 		Usage: see `Result Rows`_.
 
 	.. php:method:: custom_row_object($n, $type)
 
-		:param	int	$n: Index of the results row to return
-		:param	string	$class_name: Class name for the resulting row
-		:returns:	The requested row or NULL if it doesn't exist
+		:param	int	$n: 返ってくるクエリ結果行の添字
+		:param	string	$class_name: 結果行のクラス名
+		:returns:	要求された行、あるいは存在しなければ NULL
 		:rtype:	$type
 
-		Returns the requested result row as an instance of the
-		requested class.
+		要求された結果行を、指定のクラスのインスタンス
+		として返します。
 
 	.. php:method:: data_seek([$n = 0])
 
-		:param	int	$n: Index of the results row to be returned next
-		:returns:	TRUE on success, FALSE on failure
+		:param	int	$n: 次に返ってくるクエリ結果行の添字
+		:returns:	成功時は TRUE, 失敗時は FALSE
 		:rtype:	bool
 
-		Moves the internal results row pointer to the desired offset.
+		内部ポインタを希望のオフセットまで移動します。
 
-		Usage: see `Result Helper Methods`_.
+		使い方: `結果ヘルパーメソッド`_ を参照。
 
 	.. php:method:: set_row($key[, $value = NULL])
 
-		:param	mixed	$key: Column name or array of key/value pairs
-		:param	mixed	$value: Value to assign to the column, $key is a single field name
+		:param	mixed	$key: カラム名かキー/値ペアの配列
+		:param	mixed	$value: $key が単一フィールド名の場合、カラムにアサインする値
 		:rtype:	void
 
-		Assigns a value to a particular column.
+		特定のカラムに値をアサイン。
 
 	.. php:method:: next_row([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Next row of result set, or NULL if it doesn't exist
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	結果セットの次の行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		Returns the next row from the result set.
+		結果セットの次の行を返します。
 
 	.. php:method:: previous_row([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Previous row of result set, or NULL if it doesn't exist
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	結果セットのひとつ前の行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		Returns the previous row from the result set.
+		結果セットのひとつ前の行を返します。
 
 	.. php:method:: first_row([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	First row of result set, or NULL if it doesn't exist
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	結果セットの最初の行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		Returns the first row from the result set.
+		結果セットの最初の行を返します。
 
 	.. php:method:: last_row([$type = 'object'])
 
-		:param	string	$type: Type of the requested result - array, object, or class name
-		:returns:	Last row of result set, or NULL if it doesn't exist
+		:param	string	$type: 要求された結果の型 - array, object, あるいはクラス名
+		:returns:	結果セットの最後の行、あるいは存在しなければ NULL
 		:rtype:	mixed
 
-		Returns the last row from the result set.
+		結果セットの最後の行を返します。
 
 	.. php:method:: num_rows()
 
-		:returns:	Number of rows in the result set
+		:returns:	結果セットに入っている行数。
 		:rtype:	int
 
-		Returns the number of rows in the result set.
+		結果セットに入っている行数を返します。
 
-		Usage: see `Result Helper Methods`_.
+		使い方: `結果ヘルパーメソッド`_ を参照。
 
 	.. php:method:: num_fields()
 
-		:returns:	Number of fields in the result set
+		:returns:	結果セットに入っているフィールドの数
 		:rtype:	int
 
-		Returns the number of fields in the result set.
+		結果セットに入っているフィールドの数を返します。
 
-		Usage: see `Result Helper Methods`_.
+		使い方: `結果ヘルパーメソッド`_ を参照。
 
 	.. php:method:: field_data()
 
-		:returns:	Array containing field meta-data
+		:returns:	フィールドのメタデータを含んだ配列
 		:rtype:	array
 
-		Generates an array of ``stdClass`` objects containing
-		field meta-data.
+		フィールドのメタデータを含んだ ``stdClass`` の配列を
+		生成します。
 
 	.. php:method:: free_result()
 
 		:rtype:	void
 
-		Frees a result set.
+		結果セットを解放します。
 
-		Usage: see `Result Helper Methods`_.
+		使い方: `結果ヘルパーメソッド`_ を参照。
 
 	.. php:method:: list_fields()
 
-		:returns:	Array of column names
+		:returns:	カラム名の配列
 		:rtype:	array
 
-		Returns an array containing the field names in the
-		result set.
+		結果セットに含まれたフィールド名の配列を
+		返します。
