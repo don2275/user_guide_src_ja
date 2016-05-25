@@ -60,10 +60,10 @@ CAPTCHA ヘルパーのファイルは、CAPTCHA
 -  **expiration** (単位: 秒) は有効期限で、 captcha
    ディレクトリから削除されるまでの時間です。
    デフォルトでは2時間です。
--  **word_length** defaults to 8, **pool** defaults to '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
--  **font_size** defaults to 16, the native GD font has a size limit. Specify a "true type" font for bigger sizes.
--  The **img_id** will be set as the "id" of the captcha image.
--  If any of the **colors** values is missing, it will be replaced by the default.
+-  **word_length** のデフォルトは8, **pool** のデフォルトは '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' です。
+-  **font_size** のデフォルトは16, 標準のGDフォントにはサイズ制限があります。 より大きいサイズを使用する場合は "true type" を指定してください。
+-  **img_id** はキャプチャ画像の "id" として設定されます。
+-  **colors** 要素のいずれかを指定しない場合は, デフォルトが指定されます。
 
 データベースの追加
 ------------------
@@ -112,7 +112,7 @@ CAPTCHA ヘルパーのファイルは、CAPTCHA
 例::
 
 	// 期限切れのキャプチャを削除
-	$expiration = time() - 7200; // Two hour limit
+	$expiration = time() - 7200; // 有効期間は2時間です
 	$this->db->where('captcha_time < ', $expiration)
 		->delete('captcha');
 
@@ -134,10 +134,10 @@ CAPTCHA ヘルパーのファイルは、CAPTCHA
 
 .. php:function:: create_captcha([$data = ''[, $img_path = ''[, $img_url = ''[, $font_path = '']]]])
 
-	:param	array	$data: Array of data for the CAPTCHA
-	:param	string	$img_path: Path to create the image in
-	:param	string	$img_url: URL to the CAPTCHA image folder
-	:param	string	$font_path: Server path to font
+	:param	array	$data: キャプチャ生成のための配列
+	:param	string	$img_path: 生成する画像があるパス
+	:param	string	$img_url: キャプチャ画像フォルダの URL
+	:param	string	$font_path: フォントのサーバパス
 	:returns:	array('word' => $word, 'time' => $now, 'image' => $img)
 	:rtype:	array
 
