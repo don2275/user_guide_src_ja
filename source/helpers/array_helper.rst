@@ -2,8 +2,8 @@
 配列ヘルパー
 ############
 
-The Array Helper file contains functions that assist in working with
-arrays.
+配列ヘルパーファイルは、配列を使って処理をするのに
+役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -13,33 +13,33 @@ arrays.
   <div class="custom-index container"></div>
 
 このヘルパーをロードする
-===================
+========================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('array');
 
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: element($item, $array[, $default = NULL])
 
-	:param	string	$item: Item to fetch from the array
-	:param	array	$array: Input array
-	:param	bool	$default: What to return if the array isn't valid
-	:returns:	NULL on failure or the array item.
+	:param	string	$item: 配列から取得したい要素
+	:param	array	$array: 入力配列
+	:param	bool	$default: 要素がない場合に返却する値
+	:returns:	要素が存在しない場合は NULL または配列の要素
 	:rtype:	mixed
 
-	Lets you fetch an item from an array. The function tests whether the
-	array index is set and whether it has a value. If a value exists it is
-	returned. If a value does not exist it returns NULL, or whatever you've
-	specified as the default value via the third parameter.
+	配列から要素を取り出すことができます。この関数は、配列に添字がセットされ、
+	それが値を持つかどうかをテストします。 値を持っている場合はその値
+	が返されます。もし値がない場合は、 NULL または、第3引数で指定した値が返
+	ります。
 
-	Example::
+	例::
 
 		$array = array(
 			'color'	=> 'red',
@@ -47,24 +47,24 @@ The following functions are available:
 			'size'	=> ''
 		);
 
-		echo element('color', $array); // returns "red"
-		echo element('size', $array, 'foobar'); // returns "foobar"
+		echo element('color', $array); // "red" を返します。
+		echo element('size', $array, 'foobar'); // "foobar" を返します
 
 
 .. php:function:: elements($items, $array[, $default = NULL])
 
-	:param	string	$item: Item to fetch from the array
-	:param	array	$array: Input array
-	:param	bool	$default: What to return if the array isn't valid
-	:returns:	NULL on failure or the array item.
+	:param	string	$item: 配列から取得したい要素
+	:param	array	$array: 入力配列
+	:param	bool	$default: 要素がない場合に返却する値
+	:returns:	要素が存在しない場合は NULL または配列の要素
 	:rtype:	mixed
 
-	Lets you fetch a number of items from an array. The function tests
-	whether each of the array indices is set. If an index does not exist it
-	is set to NULL, or whatever you've specified as the default value via
-	the third parameter.
+	配列から一部の要素のみを取得します。 このメソッドは、
+	配列の指定されたキーに要素があるか確認し、 なければ NULL をセットします。
+	第3引数でデフォルト値が指定されている場合は、
+	その値をセットします。
 
-	Example::
+	例::
 
 		$array = array(
 			'color' => 'red',
@@ -75,7 +75,7 @@ The following functions are available:
 
 		$my_shape = elements(array('color', 'shape', 'height'), $array);
 
-	The above will return the following array::
+	上記の例では、次の配列が返されます::
 
 		array(
 			'color' => 'red',
@@ -83,12 +83,12 @@ The following functions are available:
 			'height' => NULL
 		);
 
-	You can set the third parameter to any default value you like.
+	次のように、第3引数でデフォルト値を指定することもできます。
 	::
 
 		 $my_shape = elements(array('color', 'shape', 'height'), $array, 'foobar');
 
-	The above will return the following array::
+	この場合、次の配列が返されます。::
 
 		array(     
 			'color' 	=> 'red',
@@ -96,9 +96,9 @@ The following functions are available:
 			'height'	=> 'foobar'
 		);
 
-	This is useful when sending the ``$_POST`` array to one of your Models.
-	This prevents users from sending additional POST data to be entered into
-	your tables.
+	このメソッドは、モデルにおいて ``$_POST``
+	配列を使用するときに便利です。これにより、余計な POST
+	データがテーブルに送られるのを防ぐことができます。
 
 	::
 
@@ -107,19 +107,19 @@ The following functions are available:
 			elements(array('id', 'title', 'content'), $_POST)
 		);
 
-	This ensures that only the id, title and content fields are sent to be
-	updated.
+	この例では、id, title および content
+	フィールドだけがアップデートされます。
 
 
 .. php:function:: random_element($array)
 
-	:param	array	$array: Input array
-	:returns:	A random element from the array
+	:param	array	$array: 入力配列
+	:returns:	配列からランダムに選択した要素
 	:rtype:	mixed
 
-	Takes an array as input and returns a random element from it.
+	配列を入力として要素をランダムに選んで返します。
 
-	Usage example::
+	使用例::
 
 		$quotes = array(
 			"I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",

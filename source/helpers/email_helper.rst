@@ -1,10 +1,10 @@
-############
-Email Helper
-############
+##############
+Email ヘルパー
+##############
 
-The Email Helper provides some assistive functions for working with
-Email. For a more robust email solution, see CodeIgniter's :doc:`Email
-Class <../libraries/email>`.
+Email ヘルパーは Email 処理を支援する関数を提供します。より堅牢な
+Email の処理方法については CodeIgniter の :doc:`Email クラス
+<../libraries/email>` を参照してください。
 
 .. important:: The Email helper is DEPRECATED and is currently
 	only kept for backwards compatibility.
@@ -16,17 +16,17 @@ Class <../libraries/email>`.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('email');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: valid_email($email)
@@ -62,8 +62,8 @@ The following functions are available:
 	:returns:	TRUE if the mail was successfully sent, FALSE in case of an error
 	:rtype:	bool
 
-	Sends an email using PHP's native `mail() <http://php.net/function.mail>`_
-	function.
+	PHP の `mail() <http://www.php.net/function.mail>`_
+	関数を使ってメールを送信します。
 
 	.. note:: All that this function does is to use PHP's native ``mail``
 
@@ -71,5 +71,5 @@ The following functions are available:
 
 			mail($recipient, $subject, $message);
 
-	For a more robust email solution, see CodeIgniter's :doc:`Email Library
-	<../libraries/email>`.
+	より堅牢なメールの処理方法については、CodeIgniter の :doc:`Email
+	クラス <../libraries/email>` を参照してください。

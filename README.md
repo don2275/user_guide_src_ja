@@ -1,10 +1,10 @@
 # CodeIgniter User Guide の日本語化
 
-ここでは、CodeIgniter の公式ドキュメント (CodeIgniter User Guide) を日本語化しています。
+ここでは、CodeIgniter の公式ドキュメント ([CodeIgniter User Guide](http://www.codeigniter.com/user_guide/)) を日本語化しています。
 
 翻訳作業の参加者を広く募集しています。お気軽に Pull Request してください。
 
-翻訳は、[ユーザガイド日本語版執筆基準](https://github.com/codeigniter-jp/ci-ja/wiki/%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%AC%E3%82%A4%E3%83%89%E6%97%A5%E6%9C%AC%E8%AA%9E%E7%89%88%E5%9F%B7%E7%AD%86%E5%9F%BA%E6%BA%96) に準拠するようにお願いします。
+翻訳は、[ユーザガイド日本語版執筆基準](TRANSLATION_STANDARDS.md) に準拠するようにお願いします。
 
 Pull Request がマージされたら、[CREDITS.md](CREDITS.md) にご自分の名前を追加してください。
 
@@ -29,8 +29,11 @@ Pull Request がマージされたら、[CREDITS.md](CREDITS.md) にご自分の
 
 ## 質問や連絡など
 
-翻訳に関して質問などありましたら、以下の Google グループで聞いてください。
+翻訳に関して質問などありましたら、[Issues](https://github.com/codeigniter-jp/user_guide_src_ja/issues) を作成してください。
+
+連絡事項があれば、[Issues](https://github.com/codeigniter-jp/user_guide_src_ja/issues) や [ユーザガイド日本語版執筆基準](TRANSLATION_STANDARDS.md) に記載します。
+
+なお、以下の Google グループや Slack で個別に質問することもできます。
 
 * https://groups.google.com/forum/#!forum/codeigniter_jp
-
-また、連絡事項はこの Google グループに流しますので、翻訳作業に参加される方は、ご参加ください。
+* http://codeigniter-jp-slack.herokuapp.com/

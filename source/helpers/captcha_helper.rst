@@ -1,9 +1,9 @@
-##############
+###################
 キャプチャ ヘルパー
-##############
+###################
 
-The CAPTCHA Helper file contains functions that assist in creating
-CAPTCHA images.
+CAPTCHA ヘルパーのファイルは、CAPTCHA
+画像を作成するのに役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -13,16 +13,16 @@ CAPTCHA images.
   <div class="custom-index container"></div>
 
 このヘルパーをロードする
-===================
+========================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('captcha');
 
 キャプチャ ヘルパーを使う
-========================
+=========================
 
-Once loaded you can generate a CAPTCHA like this::
+一旦ロードすれば、このようなキャプチャを生成できます::
 
 	$vals = array(
 		'word'		=> 'Random word',
@@ -49,32 +49,32 @@ Once loaded you can generate a CAPTCHA like this::
 	$cap = create_captcha($vals);
 	echo $cap['image'];
 
--  The captcha function requires the GD image library.
--  Only the **img_path** and **img_url** are required.
--  If a **word** is not supplied, the function will generate a random
-   ASCII string. You might put together your own word library that you
-   can draw randomly from.
--  If you do not specify a path to a TRUE TYPE font, the native ugly GD
-   font will be used.
--  The "captcha" directory must be writable
--  The **expiration** (in seconds) signifies how long an image will remain
-   in the captcha folder before it will be deleted. The default is two
-   hours.
--  **word_length** defaults to 8, **pool** defaults to '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
--  **font_size** defaults to 16, the native GD font has a size limit. Specify a "true type" font for bigger sizes.
--  The **img_id** will be set as the "id" of the captcha image.
--  If any of the **colors** values is missing, it will be replaced by the default.
+-  captcha 関数は GD 画像ライブラリを必要とします。
+-  **img_path** と **img_url** は必須です。
+-  **word** が指定されない場合、
+   ランダムな ASCII 文字列が生成されます。
+   自前の辞書を使用しても良いでしょう。
+-  TRUE TYPE フォントのパスが指定されない場合、標準の見苦しい GD
+   フォントが使用されます。
+-  "captcha" ディレクトリは書込可能でなければなりません。
+-  **expiration** (単位: 秒) は有効期限で、 captcha
+   ディレクトリから削除されるまでの時間です。
+   デフォルトでは2時間です。
+-  **word_length** のデフォルトは8, **pool** のデフォルトは '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' です。
+-  **font_size** のデフォルトは16, 標準のGDフォントにはサイズ制限があります。 より大きいサイズを使用する場合は "true type" を指定してください。
+-  **img_id** はキャプチャ画像の "id" として設定されます。
+-  **colors** 要素のいずれかを指定しない場合は, デフォルトが指定されます。
 
-Adding a Database
------------------
+データベースの追加
+------------------
 
-In order for the captcha function to prevent someone from submitting,
-you will need to add the information returned from ``create_captcha()``
-to your database. Then, when the data from the form is submitted by
-the user you will need to verify that the data exists in the database
-and has not expired.
+第三者に送信されるのを防ぐために、 ``create_captcha()``
+関数が返す情報をデータベースに格納します。
+そして、利用者によりフォームからデータが送信されると、
+データが存在することと、 
+期限が切れていないことを検証します。
 
-Here is a table prototype::
+ テーブルの定義::
 
 	CREATE TABLE captcha (  
 		captcha_id bigint(13) unsigned NOT NULL auto_increment,  
@@ -85,8 +85,8 @@ Here is a table prototype::
 		KEY `word` (`word`)
 	);
 
-Here is an example of usage with a database. On the page where the
-CAPTCHA will be shown you'll have something like this::
+データベースと組み合わせた際の例です。
+キャプチャを表示するページの例::
 
 	$this->load->helper('captcha');
 	$vals = array(     
@@ -108,15 +108,15 @@ CAPTCHA will be shown you'll have something like this::
 	echo $cap['image'];
 	echo '<input type="text" name="captcha" value="" />';
 
-Then, on the page that accepts the submission you'll have something like
-this::
+送信を受け付けるページの
+例::
 
-	// First, delete old captchas
-	$expiration = time() - 7200; // Two hour limit
+	// 期限切れのキャプチャを削除
+	$expiration = time() - 7200; // 有効期間は2時間です
 	$this->db->where('captcha_time < ', $expiration)
 		->delete('captcha');
 
-	// Then see if a captcha exists:
+	// キャプチャが存在するか確認:
 	$sql = 'SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?';
 	$binds = array($_POST['captcha'], $this->input->ip_address(), $expiration);
 	$query = $this->db->query($sql, $binds);
@@ -128,37 +128,37 @@ this::
 	}
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 .. php:function:: create_captcha([$data = ''[, $img_path = ''[, $img_url = ''[, $font_path = '']]]])
 
-	:param	array	$data: Array of data for the CAPTCHA
-	:param	string	$img_path: Path to create the image in
-	:param	string	$img_url: URL to the CAPTCHA image folder
-	:param	string	$font_path: Server path to font
+	:param	array	$data: キャプチャ生成のための配列
+	:param	string	$img_path: 生成する画像があるパス
+	:param	string	$img_url: キャプチャ画像フォルダの URL
+	:param	string	$font_path: フォントのサーバパス
 	:returns:	array('word' => $word, 'time' => $now, 'image' => $img)
 	:rtype:	array
 
-	Takes an array of information to generate the CAPTCHA as input and
-	creates the image to your specifications, returning an array of
-	associative data about the image.
+	入力として引数に CAPTCHA 生成のための情報を配列で受け取り、
+	指定された画像を生成し、生成された画像に関するデータの
+	連想配列を返します。
 
 	::
 
 		array(
 			'image'	=> IMAGE TAG
-			'time'	=> TIMESTAMP (in microtime)
+			'time'	=> TIMESTAMP (マイクロ秒まで含む)
 			'word'	=> CAPTCHA WORD
 		)
 
-	The **image** is the actual image tag::
+	**image** は実際の image タグです::
 
 		<img src="http://example.com/captcha/12345.jpg" width="140" height="50" />
 
-	The **time** is the micro timestamp used as the image name without the
-	file extension. It will be a number like this: 1139612155.3422
+	**time** はマイクロ秒でのタイプスタンプで、拡張子を除いた部分の画像の
+	ファイル名として使われます。 このような数字になります: 1139612155.3422
 
-	The **word** is the word that appears in the captcha image, which if not
-	supplied to the function, will be a random string.
+	**word** はキャプチャ画像に表示される単語で、指定されない場合は
+	ランダムな文字列になります。

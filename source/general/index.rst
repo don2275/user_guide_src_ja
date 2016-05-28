@@ -10,7 +10,7 @@
 	reserved_names
 	views
 	models
-	Helpers <helpers>
+	ヘルパー <helpers>
 	libraries
 	creating_libraries
 	drivers
@@ -23,11 +23,11 @@
 	compatibility_functions
 	routing
 	errors
-	Caching <caching>
+	キャッシュ <caching>
 	profiling
 	cli
 	managing_apps
 	environments
 	alternative_php
 	security
-	PHP Style Guide <styleguide>
+	PHP スタイルガイド <styleguide>

@@ -1,9 +1,9 @@
-################
-Directory Helper
-################
+####################
+ディレクトリヘルパー
+####################
 
-The Directory Helper file contains functions that assist in working with
-directories.
+ディレクトリヘルパーファイルは、ディレクトリを処理するのに
+役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -12,49 +12,49 @@ directories.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code:
+このヘルパーは次のコードを使ってロードします:
 
 ::
 
 	$this->load->helper('directory');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: directory_map($source_dir[, $directory_depth = 0[, $hidden = FALSE]])
 
-	:param	string	$source_dir: Path to the source directory
-	:param	int	$directory_depth: Depth of directories to traverse (0 = fully recursive, 1 = current dir, etc)
-	:param	bool	$hidden: Whether to include hidden directories
-	:returns:	An array of files
+	:param	string	$source_dir: ソースディレクトリのパス
+	:param	int	$directory_depth: 横断するディレクトリの深さ (0 = 全てのディレクトリを再帰的に行う、 1 = 現在のディレクトリ、その他)
+	:param	bool	$hidden: 隠しディレクトリを含めるかどうか
+	:returns:	ファイルの配列
 	:rtype:	array
 
-	Examples::
+	例::
 
 		$map = directory_map('./mydirectory/');
 
-	.. note:: Paths are almost always relative to your main index.php file.
+	.. note:: パスは、index.php ファイルからの相対パスになります。
 
 
-	Sub-folders contained within the directory will be mapped as well. If
-	you wish to control the recursion depth, you can do so using the second
-	parameter (integer). A depth of 1 will only map the top level directory::
+	ディレクトリに含まれるサブフォルダも同様にマップされます。 第2引数
+	(integer) で再帰的にマップされる階層を指定出来ます。1を指定すると
+	最上位階層のディレクトリのみマッピングされます。::
 
 		$map = directory_map('./mydirectory/', 1);
 
-	By default, hidden files will not be included in the returned array. To
-	override this behavior, you may set a third parameter to true (boolean)::
+	デフォルトでは、戻り値の配列に隠しファイルは含まれません。
+	この動作をオーバーライドするには、第3引数に true (ブール値)を指定します::
 
 		$map = directory_map('./mydirectory/', FALSE, TRUE);
 
-	Each folder name will be an array index, while its contained files will
-	be numerically indexed. Here is an example of a typical array::
+	各フォルダ名は、配列の添字になり、それらは、数字のインデックスがつけられた
+	ファイルを含みます。 以下は、典型的な配列の例です::
 
 		Array (
 			[libraries] => Array

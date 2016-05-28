@@ -1,6 +1,6 @@
-#################
+################
 カレンダークラス
-#################
+################
 
 カレンダークラスを使うと動的にカレンダーを
 生成できます。カレンダーはデザインのどんな
@@ -14,12 +14,12 @@
 
   <div class="custom-index container"></div>
 
-***************************
+**********************
 カレンダークラスを使う
-***************************
+**********************
 
 クラスの初期化
-======================
+==============
 
 CodeIgniter の大半のクラスと同様に、カレンダークラスはコントローラの中で、
 $this->load->library メソッドを使って初期化します::
@@ -31,7 +31,7 @@ $this->load->library メソッドを使って初期化します::
 	$this->calendar
 
 カレンダーの表示
-=====================
+================
 
 カレンダーの表示方法の非常に簡単な例です::
 
@@ -50,7 +50,7 @@ $this->load->library メソッドを使って初期化します::
 引数は月を指定します。
 
 カレンダーのセルへのデータ引き渡し
-===================================
+==================================
 
 カレンダーのセルにデータを追加するには、埋め込みたい日をキーにし、
 それに対応する値に埋め込むデータを入れた連想配列を作成します。
@@ -60,10 +60,10 @@ $this->load->library メソッドを使って初期化します::
 	$this->load->library('calendar');
 
 	$data = array(
-		3  => 'http://example.com/news/article/2006/03/',
-		7  => 'http://example.com/news/article/2006/07/',
-		13 => 'http://example.com/news/article/2006/13/',
-		26 => 'http://example.com/news/article/2006/26/'
+		3  => 'http://example.com/news/article/2006/06/03/',
+		7  => 'http://example.com/news/article/2006/06/07/',
+		13 => 'http://example.com/news/article/2006/06/13/',
+		26 => 'http://example.com/news/article/2006/06/26/'
 	);
 
 	echo $this->calendar->generate(2006, 6, $data);
@@ -77,7 +77,7 @@ URL を指すリンクになります。
     することができ、どのようにしてカスタマイズ可能かを知ることができます。
 
 表示設定の変更
-===========================
+==============
 
 7つの設定項目でカレンダーの様々な面をコントロールできます。
 設定項目は呼び出し関数の第2引数に配列として渡して設定します。
@@ -117,7 +117,7 @@ URL を指すリンクになります。
 
 
 次の月 / 前の月 リンクの表示
-=================================
+============================
 
 次へ / 前へ のリンクを経由してカレンダーを動的に進める / 戻る
 ようにするには、次の例のようなコードをカレンダーのコードに設定
@@ -137,7 +137,7 @@ URL を指すリンクになります。
 -  "show_next_prev" を TRUE にする必要があります。
 -  "next_prev_url" の設定項目でカレンダーが設置されている
    コントローラへの URL を指定しなければなりません。
-   指定しなければ、*controller/method*にセットされます。
+   指定しなければ、 *controller/method* にセットされます。
 -  カレンダー生成関数に指定する「年」と「月」には、
    URI セグメントに出現するものを指定します
    (Note: カレンダークラスは基準の URL に対して
@@ -193,7 +193,7 @@ URL を指すリンクになります。
 
 	echo $this->calendar->generate();
 
-配列を使用して、`key=>value`ペアを渡すことで多くの
+配列を使用して、 `key=>value` ペアを渡すことで多くの
 望む値を渡すことができます。省略するとCalendarクラス
 で継承されたデフォルト値を使用します
 
@@ -209,56 +209,56 @@ URL を指すリンクになります。
     
 	echo $this->calendar->generate();
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Calendar
 
 	.. php:method:: initialize([$config = array()])
 
-		:パラメータ	array	$config: 構成パラメータ
-		:返り値:	    CI_Calendar インスタンス (メソッドチェーン)
-		:返り値型:	CI_Calendar
+		:param	array	$config: 構成パラメータ
+		:returns:	    CI_Calendar インスタンス (メソッドチェーン)
+		:rtype:	CI_Calendar
 
 		カレンダーの環境設定を初期化します。表示設定を含む入力として連想配列を受け入れます。
 
 	.. php:method:: generate([$year = ''[, $month = ''[, $data = array()]]])
 
-		:パラメータ	int	$year: 年
-		:パラメータ	int	$month: 月
-		:パラメータ	array	$data: カレンダーセルにデータを表示
-		:返り値:	    HTMLフォーマット カレンダー
-		:返り値型:	string
+		:param	int	$year: 年
+		:param	int	$month: 月
+		:param	array	$data: カレンダーセルにデータを表示
+		:returns:	    HTMLフォーマット カレンダー
+		:rtype:	string
 
 		カレンダーを生成
 
 
 	.. php:method:: get_month_name($month)
 
-		:パラメータ	int	$month: 月
-		:返り値:	    月名
-		:返り値型:	string
+		:param	int	$month: 月
+		:returns:	    月名
+		:rtype:	string
 
 		月の数値に基づいての月名を生成します。
 
 	.. php:method:: get_day_names($day_type = '')
 
-		:パラメータ	string	$day_type: 'long', 'short', or 'abr'
-		:返り値:	    Array of day names
-		:返り値型:	array
+		:param	string	$day_type: 'long', 'short', or 'abr'
+		:returns:	    Array of day names
+		:rtype:	array
 
 		型に基づき、曜日名（日曜日、月曜日、など）の配列を返します。
-		オプション：long, short, abr または なし ``$day_type``が提供
+		オプション：long, short, abr または なし ``$day_type`` が提供
 		されていない場合（または無効な型が提供されている場合）
 		「省略」を返します
 
 	.. php:method:: adjust_date($month, $year)
 
-		:パラメータ	int	$month: 月
-		:パラメータ	int	$year: 年
-		:返り値:	    月と年を含む連想配列
-		:返り値型:	array
+		:param	int	$month: 月
+		:param	int	$year: 年
+		:returns:	    月と年を含む連想配列
+		:rtype:	array
 
 		この方法では、有効な月/年保持していることを確認します。
 		例えば月に13を提出した場合、年が増加すると月が1月
@@ -276,10 +276,10 @@ URL を指すリンクになります。
 
 	.. php:method:: get_total_days($month, $year)
 
-		:パラメータ	int	$month: 月
-		:パラメータ	int	$year: 年
-		:返り値:	    指定された月の日数カウント
-		:返り値型:	int
+		:param	int	$month: 月
+		:param	int	$year: 年
+		:returns:	    指定された月の日数カウント
+		:rtype:	int
 
 		指定された月の総日数::
 
@@ -291,8 +291,8 @@ URL を指すリンクになります。
 
 	.. php:method:: default_template()
 
-		:返り値:	    テンプレート値の配列
-		:返り値型:	array
+		:returns:	    テンプレート値の配列
+		:rtype:	array
 
 		デフォルトのテンプレートを設定します。このメソッドはあなたが作成していない
 		ときに使用される独自のテンプレートを返します。
@@ -300,8 +300,8 @@ URL を指すリンクになります。
 
 	.. php:method:: parse_template()
 
-		:返り値:	CI_Calendar インスタンス (メソッドチェーン)
-		:返り値型:	CI_Calendar
+		:returns:	CI_Calendar インスタンス (メソッドチェーン)
+		:rtype:	CI_Calendar
 
 		テンプレート内のデータを収集
-		``{疑似変数}``カレンダーを表示するために使用されます。
+		``{疑似変数}`` カレンダーを表示するために使用されます。

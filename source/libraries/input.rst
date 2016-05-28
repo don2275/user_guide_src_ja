@@ -1,6 +1,6 @@
-###########
+##########
 入力クラス
-###########
+##########
 
 The Input Class serves two purposes:
 
@@ -17,12 +17,12 @@ The Input Class serves two purposes:
 
   <div class="custom-index container"></div>
 
-***************
+******************
 入力フィルタリング
-***************
+******************
 
 セキュリティフィルタリング
-==================
+==========================
 
 The security filtering method is called automatically when a new
 :doc:`controller <../general/controllers>` is invoked. It does the
@@ -40,7 +40,7 @@ following:
    \\r\\n under Windows). This is configurable.
 
 XSS フィルタリング
-=============
+==================
 
 The Input class has the ability to filter input automatically to prevent
 cross-site scripting attacks. If you want the filter to run
@@ -86,7 +86,7 @@ The main methods are:
 -  ``$this->input->server()``
 
 php://input streamを使う
-============================
+========================
 
 If you want to utilize the PUT, DELETE, PATCH or other exotic request
 methods, they can only be accessed via a special input stream, that
@@ -118,9 +118,9 @@ a boolean value as the second parameter::
 .. note:: You can utilize ``method()`` in order to know if you're reading
 	PUT, DELETE or PATCH data.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Input
 
@@ -175,10 +175,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: get([$index = NULL[, $xss_clean = NULL]])
 
-		:パラメータ	mixed	$index: GET parameter name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	$_GET if no parameters supplied, otherwise the GET value if found or NULL if not
-		:返り値型:	mixed
+		:param	mixed	$index: GET parameter name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	$_GET if no parameters supplied, otherwise the GET value if found or NULL if not
+		:rtype:	mixed
 
 		This method is identical to ``post()``, only it fetches GET data.
 		::
@@ -208,10 +208,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: post_get($index[, $xss_clean = NULL])
 
-		:パラメータ	string	$index: POST/GET parameter name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	POST/GET value if found, NULL if not
-		:返り値型:	mixed
+		:param	string	$index: POST/GET parameter name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	POST/GET value if found, NULL if not
+		:rtype:	mixed
 
 		This method works pretty much the same way as ``post()`` and ``get()``,
 		only combined. It will search through both POST and GET streams for data,
@@ -221,10 +221,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: get_post($index[, $xss_clean = NULL])
 
-		:パラメータ	string	$index: GET/POST parameter name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	GET/POST value if found, NULL if not
-		:返り値型:	mixed
+		:param	string	$index: GET/POST parameter name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	GET/POST value if found, NULL if not
+		:rtype:	mixed
 
 		This method works the same way as ``post_get()`` only it looks for GET
 		data first.
@@ -236,10 +236,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: cookie([$index = NULL[, $xss_clean = NULL]])
 
-		:パラメータ	mixed	$index: COOKIE name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	$_COOKIE if no parameters supplied, otherwise the COOKIE value if found or NULL if not
-		:返り値型:	mixed
+		:param	mixed	$index: COOKIE name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	$_COOKIE if no parameters supplied, otherwise the COOKIE value if found or NULL if not
+		:rtype:	mixed
 
 		This method is identical to ``post()`` and ``get()``, only it fetches cookie
 		data::
@@ -259,10 +259,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: server($index[, $xss_clean = NULL])
 
-		:パラメータ	mixed	$index: Value name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	$_SERVER item value if found, NULL if not
-		:返り値型:	mixed
+		:param	mixed	$index: Value name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	$_SERVER item value if found, NULL if not
+		:rtype:	mixed
 
 		This method is identical to the ``post()``, ``get()`` and ``cookie()``
 		methods, only it fetches server data (``$_SERVER``)::
@@ -277,25 +277,25 @@ a boolean value as the second parameter::
 
 	.. php:method:: input_stream([$index = NULL[, $xss_clean = NULL]])
 
-		:パラメータ	mixed	$index: Key name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	Input stream array if no parameters supplied, otherwise the specified value if found or NULL if not
-		:返り値型:	mixed
+		:param	mixed	$index: Key name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	Input stream array if no parameters supplied, otherwise the specified value if found or NULL if not
+		:rtype:	mixed
 
 		This method is identical to ``get()``, ``post()`` and ``cookie()``,
 		only it fetches the *php://input* stream data.
 
 	.. php:method:: set_cookie($name = ''[, $value = ''[, $expire = ''[, $domain = ''[, $path = '/'[, $prefix = ''[, $secure = FALSE[, $httponly = FALSE]]]]]]])
 
-		:パラメータ	mixed	$name: Cookie name or an array of parameters
-		:パラメータ	string	$value: Cookie value
-		:パラメータ	int	$expire: Cookie expiration time in seconds
-		:パラメータ	string	$domain: Cookie domain
-		:パラメータ	string	$path: Cookie path
-		:パラメータ	string	$prefix: Cookie name prefix
-		:パラメータ	bool	$secure: Whether to only transfer the cookie through HTTPS
-		:パラメータ	bool	$httponly: Whether to only make the cookie accessible for HTTP requests (no JavaScript)
-		:返り値型:	void
+		:param	mixed	$name: Cookie name or an array of parameters
+		:param	string	$value: Cookie value
+		:param	int	$expire: Cookie expiration time in seconds
+		:param	string	$domain: Cookie domain
+		:param	string	$path: Cookie path
+		:param	string	$prefix: Cookie name prefix
+		:param	bool	$secure: Whether to only transfer the cookie through HTTPS
+		:param	bool	$httponly: Whether to only make the cookie accessible for HTTP requests (no JavaScript)
+		:rtype:	void
 
 
 		Sets a cookie containing the values you specify. There are two ways to
@@ -350,8 +350,8 @@ a boolean value as the second parameter::
 
 	.. php:method:: ip_address()
 
-		:返り値:	Visitor's IP address or '0.0.0.0' if not valid
-		:返り値型:	string
+		:returns:	Visitor's IP address or '0.0.0.0' if not valid
+		:rtype:	string
 
 		Returns the IP address for the current user. If the IP address is not
 		valid, the method will return '0.0.0.0'::
@@ -365,10 +365,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: valid_ip($ip[, $which = ''])
 
-		:パラメータ	string	$ip: IP address
-		:パラメータ	string	$which: IP protocol ('ipv4' or 'ipv6')
-		:返り値:	TRUE if the address is valid, FALSE if not
-		:返り値型:	bool
+		:param	string	$ip: IP address
+		:param	string	$which: IP protocol ('ipv4' or 'ipv6')
+		:returns:	TRUE if the address is valid, FALSE if not
+		:rtype:	bool
 
 		Takes an IP address as input and returns TRUE or FALSE (boolean) depending
 		on whether it is valid or not.
@@ -392,9 +392,9 @@ a boolean value as the second parameter::
 
 	.. php:method:: user_agent([$xss_clean = NULL])
 
-		:返り値:	User agent string or NULL if not set
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値型:	mixed
+		:returns:	User agent string or NULL if not set
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:rtype:	mixed
 
 		Returns the user agent string (web browser) being used by the current user,
 		or NULL if it's not available.
@@ -407,9 +407,9 @@ a boolean value as the second parameter::
 
 	.. php:method:: request_headers([$xss_clean = FALSE])
 
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	An array of HTTP request headers
-		:返り値型:	array
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	An array of HTTP request headers
+		:rtype:	array
 
 		Returns an array of HTTP request headers.
 		Useful if running in a non-Apache environment where
@@ -421,10 +421,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: get_request_header($index[, $xss_clean = FALSE])
 
-		:パラメータ	string	$index: HTTP request header name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	    An HTTP request header or NULL if not found
-		:返り値型:	string
+		:param	string	$index: HTTP request header name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	    An HTTP request header or NULL if not found
+		:rtype:	string
 
 		Returns a single member of the request headers array or NULL
 		if the searched header is not found.
@@ -434,16 +434,16 @@ a boolean value as the second parameter::
 
 	.. php:method:: is_ajax_request()
 
-		:返り値:	TRUE if it is an Ajax request, FALSE if not
-		:返り値型:	bool
+		:returns:	TRUE if it is an Ajax request, FALSE if not
+		:rtype:	bool
 
 		Checks to see if the HTTP_X_REQUESTED_WITH server header has been
 		set, and returns boolean TRUE if it is or FALSE if not.
 
 	.. php:method:: is_cli_request()
 
-		:返り値:	TRUE if it is a CLI request, FALSE if not
-		:返り値型:	bool
+		:returns:	TRUE if it is a CLI request, FALSE if not
+		:rtype:	bool
 
 		Checks to see if the application was run from the command-line
 		interface.
@@ -461,9 +461,9 @@ a boolean value as the second parameter::
 
 	.. php:method:: method([$upper = FALSE])
 
-		:パラメータ	bool	$upper: Whether to return the request method name in upper or lower case
-		:返り値:	    HTTP request method
-		:返り値型:	string
+		:param	bool	$upper: Whether to return the request method name in upper or lower case
+		:returns:	    HTTP request method
+		:rtype:	string
 
 		Returns the ``$_SERVER['REQUEST_METHOD']``, with the option to set it
 		in uppercase or lowercase.

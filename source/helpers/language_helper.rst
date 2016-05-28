@@ -1,9 +1,9 @@
-###############
-Language Helper
-###############
+############
+言語ヘルパー
+############
 
-The Language Helper file contains functions that assist in working with
-language files.
+言語ヘルパーファイルは、
+言語ファイルでの動作に役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -12,32 +12,32 @@ language files.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('language');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: lang($line[, $for = ''[, $attributes = array()]])
 
- 	:param	string	$line: Language line key
- 	:param	string	$for: HTML "for" attribute (ID of the element we're creating a label for)
- 	:param	array	$attributes: Any additional HTML attributes
- 	:returns:	HTML-formatted language line label
+	:param	string	$line: 言語文字列キー
+	:param	string	$for: HTML "for" 属性 (作成するラベルの for に使用する要素の ID )
+	:param	array	$attributes: 追加で指定する HTML 属性
+	:returns:    	HTML フォーマットされた言語文字列のラベル
 	:rtype:	string
 
-	This function returns a line of text from a loaded language file with
-	simplified syntax that may be more desirable for view files than
-	``CI_Lang::line()``.
+	この関数は、ビューファイルで言語クラスの ``CI_Lang::line()`` 
+	メソッドを呼び出すよりもより簡単な構文で
+	ロードされた言語ファイルからのテキスト行を返します。
 
-	Example::
+	例::
 
 		echo lang('language_key', 'form_item_id', array('class' => 'myClass'));
-		// Outputs: <label for="form_item_id" class="myClass">Language line</label>
+		// 出力: <label for="form_item_id" class="myClass">Language line</label>

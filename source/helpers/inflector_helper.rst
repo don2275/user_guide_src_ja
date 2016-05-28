@@ -1,9 +1,9 @@
 ################
-Inflector Helper
+語形変換ヘルパー
 ################
 
-The Inflector Helper file contains functions that permits you to change
-words to plural, singular, camel case, etc.
+語形変換ヘルパーのファイルには、語句を複数形、単数形、キャメル記法など
+に変換できる関数が含まれます。
 
 .. contents::
   :local:
@@ -12,17 +12,17 @@ words to plural, singular, camel case, etc.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
+ヘルパーのロード
 ===================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('inflector');
 
 利用できる機能
 ===================
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: singular($str)
@@ -31,9 +31,9 @@ The following functions are available:
 	:returns:	A singular word
 	:rtype:	string
 
-	Changes a plural word to singular. Example::
+	複数形の単語を単数形に変換します。例::
 
-		echo singular('dogs'); // Prints 'dog'
+		echo singular('dogs'); // 'dog' を返します
 
 .. php:function:: plural($str)
 
@@ -41,9 +41,9 @@ The following functions are available:
 	:returns:	A plular word
 	:rtype:	string
 
-	Changes a singular word to plural. Example::
+	単数形の単語を複数形に変換します。例::
 
-		echo plural('dog'); // Prints 'dogs'
+		echo plural('dog'); // 'dogs' を返します
 
 .. php:function:: camelize($str)
 
@@ -51,10 +51,10 @@ The following functions are available:
 	:returns:	Camelized string
 	:rtype:	string
 
-	Changes a string of words separated by spaces or underscores to camel
-	case. Example::
+	スペースまたはアンダースコアで区切られた語句をキャメル記法に変換します。
+	例::
 
-		echo camelize('my_dog_spot'); // Prints 'myDogSpot'
+		echo camelize('my_dog_spot'); // 'myDogSpot' を返します
 
 .. php:function:: underscore($str)
 
@@ -62,10 +62,10 @@ The following functions are available:
 	:returns:	String containing underscores instead of spaces
 	:rtype:	string
 
-	Takes multiple words separated by spaces and underscores them.
-	Example::
+	スペースで区切られた複数の単語を取り出して、アンダースコアでつなぎます。
+	例::
 
-		echo underscore('my dog spot'); // Prints 'my_dog_spot'
+		echo underscore('my dog spot'); // 'my_dog_spot' を返します
 
 .. php:function:: humanize($str[, $separator = '_'])
 
@@ -74,12 +74,12 @@ The following functions are available:
 	:returns:	Humanized string
 	:rtype:	string
 
-	Takes multiple words separated by underscores and adds spaces between
-	them. Each word is capitalized.
+	アンダースコアで区切られた複数の単語を取り出して、スペースでつなぎます。
+	各単語は大文字ではじめられます。
 
-	Example::
+	例::
 
-		echo humanize('my_dog_spot'); // Prints 'My Dog Spot'
+		echo humanize('my_dog_spot'); // 'My Dog Spot'を返します
 
 	To use dashes instead of underscores::
 

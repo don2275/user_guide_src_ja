@@ -8,9 +8,9 @@
 .. contents:: 目次
    :depth: 3
 
-****************************
+**********************
 フォージクラスの初期化
-****************************
+**********************
 
 .. important:: フォージクラスはデータベースドライバを必要とするので、
 	フォージクラスを初期化するには、あらかじめデータベースドライバが動いている必要があります。
@@ -36,9 +36,9 @@
 
 	$this->dbforge->some_method();
 
-*******************************
+************************
 データベースの作成と削除
-*******************************
+************************
 
 **$this->dbforge->create_database('db_name')**
 
@@ -61,9 +61,9 @@ TRUE/FALSE で成功か失敗を示します::
 	}
 
 
-*******************************
+********************
 テーブルの作成と削除
-*******************************
+********************
 
 テーブルを作成するためには、やらなければならないことがいくつかあります
 。フィールドを追加したり、キーをテーブルに追加したり、カラムを変更した
@@ -97,6 +97,7 @@ INT、VARCHAR、TEXT などです。多くのデータタイプ (たとえば VA
 -  auto_increment/true : フィールドのフラグとして、auto_increment を立
    てます。フィールドタイプは整数の様なタイプをサポートするものでないとい
    けません。
+-  unique/true : to generate a unique key for the field definition.
 
 ::
 
@@ -110,6 +111,7 @@ INT、VARCHAR、TEXT などです。多くのデータタイプ (たとえば VA
 		'blog_title' => array(
 			'type' => 'VARCHAR',
 			'constraint' => '100',
+			'unique' => TRUE,
 		),
 		'blog_author' => array(
 			'type' =>'VARCHAR',
@@ -133,7 +135,7 @@ add_fields メソッドは上のような配列を受け入れます。
 
 
 フィールド定義を文字列として渡す
----------------------------------
+--------------------------------
 
 フィールド作成をどのようにしたらよいか正確にわかっている場合、
 add_field() メソッドを使って、フィールド定義を文字列として渡すこともできます。
@@ -148,7 +150,7 @@ add_field() メソッドを使って、フィールド定義を文字列とし�
 .. note:: add_field() を複数回呼ぶと、複数回の処理が累積されていきます。
 
 id フィールドの作成
------------------------
+-------------------
 
 ひとつの特別な例外として、id フィールドの作成があります。type が id
 のフィールドは、自動的に INT(9) の auto_increment な主キーに
@@ -175,14 +177,14 @@ TRUE を指定すると主キーになります。 add_key() の後に create_ta
 
 	$this->dbforge->add_key('blog_id', TRUE);
 	// PRIMARY KEY は `blog_id`(`blog_id`) になります。
-	
+
 	$this->dbforge->add_key('blog_id', TRUE);
 	$this->dbforge->add_key('site_id', TRUE);
 	// PRIMARY KEY は `blog_id_site_id` (`blog_id`, `site_id`) になります。
-	
+
 	$this->dbforge->add_key('blog_name');
 	// KEY は `blog_name` (`blog_name`) になります。
-	
+
 	$this->dbforge->add_key(array('blog_name', 'blog_label'));
 	// KEY は `blog_name_blog_label` (`blog_name`, `blog_label`) になります。
 
@@ -219,7 +221,7 @@ TRUE を指定すると主キーになります。 add_key() の後に create_ta
 
 
 テーブルの削除
-===============
+==============
 
 DROP TABLE sql を実行し、任意で IF EXISTS 文を追加します。
 
@@ -243,12 +245,12 @@ TABLE rename を実行します。
 	// ALTER TABLE old_table_name RENAME TO new_table_name になります
 
 
-****************
+**************
 テーブルの変更
-****************
+**************
 
 テーブルにカラムを追加
-============================
+======================
 
 **$this->dbforge->add_column()**
 
@@ -261,7 +263,7 @@ TABLE rename を実行します。
 	$fields = array(
 		'preferences' => array('type' => 'TEXT')
 	);
-	$this->dbforge->add_column('table_name', $fields); 
+	$this->dbforge->add_column('table_name', $fields);
 	// ALTER TABLE table_name ADD preferences TEXT となります
 
 MySQL か CUBIRD をお使いの場合、 AFTER と FIRST 文を活用してカラム位置を
@@ -281,7 +283,7 @@ MySQL か CUBIRD をお使いの場合、 AFTER と FIRST 文を活用してカ�
 
 
 テーブルのカラムを削除
-=============================
+======================
 
 **$this->dbforge->drop_column()**
 
@@ -294,7 +296,7 @@ MySQL か CUBIRD をお使いの場合、 AFTER と FIRST 文を活用してカ�
 
 
 テーブルのカラムを変更
-===============================
+======================
 
 **$this->dbforge->modify_column()**
 
@@ -314,9 +316,9 @@ MySQL か CUBIRD をお使いの場合、 AFTER と FIRST 文を活用してカ�
 	// ALTER TABLE table_name CHANGE old_name new_name TEXT になります
 
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_DB_forge
 

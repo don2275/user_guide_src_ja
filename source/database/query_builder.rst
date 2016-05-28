@@ -1433,15 +1433,20 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		INSERT 文をコンパイルして実行する。
 
-	.. php:method:: insert_batch([$table = ''[, $set = NULL[, $escape = NULL]]])
+	.. php:method:: insert_batch($table[, $set = NULL[, $escape = NULL[, $batch_size = 100]]])
 
 		:param	string	$table: テーブル名
 		:param	array	$set: 挿入するデータ
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	Number of rows inserted or FALSE on failure
+		:param	int	$batch_size: 一度に挿入する行数
+		:returns:	挿入された行数か、失敗時は FALSE
 		:rtype:	mixed
 
-		複数の INSERT 文のバッチをコンパイルして実行する。
+		複数の ``INSERT`` 文のバッチをコンパイルして実行する。
+
+		..note:: ``$batch_size`` より多くの行数が渡された場合、
+		複数の ``INSERT`` クエリが実行され、それぞれ ``$batch_size`` 行数
+		まで挿入を試みる。
 
 	.. php:method:: set_insert_batch($key[, $value = ''[, $escape = NULL]])
 
@@ -1464,15 +1469,20 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		UPDATE 文をコンパイルして実行。
 
-	.. php:method:: update_batch([$table = ''[, $set = NULL[, $value = NULL]]])
+	.. php:method:: update_batch($table[, $set = NULL[, $value = NULL[, $batch_size = 100]]])
 
 		:param	string	$table: テーブル名
 		:param	array	$set: フィールド名か、フィールド／値の連想配列
 		:param	string	$value: $set が単一フィールドの場合のフィールド値
+		:param	int	$batch_size: 単一のクエリでまとめる条件文の数
 		:returns:	更新された行数か、失敗の場合 FALSE
 		:rtype:	mixed
 
 		複数の UPDATE 文のバッチをコンパイルして実行する。
+
+		..note:: ``$batch_size`` より多くの行数が渡された場合、
+		複数のクエリが実行され、それぞれ ``$batch_size`` のフィールド／値ペア
+		の分だけ操作を行う。
 
 	.. php:method:: set_update_batch($key[, $value = ''[, $escape = NULL]])
 

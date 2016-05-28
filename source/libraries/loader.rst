@@ -1,15 +1,15 @@
-#############################
+############################
 ローダ (読み込み処理) クラス
-#############################
+############################
 
-Loader, as the name suggests, is used to load elements. These elements
-can be libraries (classes) :doc:`View files <../general/views>`,
-:doc:`Drivers <../general/drivers>`,
-:doc:`Helpers <../general/helpers>`,
-:doc:`Models <../general/models>`, or your own files.
+ローダは、名前が示すように、要素をロードするために使用されます。
+それら要素は :doc:`ビューファイル <../general/views>` 、
+:doc:`ドライバー <../general/drivers>` 、
+:doc:`ヘルパー <../general/helpers>` 、
+:doc:`モデル <../general/models>` 、または独自のファイルをライブラリ (クラス) とすることができます。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスはシステムによって自動的に初期化されますので、
+	手動で初期化する必要はありません。
 
 .. contents::
   :local:
@@ -18,18 +18,18 @@ can be libraries (classes) :doc:`View files <../general/views>`,
 
   <div class="custom-index container"></div>
 
-**************************
-アプリケーションパッケージ
-**************************
+********************************
+アプリケーションの「パッケージ」
+********************************
 
-An application package allows for the easy distribution of complete sets
-of resources in a single directory, complete with its own libraries,
-models, helpers, config, and language files. It is recommended that
-these packages be placed in the application/third_party directory. Below
-is a sample map of an package directory.
+アプリケーションパッケージはリソースの完全なセットを単一のディレクトリにいれて
+簡単に配布することができます。それには独自のライブラリ、
+モデル、ヘルパー、設定、および言語ファイルを揃えられます。これらのパッケージは
+application/third_party ディレクトリに配置することをおすすめします。
+後述はパッケージディレクトリのサンプルマップです。
 
-The following is an example of a directory for an application package
-named "Foo Bar".
+以下は「 Foo Bar 」という名前のアプリケーションパッケージの
+ディレクトリ例です。
 
 ::
 
@@ -41,87 +41,87 @@ named "Foo Bar".
 	libraries/
 	models/
 
-Whatever the purpose of the "Foo Bar" application package, it has its
-own config files, helpers, language files, libraries, and models. To use
-these resources in your controllers, you first need to tell the Loader
-that you are going to be loading resources from a package, by adding the
-package path via the ``add_package_path()`` method.
+「 FooBar 」アプリケーションパッケージの目的は何であれ、
+それは独自の設定ファイル、ヘルパー、言語ファイル、ライブラリ、およびモデルを持っています。
+コントローラ内でこれらのリソースを使用するには、
+まずパッケージからリソースをロードするようローダに指示する必要があります。
+それは ``add_package_path()`` メソッドによってパッケージパスを追加することで可能です。
 
 パッケージのビューファイル
 --------------------------
 
-By Default, package view files paths are set when ``add_package_path()``
-is called. View paths are looped through, and once a match is
-encountered that view is loaded.
+デフォルトでは ``add_package_path()`` が呼び出されたときに、パッケージのビューファイルのパスが設定されます。
+ビューのパスは順番に見てまわり、一致するものが見つかればその時点で、
+そのビューがロードされます。
 
-In this instance, it is possible for view naming collisions within
-packages to occur, and possibly the incorrect package being loaded. To
-ensure against this, set an optional second parameter of FALSE when
-calling ``add_package_path()``.
+この場合、パッケージ内で名前が衝突することがあり、
+そしておそらく間違ったパッケージがロードされます。
+これに対処するには ``add_package_path()`` を呼び出すとき、オプションの第 2 引数に FALSE
+を設定します。
 
 ::
 
 	$this->load->add_package_path(APPPATH.'my_app', FALSE);
-	$this->load->view('my_app_index'); // Loads
-	$this->load->view('welcome_message'); // Will not load the default welcome_message b/c the second param to add_package_path is FALSE
+	$this->load->view('my_app_index'); // 読み込まれます
+	$this->load->view('welcome_message'); // デフォルトの welcome_message は読み込まれません。なぜなら add_package_path の第 2 引数が FALSE だからです
 
-	// Reset things
+	// リセットします
 	$this->load->remove_package_path(APPPATH.'my_app');
 
-	// Again without the second parameter:
+	// 第 2 引数なしでやり直します:
 	$this->load->add_package_path(APPPATH.'my_app');
-	$this->load->view('my_app_index'); // Loads
-	$this->load->view('welcome_message'); // Loads
+	$this->load->view('my_app_index'); // 読み込まれます
+	$this->load->view('welcome_message'); // 読み込まれます
 
-*******************
+******************
 クラスリファレンス
-*******************
+******************
 
 .. php:class:: CI_Loader
 
 	.. php:method:: library($library[, $params = NULL[, $object_name = NULL]])
 
-		:param	mixed	$library: Library name as a string or an array with multiple libraries
-		:param	array	$params: Optional array of parameters to pass to the loaded library's constructor
-		:param	string	$object_name: Optional object name to assign the library to
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method is used to load core classes.
+		このメソッドはコアクラスをロードするために使用されます。
 
-		.. note:: We use the terms "class" and "library" interchangeably.
+		.. note:: 私たちは「クラス」と「ライブラリ」という用語を互換性があるものとして使用します。
 
-		For example, if you would like to send email with CodeIgniter, the first
-		step is to load the email class within your controller::
+		たとえば CodeIgniter でメールを送信したい場合、
+		最初のステップはコントローラ内で Email クラスをロードすることです::
 
 			$this->load->library('email');
 
-		Once loaded, the library will be ready for use, using ``$this->email``.
+		いちどロードされれば、ライブラリを使用できる準備が整います。つまり ``$this->email`` を使用できます。
 
-		Library files can be stored in subdirectories within the main
-		"libraries" directory, or within your personal *application/libraries*
-		directory. To load a file located in a subdirectory, simply include the
-		path, relative to the "libraries" directory. For example, if you have
-		file located at::
+		ライブラリファイルは、メインの
+		「 libraries 」ディレクトリ内のサブディレクトリか、またはあなたの個人的な *application/libraries*
+		内に格納することができます。サブディレクトリにあるファイルをロードするには、
+		単純に「 libraries 」ディレクトリからの相対パスを含めます。
+		たとえば、次のファイルの場合::
 
 			libraries/flavors/Chocolate.php
 
-		You will load it using::
+		こうやってロードできます::
 
 			$this->load->library('flavors/chocolate');
 
-		You may nest the file in as many subdirectories as you want.
+		サブディレクトリは好きなだけネストすることができます。
 
-		Additionally, multiple libraries can be loaded at the same time by
-		passing an array of libraries to the load method.
+		さらに、ライブラリの配列をロードメソッドに渡すことによって、
+		いちどに複数のロードをすることができます。
 		::
 
 			$this->load->library(array('email', 'table'));
 
-		**Setting options**
+		**設定オプション**
 
-		The second (optional) parameter allows you to optionally pass
-		configuration setting. You will typically pass these as an array::
+		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		通常、これらは配列として渡します::
 
 			$config = array (
 				'mailtype' => 'html',
@@ -131,64 +131,64 @@ calling ``add_package_path()``.
 
 			$this->load->library('email', $config);
 
-		Config options can usually also be set via a config file. Each library
-		is explained in detail in its own page, so please read the information
-		regarding each one you would like to use.
+		設定オプションは通常、 Config ファイルにより設定することもできます。
+		各ライブラリはそれぞれのページで詳しく説明されています。
+		使いたいものについてそれぞれの情報をお読みください。
 
-		Please take note, when multiple libraries are supplied in an array for
-		the first parameter, each will receive the same parameter information.
+		注意すべきこととして、第 1 引数に配列で複数のライブラリを渡されると、
+		それぞれ同じパラメータ情報を受け取ることになります。
 
-		**Assigning a Library to a different object name**
+		**ライブラリに別のオブジェクト名を割り当てる**
 
-		If the third (optional) parameter is blank, the library will usually be
-		assigned to an object with the same name as the library. For example, if
-		the library is named Calendar, it will be assigned to a variable named
-		``$this->calendar``.
+		第 3 引数 (オプション) が渡されない場合、通常、
+		ライブラリはそれと同じ名前のオブジェクトに割り当てられます。たとえば
+		Calendar というライブラリの場合、それは
+		``$this->calendar`` という名前の変数に代入されます。
 
-		If you prefer to set your own class names you can pass its value to the
-		third parameter::
+		独自のクラス名を設定したい場合、
+		第 3 引数にその値を渡すことができます::
 
 			$this->load->library('calendar', NULL, 'my_calendar');
 
-			// Calendar class is now accessed using:
+			// Calendar クラスはいま、このようにアクセスできます:
 			$this->my_calendar
 
-		Please take note, when multiple libraries are supplied in an array for
-		the first parameter, this parameter is discarded.
+		注意すべきこととして、第 1 引数に配列で複数のライブラリを渡されると、
+		この引数は無視されます。
 
 	.. php:method:: driver($library[, $params = NULL[, $object_name]])
 
-		:param	mixed	$library: Library name as a string or an array with multiple libraries
-		:param	array	$params: Optional array of parameters to pass to the loaded library's constructor
-		:param	string	$object_name: Optional object name to assign the library to
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method is used to load driver libraries, acts very much like the
-		``library()`` method.
+		このメソッドはドライバライブラリをロードするために使用され、
+		``library()`` メソッドにとてもよく似た役割を果たします。
 
-		As an example, if you would like to use sessions with CodeIgniter, the first
-		step is to load the session driver within your controller::
+		例として、 CodeIgniter のセッションを使用したい場合、
+		その最初の一歩はコントローラ内でセッションドライバをロードすることです::
 
 			$this->load->driver('session');
 
-		Once loaded, the library will be ready for use, using ``$this->session``.
+		いちどロードされれば、ライブラリを使用できる準備が整います、つまり ``$this->session`` を使用できます。
 
-		Driver files must be stored in a subdirectory within the main
-		"libraries" directory, or within your personal *application/libraries*
-		directory. The subdirectory must match the parent class name. Read the
-		:doc:`Drivers <../general/drivers>` description for details.
+		ドライバファイルは、メインの「 libraries 」ディレクトリ内のサブディレクトリか、
+		またはあなたの個人的な *application/libraries* 内に格納することができます。
+		サブディレクトリは親クラス名と一致させなければなりません。
+		詳しくは :doc:`ドライバ<../general/drivers>` の説明をお読みください。
 
-		Additionally, multiple driver libraries can be loaded at the same time by
-		passing an array of drivers to the load method.
+		さらに、ドライバライブラリの配列をロードメソッドに渡すことによって、
+		いちどに複数のロードをすることができます。
 		::
 
 			$this->load->driver(array('session', 'cache'));
 
-		**Setting options**
+		**設定オプション**
 
-		The second (optional) parameter allows you to optionally pass
-		configuration settings. You will typically pass these as an array::
+		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		通常、これらは配列として渡します::
 
 			$config = array(
 				'sess_driver' => 'cookie',
@@ -198,75 +198,75 @@ calling ``add_package_path()``.
 
 			$this->load->driver('session', $config);
 
-		Config options can usually also be set via a config file. Each library
-		is explained in detail in its own page, so please read the information
-		regarding each one you would like to use.
+		設定オプションは通常、 Config ファイルにより設定することもできます。
+		各ライブラリはそれぞれのページで詳しく説明されています。
+		使いたいものについてそれぞれの情報をお読みください。
 
-		**Assigning a Driver to a different object name**
+		**ライブラリに別のオブジェクト名を割り当てる**
 
-		If the third (optional) parameter is blank, the library will be assigned
-		to an object with the same name as the parent class. For example, if
-		the library is named Session, it will be assigned to a variable named
-		``$this->session``.
+		第 3 引数 (オプション) が渡されない場合、
+		ライブラリは親クラスと同じ名前のオブジェクトに割り当てられます。
+		たとえば Session というライブラリの場合、
+		それは ``$this->session`` という名前の変数に代入されます。
 
-		If you prefer to set your own class names you can pass its value to the
-		third parameter::
+		独自のクラス名を設定したい場合、
+		第 3 引数にその値を渡すことができます::
 
 			$this->load->library('session', '', 'my_session');
 
-			// Session class is now accessed using:
+			// Session クラスはいまこのようにアクセスできます:
 			$this->my_session
 
 	.. php:method:: view($view[, $vars = array()[, return = FALSE]])
 
-		:param	string	$view: View name
-		:param	array	$vars: An associative array of variables
-		:param	bool	$return: Whether to return the loaded view
-		:returns:	View content string if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	string	$view: ビュー名
+		:param	array	$vars: 変数の連想配列
+		:param	bool	$return: ロードされたビューを返すかどうか
+		:returns:	$return を TRUE に設定した場合は表示内容の文字列、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		This method is used to load your View files. If you haven't read the
-		:doc:`Views <../general/views>` section of the user guide it is
-		recommended that you do since it shows you how this method is
-		typically used.
+		このメソッドはビューファイルをロードするために使用します。
+		もしユーザガイドの :doc:`ビュー <../general/views>` セクションを読んでいない場合、
+		まずそちらをおすすめします。
+		この方法の一般的な使用方法が記されています。
 
-		The first parameter is required. It is the name of the view file you
-		would like to load.
+		第 1 引数は必須です。
+		それはロードしたいビューファイルの名前です。
 
-		.. note:: The .php file extension does not need to be specified unless
-			you use something other than .php.
+		.. note:: .php の以外のものを使用しない限り、
+			.php ファイル拡張子を指定する必要はありません。
 
-		The second **optional** parameter can take an associative array or an
-		object as input, which it runs through the PHP
-		`extract() <http://php.net/extract>`_ function to convert to variables
-		that can be used in your view files. Again, read the
-		:doc:`Views <../general/views>` page to learn how this might be useful.
+		**省略可能な** 第 2 引数は連想配列またはオブジェクトを渡すことができます。
+		それは実行中に PHP の
+		`extract() <http://php.net/extract>`_ 関数を使ってビューファイルで使用できる変数に変換されます。
+		繰り返します、 :doc:`ビューページ <../general/views>` をお読みください。
+		これがどれだけ使えるかを学べます。
 
-		The third **optional** parameter lets you change the behavior of the
-		method so that it returns data as a string rather than sending it to
-		your browser. This can be useful if you want to process the data in some
-		way. If you set the parameter to TRUE (boolean) it will return data. The
-		default behavior is FALSE, which sends it to your browser. Remember to
-		assign it to a variable if you want the data returned::
+		**省略可能な** 第 3 引数はメソッドの動作を変更することができます、
+		ブラウザに送信するのではなく、文字列としてデータを返すようにです。
+		これは、なにかしらデータを処理したい場合に便利です。
+		このパラメータを TRUE (真偽値) に設定すると、データが返されます。
+		デフォルトの動作は FALSE で、これはブラウザにデータを送信します。
+		データを返すようにしたときは変数に代入するのを忘れないでください::
 
 			$string = $this->load->view('myfile', '', TRUE);
 
 	.. php:method:: vars($vars[, $val = ''])
 
-		:param	mixed	$vars: An array of variables or a single variable name
-		:param	mixed	$val: Optional variable value
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$vars: 変数の配列または単一の変数名
+		:param	mixed	$val: 変数値 (オプション)
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
-		This method takes an associative array as input and generates
-		variables using the PHP `extract() <http://php.net/extract>`_
-		function. This method produces the same result as using the second
-		parameter of the ``$this->load->view()`` method above. The reason you
-		might want to use this method independently is if you would like to
-		set some global variables in the constructor of your controller and have
-		them become available in any view file loaded from any method. You can
-		have multiple calls to this method. The data get cached and merged
-		into one array for conversion to variables.
+		このメソッドは入力として連想配列を取り、
+		PHP の `extract() <http://php.net/extract>`_
+		関数を使用して変数を生成します。このメソッドは上記
+		``$this->load->view()`` メソッドの第 2 引数を使用した場合と同じ結果が得られます。
+		独立してこのメソッドを使用するべき理由としては、
+		コントローラのコンストラクタでグローバル変数を設定し、
+		それらを不特定のメソッドからロードされる任意のビューファイルで利用したい場合です。
+		このメソッドは複数回呼び出すことができます。
+		データは蓄えられ、変数展開のために1つの配列にマージされます。
 
 	.. php:method:: get_var($key)
 

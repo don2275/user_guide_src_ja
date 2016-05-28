@@ -1,8 +1,8 @@
-###############
-Download Helper
-###############
+####################
+ダウンロードヘルパー
+####################
 
-The Download Helper lets you download data to your desktop.
+ダウンロードヘルパーを使うと、データをデスクトップにダウンロードさせることができます。
 
 .. contents::
   :local:
@@ -11,17 +11,17 @@ The Download Helper lets you download data to your desktop.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('download');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: force_download([$filename = ''[, $data = ''[, $set_mime = FALSE]]])
@@ -31,10 +31,10 @@ The following functions are available:
 	:param	bool	$set_mime: Whether to try to send the actual MIME type
 	:rtype:	void
 
-	Generates server headers which force data to be downloaded to your
-	desktop. Useful with file downloads. The first parameter is the **name
-	you want the downloaded file to be named**, the second parameter is the
-	file data.
+	データを強制的にデスクトップにダウンロードさせるためのサーバヘッダを
+	生成します。 ファイルのダウンロードで使えます。 
+	第1引数には、ダウンロードファイルにつけたい名前を指定し、第2引数には、
+	ファイルのデータを指定します。
 
 	If you set the second parameter to NULL and ``$filename`` is an existing, readable
 	file path, then its content will be read instead.

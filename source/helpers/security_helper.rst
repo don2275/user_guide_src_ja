@@ -1,8 +1,8 @@
-###############
-Security Helper
-###############
+####################
+セキュリティヘルパー
+####################
 
-The Security Helper file contains security related functions.
+セキュリティヘルパーのファイルには、セキュリティに関連する関数で構成されています。
 
 .. contents::
   :local:
@@ -11,96 +11,96 @@ The Security Helper file contains security related functions.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('security');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: xss_clean($str[, $is_image = FALSE])
 
-	:param	string	$str: Input data
-	:param	bool	$is_image: Whether we're dealing with an image
-	:returns:	XSS-clean string
+	:param	string	$str: 入力データ
+	:param	bool	$is_image: 画像を扱うかどうか
+	:returns:	XSS クリーンな文字列
 	:rtype:	string
 
-	Provides Cross Site Script Hack filtering.
+	クロスサイトスクリプティングハッキングのフィルタリングを提供します。
 
-	This function is an alias for ``CI_Input::xss_clean()``. For more info,
-	please see the :doc:`Input Library <../libraries/input>` documentation.
+	この関数は、 ``CI_Input::xss_clean()`` のエイリアスです。より多くの情報を
+	得るには、:doc:`入力クラス <../libraries/input>` を見てください。
 
 .. php:function:: sanitize_filename($filename)
 
-	:param	string	$filename: Filename
-	:returns:	Sanitized file name
+	:param	string	$filename: ファイル名
+	:returns:	サニタイズされたファイル名
 	:rtype:	string
 
-	Provides protection against directory traversal.
+	ディレクトリトラバーサルに対する保護を提供します。
 
-	This function is an alias for ``CI_Security::sanitize_filename()``.
-	For more info, please see the :doc:`Security Library <../libraries/security>`
-	documentation.
+	この関数は、 ``CI_Security::sanitize_filename()`` のエイリアスです。
+	より多くの情報を得るには、:doc:`セキュリティクラス <../libraries/security>`
+	を見てください。
 
 
 .. php:function:: do_hash($str[, $type = 'sha1'])
 
-	:param	string	$str: Input
-	:param	string	$type: Algorithm
-	:returns:	Hex-formatted hash
+	:param	string	$str: 入力文字列
+	:param	string	$type: アルゴリズム
+	:returns:	16進数表記されたハッシュ値
 	:rtype:	string
 
-	Permits you to create one way hashes suitable for encrypting
-	passwords. Will use SHA1 by default.
+	パスワードの暗号化に適した SHA1 の一方向ハッシュ値を生成できます。
+	初期状態では SHA1 ハッシュ値を生成します。
 
-	See `hash_algos() <http://php.net/function.hash_algos>`_
-	for a full list of supported algorithms.
+	サポートしているアルゴリズムの完全なリストは、
+	`hash_algos() <http://php.net/function.hash_algos>`_ を見てください。
 
-	Examples::
+	例::
 
 		$str = do_hash($str); // SHA1
 		$str = do_hash($str, 'md5'); // MD5
 
-	.. note:: This function was formerly named ``dohash()``, which has been
-		removed in favor of ``do_hash()``.
+	.. note:: この関数は、以前は ``dohash()`` という名前でした。
+		``do_hash()`` の使用が推奨され、変更されました。
 
-	.. note:: This function is DEPRECATED. Use the native ``hash()`` instead.
+	.. note:: この関数は廃止予定です。ネイティブの ``hash()`` を代わりに使用してください。
 
 
 .. php:function:: strip_image_tags($str)
 
-	:param	string	$str: Input string
-	:returns:	The input string with no image tags
+	:param	string	$str: 入力文字列
+	:returns:	入力文字列からイメージタグを除いたもの
 	:rtype:	string
 
-	This is a security function that will strip image tags from a string.
-	It leaves the image URL as plain text.
+	これは、文字列からイメージタグを除去するセキュリティ関数です。
+	画像の URL はプレーンテキストとして残ります。
 
-	Example::
+	例::
 
 		$string = strip_image_tags($string);
 
-	This function is an alias for ``CI_Security::strip_image_tags()``. For
-	more info, please see the :doc:`Security Library <../libraries/security>`
-	documentation.
+	この関数は、 ``CI_Security::strip_image_tags()`` のエイリアスです。
+	より多くの情報を得るには、:doc:`セキュリティクラス <../libraries/security>`
+	を見てください。
 
 
 .. php:function:: encode_php_tags($str)
 
-	:param	string	$str: Input string
-	:returns:	Safely formatted string
+	:param	string	$str: 入力文字列
+	:returns:	安全な形式の文字列
 	:rtype:	string
 
-	This is a security function that converts PHP tags to entities.
+	これは、PHP タグを HTML エンティティに変換するセキュリティ関数です。
 
-	.. note:: :php:func:`xss_clean()` does this automatically, if you use it.
+	.. note:: これを使用しても :php:func:`xss_clean()` は自動的に行われません。
 
-	Example::
+	例::
 
 		$string = encode_php_tags($string);

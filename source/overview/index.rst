@@ -2,7 +2,7 @@
 CodeIgniter 概要
 ####################
 
-以下のページは、CodeIgniterの背景と概念を記載します
+以下のページは、CodeIgniter の背景と概念を記載します:
 
 .. toctree::
 	:titlesonly:

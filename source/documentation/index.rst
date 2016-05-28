@@ -1,15 +1,15 @@
-#################################
-Writing CodeIgniter Documentation
-#################################
+################################
+CodeIgniter のドキュメントを書く
+################################
 
-CodeIgniter uses Sphinx to generate its documentation in a variety of formats,
-using reStructuredText to handle the formatting.  If you are familiar with
-Markdown or Textile, you will quickly grasp reStructuredText.  The focus is
-on readability and user friendliness.
-While they can be quite technical, we always write for humans!
+CodeIgniter は、reStructuredText という形式を使うことで様々なフォーマット
+でのドキュメントを生成できる Sphinx を使います。もし、Markdown や Textile
+に慣れているなら、reStructuredText を素早く把握することができるでしょう。
+焦点は、信頼性とユーザフレンドリーさです。
+それらは、とても技術的である一方、常に人にとって読み易いものを書くことがきます。
 
-A local table of contents should always be included, like the one below.
-It is created automatically by inserting the following:
+以下のもののように、目次は常に含まれます。
+以下を挿入することで自動的に作成されます。:
 
 ::
 
@@ -27,48 +27,48 @@ It is created automatically by inserting the following:
 
   <div class="custom-index container"></div>
 
-The <div> that is inserted as raw HTML is a hook for the documentation's
-JavaScript to dynamically add links to any function and method definitions
-contained in the current page.
+HTML として挿入された <div> タグは、
+現在のページ内のあらゆる関数やメソッド定義へのリンクを動的に追加するために
+ドキュメントの JavaScript に仕掛けがされています。
 
-**************
-Tools Required
-**************
+************
+必要なツール
+************
 
-To see the rendered HTML, ePub, PDF, etc., you will need to install Sphinx
-along with the PHP domain extension for Sphinx.  The underlying requirement
-is to have Python installed.  Lastly, you will install the CI Lexer for
-Pygments, so that code blocks can be properly highlighted.
+HTML や ePub、PDFなど表示されたものを見るためには、Sphinx と一緒に
+Shpinx のための PHP ドメイン拡張 をインストールする必要があります。
+基本的には、Python をインストールする必要があります。
+最後に、コードブロックが適切にハイライトされるために Pygments 用の CI Lexer をインストールします。
 
 .. code-block:: bash
 
 	easy_install "sphinx==1.2.3"
 	easy_install sphinxcontrib-phpdomain
 
-Then follow the directions in the README file in the :samp:`cilexer` folder
-inside the documentation repository to install the CI Lexer.
+それから CI Lexer をインストールするためのドキュメントリポジトリの中にある
+:samp:`cilexer` フォルダの README ファイルの指示に従ってください。
 
 
 
-*****************************************
-Page and Section Headings and Subheadings
-*****************************************
+************************************
+ページとセクションの見出し、小見出し
+************************************
 
-Headings not only provide order and sections within a page, but they also
-are used to automatically build both the page and document table of contents.
-Headings are formed by using certain characters as underlines for a bit of
-text.  Major headings, like page titles and section headings also use
-overlines.  Other headings just use underlines, with the following hierarchy::
+見出しは、ページ内のセクションや順序を提供するだけではありません。
+それらは、また、ページとドキュメントの目次を両方自動的に生成します。
+見出しは、ちょっとしたテキストに特定の文字をアンダーラインすることによって
+形成されています。ページタイトルやセクションの見出しのような主な見出しは
+オーバーラインも使用します。その他の見出しは、次のような階層でアンダーラインのみ使用します。::
 
-	# with overline for page titles
-	* with overline for major sections
-	= for subsections
-	- for subsubsections
-	^ for subsubsubsections
-	" for subsubsubsubsections (!)
+	# ページタイトルでは、オーバーラインとともに使用します
+	* 主なセクションでは、オーバーラインとともに使用します
+	= サブセクション
+	- サブセクション2階層目
+	^ サブセクション3階層目
+	" サブセクション4階層目 (!)
 
-The :download:`TextMate ELDocs Bundle <./ELDocs.tmbundle.zip>` can help you
-create these with the following tab triggers::
+:download:`TextMate ELDocs バンドル <./ELDocs.tmbundle.zip>` は、
+以下のタブトリガーでこれらを作成することができます。::
 
 	title->
 
@@ -105,13 +105,13 @@ create these with the following tab triggers::
 
 
 
-********************
-Method Documentation
-********************
+**********************
+メソッドのドキュメント
+**********************
 
-When documenting class methods for third party developers, Sphinx provides
-directives to assist and keep things simple.  
-For example, consider the following ReST:
+サードパーティの開発者のためにクラスメソッドのドキュメントを書く場合
+Sphinx は物事をシンプルに保ち手助けするためのディレクティブを提供します。
+例えば、次のような ReST が考えられます:
 
 .. code-block:: rst
 
@@ -119,14 +119,14 @@ For example, consider the following ReST:
 
 		.. php:method:: some_method ( $foo [, $bar [, $bat]])
 
-			This function will perform some action. The ``$bar`` array must contain
-			a something and something else, and along with ``$bat`` is an optional
-			parameter.
+			この関数は、いくつかのアクションを実行します。``$bar`` 配列は
+			何かと何か他のものが含まれている必要があります。そしてそれに加えて
+			``$bat`` は任意のパラメータです。
 
-			:param int $foo: the foo id to do something in
-			:param mixed $bar: A data array that must contain a something and something else
-			:param bool $bat: whether or not to do something
-			:returns: FALSE on failure, TRUE if successful
+			:param int $foo: 何かをする foo の ID
+			:param mixed $bar: 何かと何か他のものが含まれている必要がある配列
+			:param bool $bat: 何かを行うかどうか
+			:returns: 失敗したら FALSE、 成功したら TRUE
 			:rtype: bool
 
 			::
@@ -145,33 +145,33 @@ For example, consider the following ReST:
 					show_error('An Error Occurred Doing Some Method');
 				}
 
-			.. note:: Here is something that you should be aware of when using some_method().
-					For real.
+			.. note:: ここは some_method() を使う際に知っておくべき何かです。
+					実際の内容。
 
-			See also :meth:`Some_class::should_do_something`
+			:meth:`Some_class::should_do_something`  を見てください。
 
 
 		.. php:method:: should_do_something()
 
-			:returns: Whether or not something should be done
+			:returns: 何かが行われるべきかどうか
 			:rtype: bool
 
 
-It creates the following display:
+以下のように表示されるものを生成します:
 
 .. php:class:: Some_class
 
 
 	.. php:method:: some_method ( $foo [, $bar [, $bat]])
 
-		This function will perform some action. The ``$bar`` array must contain
-		a something and something else, and along with ``$bat`` is an optional
-		parameter.
-
-		:param int $foo: the foo id to do something in
-		:param mixed $bar: A data array that must contain a something and something else
-		:param bool $bat: whether or not to do something
-		:returns: FALSE on failure, TRUE if successful
+		この関数は、いくつかのアクションを実行します。``$bar`` 配列は
+		何かと何か他のものが含まれている必要があります。そしてそれに加えて
+		``$bat`` は任意のパラメータです。
+		
+		:param int $foo: 何かをする foo の ID
+		:param mixed $bar: 何かと何か他のものが含まれている必要がある配列
+		:param bool $bat: 何かを行うかどうか
+		:returns: 失敗したら FALSE、 成功したら TRUE
 		:rtype: bool
 
 		::
@@ -190,13 +190,13 @@ It creates the following display:
 				show_error('An Error Occurred Doing Some Method');
 			}
 
-		.. note:: Here is something that you should be aware of when using some_method().
-				For real.
+		.. note:: ここは some_method() を使う際に知っておくべき何かです。
+				実際の内容。
 
-		See also :meth:`Some_class::should_do_something`
+		:meth:`Some_class::should_do_something` を見てください。
 
 
 	.. php:method:: should_do_something()
 
-		:returns: Whether or not something should be done
+		:returns: 何かが行われるべきかどうか
 		:rtype: bool

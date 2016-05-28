@@ -1,9 +1,9 @@
-###########
-Path Helper
-###########
+############
+パスヘルパー
+############
 
-The Path Helper file contains functions that permits you to work with
-file paths on the server.
+パスヘルパーのファイルは、サーバのファイルパスを操作する関数で構成され
+ています。
 
 .. contents::
   :local:
@@ -12,42 +12,42 @@ file paths on the server.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('path');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: set_realpath($path[, $check_existance = FALSE])
 
-	:param	string	$path: Path
-	:param	bool	$check_existance: Whether to check if the path actually exists
-	:returns:	An absolute path
+	:param	string	$path: パス
+	:param	bool	$check_existance: パスが実在するかをチェックするかどうか
+	:returns:	絶対パス
 	:rtype:	string
 
-	This function will return a server path without symbolic links or
-	relative directory structures. An optional second argument will
-	cause an error to be triggered if the path cannot be resolved.
+	この関数はシンボリックリンクか相対的ディレクトリ構造になっていない
+	サーバのパスを返します。オプションの2番目の引数は
+	パスが存在しないとエラーを返します。
 
-	Examples::
+	例::
 
 		$file = '/etc/php5/apache2/php.ini';
-		echo set_realpath($file); // Prints '/etc/php5/apache2/php.ini'
+		echo set_realpath($file); // '/etc/php5/apache2/php.ini' を返します
 
 		$non_existent_file = '/path/to/non-exist-file.txt';
-		echo set_realpath($non_existent_file, TRUE);	// Shows an error, as the path cannot be resolved
-		echo set_realpath($non_existent_file, FALSE);	// Prints '/path/to/non-exist-file.txt'
+		echo set_realpath($non_existent_file, TRUE);	// パスが解決できないとして error を返します
+		echo set_realpath($non_existent_file, FALSE);	// '/path/to/non-exist-file.txt' を返します
 
 		$directory = '/etc/php5';
-		echo set_realpath($directory);	// Prints '/etc/php5/'
+		echo set_realpath($directory);	// '/etc/php5/' を返します
 
 		$non_existent_directory = '/path/to/nowhere';
-		echo set_realpath($non_existent_directory, TRUE);	// Shows an error, as the path cannot be resolved
-		echo set_realpath($non_existent_directory, FALSE);	// Prints '/path/to/nowhere'
+		echo set_realpath($non_existent_directory, TRUE);	// パスが解決できないとして error を返します
+		echo set_realpath($non_existent_directory, FALSE);	// '/path/to/nowhere' を返します

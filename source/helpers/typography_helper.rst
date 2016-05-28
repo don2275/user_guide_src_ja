@@ -1,9 +1,9 @@
-#################
-Typography Helper
-#################
+########################
+タイポグラフィーヘルパー
+########################
 
-The Typography Helper file contains functions that help your format text
-in semantically relevant ways.
+タイポグラフィーヘルパーファイルは、テキストをセマンティックな方法で
+整形するのに役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -12,64 +12,64 @@ in semantically relevant ways.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('typography');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: auto_typography($str[, $reduce_linebreaks = FALSE])
 
-	:param	string	$str: Input string
-	:param	bool	$reduce_linebreaks: Whether to reduce multiple instances of double newlines to two
-	:returns:	HTML-formatted typography-safe string
+	:param	string	$str: 入力文字
+	:param	bool	$reduce_linebreaks: 複数の重複した改行を2つにするかどうか
+	:returns:	HTML フォーマットされた体裁が整った文字列
 	:rtype: string
 
-	Formats text so that it is semantically and typographically correct
-	HTML.
+	意味論的にも文の体裁を整える面でも正しい HTML
+	にテキストをフォーマットします。
 
-	This function is an alias for ``CI_Typography::auto_typography``.
-	For more info, please see the :doc:`Typography Library
-	<../libraries/typography>` documentation.
+	この関数は ``CI_Typography::auto_typography()`` のエイリアスです。
+	より多くの情報を得るには、:doc:`タイポグラフィークラス<../libraries/typography>`
+	を見てください。
 
-	Usage example::
+	使用例::
 
 		$string = auto_typography($string);
 
-	.. note:: Typographic formatting can be processor intensive, particularly if
-		you have a lot of content being formatted. If you choose to use this
-		function you may want to consider `caching <../general/caching>` your
-		pages.
+	.. note:: 特に、フォーマットしようとする大量のコンテンツがある場合、
+		文の体裁を整える処理は負荷が高くなります。 この関数を使うようにした場合は、
+		ページを :doc:`キャッシュする <../general/caching>`
+		のを検討する必要があるかもしれません。
 
 
 .. php:function:: nl2br_except_pre($str)
 
-	:param	string	$str: Input string
-	:returns:	String with HTML-formatted line breaks
+	:param	string	$str: 入力文字列
+	:returns:	HTML フォーマットされた改行を含む文字列
 	:rtype:	string
 
-	Converts newlines to <br /> tags unless they appear within <pre> tags.
-	This function is identical to the native PHP ``nl2br()`` function,
-	except that it ignores <pre> tags.
+	<pre>タグの中でない改行を<br />タグに変換します。
+	この関数は<pre>タグを無視しないという点を除いて、
+	PHP に組み込みの ``nl2br()`` 関数と同じものです。
 
-	Usage example::
+	使用例:
 
 		$string = nl2br_except_pre($string);
 
 .. php:function:: entity_decode($str, $charset = NULL)
 
-	:param	string	$str: Input string
-	:param	string	$charset: Character set
-	:returns:	String with decoded HTML entities
+	:param	string	$str: 入力文字列
+	:param	string	$charset: 入力文字列の文字セット
+	:returns:	エンティティデコードされた文字列
 	:rtype:	string
 
-	This function is an alias for ``CI_Security::entity_decode()``.
-	Fore more info, please see the :doc:`Security Library
-	<../libraries/security>` documentation.
+	この関数は ``CI_Security::entity_decode()`` のエイリアスです。
+	より多くの情報を得るには、:doc:`セキュリティクラス<../libraries/security>`
+	を見てください。

@@ -7,7 +7,7 @@
 ご覧ください。
 
 データベースクラスの初期化
-===========================
+==========================
 
 次のコードは :doc:`設定ファイル <configuration>`
 での設定に基づいてデータベースクラスをロードし初期化します::
@@ -88,9 +88,9 @@ $row['name']
 	echo $this->db->affected_rows();
 
 Query Builder クエリ
-================================
+====================
 
- :doc:`Query Builder パターン<query_builder>` を使うと、
+:doc:`Query Builder パターン<query_builder>` を使うと、
 簡単にデータ取得が行えます::
 
 	$query = $this->db->get('table_name');

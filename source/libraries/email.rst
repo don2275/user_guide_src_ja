@@ -1,6 +1,6 @@
-###########
+############
 Email クラス
-###########
+############
 
 CodeIgniter の堅牢な Email クラスは、次のような機能に対応しています:
 
@@ -23,12 +23,12 @@ CodeIgniter の堅牢な Email クラスは、次のような機能に対応し�
 
   <div class="custom-index container"></div>
 
-***********************
+******************
 Email クラスを使う
-***********************
+******************
 
 Email の送信
-=============
+============
 
 メールの送信は単純なだけでなく、送信する直前にも設定ファイル
 でも、メール送信の設定ができます。
@@ -52,7 +52,7 @@ Email の送信
 	$this->email->send();
 
 Email のオプションを設定する
-=========================
+============================
 
 メールの送信方法をカスタマイズできる21の設定項目が
 利用可能です。以下で述べるように手動で設定することも
@@ -71,10 +71,10 @@ Email のオプションを設定する
 	$this->email->initialize($config);
 
 .. note:: ほとんどの設定項目には、設定しなかった場合に使われる
-初期値があります。
+	初期値があります。
 
 設定ファイルでEmailの設定を行う
-------------------------------------------
+-------------------------------
 
 設定をするのに、上で述べた方法を使いたくない場合は、代わりに設定
 ファイルにその設定を書いておくことができます。 email.php という
@@ -84,7 +84,7 @@ Email のオプションを設定する
 $this->email->initialize() メソッドを使う必要は「ありません」。
 
 Email クラスの設定項目
-=================
+======================
 
 次のリストは、メールを送信する際にセットできる
 設定項目の全リストです。
@@ -105,8 +105,9 @@ Email クラスの設定項目
 **wordwrap**        TRUE                   TRUE または FALSE (boolean)  ワードラップの有効化設定
 **wrapchars**       76                                                  何番目の文字で折り返すか
 **mailtype**        text                   text または html             メールのタイプ。HTML メールを送信すると、メールは完全な Web 
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　ページとして送信されます。このとき、相対リンクや画像への相対
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　パスがないか確かめてください。それらは動作しません。
+                                                                        ページとして送信されます。このとき、相対リンクや画像への相対
+
+                                                                        パスがないか確かめてください。それらは動作しません。
 **charset**         ``$config['charset']``                              文字セット (utf-8、iso-8859-1、など)
 **validate**        FALSE                  TRUE または FALSE(boolean)   メールアドレスを検証するかどうか
 **priority**        3                      1, 2, 3, 4, 5                メールの優先度。 1 = 最高 5 = 最低 3 = 通常
@@ -137,19 +138,19 @@ Email クラスの設定項目
 
 折り返したくない項目を {unwrap} {/unwrap}で挟んでください。
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Email
 
 	.. php:method:: from($from[, $name = ''[, $return_path = NULL]])
 
-		:パラメータ	string	$from: "From" メールアドレス
-		:パラメータ	string	$name: "From" 表示名
-		:パラメータ	string	$return_path: 未配達の電子メールをリダイレクトするオプションのメールアドレス
-		:返り値:	CI_Email インスタンス (メソッドチエーン)
-		:返り値型:	CI_Email
+		:param	string	$from: "From" メールアドレス
+		:param	string	$name: "From" 表示名
+		:param	string	$return_path: 未配達の電子メールをリダイレクトするオプションのメールアドレス
+		:returns:	CI_Email インスタンス (メソッドチエーン)
+		:rtype:	CI_Email
 
 		電子メール送信者の電子メールアドレスと氏名をセットします::
 
@@ -160,14 +161,14 @@ Email クラスの設定項目
 			$this->email->from('you@example.com', 'あなたの名前', 'returned_emails@example.com');
 
 		.. note:: プロトコルとして「SMTP」を設定した場合、
-		リターンパスは使用できません。
+			リターンパスは使用できません。
 
 	.. php:method:: reply_to($replyto[, $name = ''])
 
-		:パラメータ	string	$replyto: 返信の電子メール・アドレス
-		:パラメータ	string	$name: 返信の電子メールアドレス名を示します
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	string	$replyto: 返信の電子メール・アドレス
+		:param	string	$name: 返信の電子メールアドレス名を示します
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		返信先アドレスをセットします。指定しない場合は、"from" メソッド
 		で指定されたものが使われます。例:
@@ -176,9 +177,9 @@ Email クラスの設定項目
 
 	.. php:method:: to($to)
 
-		:パラメータ	mixed	$to: メールアドレス　カンマで区切られた列または配列
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	mixed	$to: メールアドレス　カンマで区切られた列または配列
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		受取人のメールアドレスをセットします(複数可)。次のように、単一のメールアドレス、
 		カンマ区切りのリスト、あるいは配列で指定可能です:
@@ -197,19 +198,19 @@ Email クラスの設定項目
 
 	.. php:method:: cc($cc)
 
-		:パラメータ	mixed	$cc: メールアドレス　カンマで区切られた列または配列
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	mixed	$cc: メールアドレス　カンマで区切られた列または配列
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		CC のメールアドレスをセットします(複数可)。 "to" メソッドのように、単一のメールアドレス、
 		カンマ区切りのリスト、あるいは配列で指定可能です。
 
 	.. php:method:: bcc($bcc[, $limit = ''])
 
-		:パラメータ	mixed	$bcc: メールアドレス　カンマで区切られた列または配列
-		:パラメータ	int	$limit: バッチ送信する電子メールの最大数
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	mixed	$bcc: メールアドレス　カンマで区切られた列または配列
+		:param	int	$limit: バッチ送信する電子メールの最大数
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		BCC のメールアドレスをセットします(複数可)。"to" メソッドのように、単一のメールアドレス、
 		ンマ区切りのリスト、あるいは配列で指定可能です。
@@ -220,9 +221,9 @@ Email クラスの設定項目
 
 	.. php:method:: subject($subject)
 
-		:パラメータ	string	$subject: 電子メールの件名
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	string	$subject: 電子メールの件名
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		電子メールの件名をセットします::
 
@@ -230,9 +231,9 @@ Email クラスの設定項目
 
 	.. php:method:: message($body)
 
-		:パラメータ	string	$body: 電子メール本文
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	string	$body: 電子メール本文
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		電子メールの本文をセットします::
 
@@ -240,9 +241,9 @@ Email クラスの設定項目
 
 	.. php:method:: set_alt_message($str)
 
-		:パラメータ	string	$str: 代替のメール本文:
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	string	$str: 代替のメール本文:
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		代替のメール本文をセットします::
 
@@ -257,10 +258,10 @@ Email クラスの設定項目
 
 	.. php:method:: set_header($header, $value)
 
-		:パラメータ	string	$header: ヘッダ名
-		:パラメータ	string	$value: ヘッダ内容
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型: CI_Email
+		:param	string	$header: ヘッダ名
+		:param	string	$value: ヘッダ内容
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype: CI_Email
 
 		電子メールの追加のヘッダーを付加::
 
@@ -269,9 +270,9 @@ Email クラスの設定項目
 
 	.. php:method:: clear([$clear_attachments = FALSE])
 
-		:パラメータ	bool	$clear_attachments: 添付ファイルをクリアするかどうか
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型: CI_Email
+		:param	bool	$clear_attachments: 添付ファイルをクリアするかどうか
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype: CI_Email
 
 		メールの設定を空状態にします。 このメソッドは、ループの
 		各サイクルでデータをリセットしながらメール送信機能を使う
@@ -297,9 +298,9 @@ Email クラスの設定項目
 
 	.. php:method:: send([$auto_clear = TRUE])
 
-		:パラメータ	bool	$auto_clear: 自動的にメッセージデータをクリアするかどうか
-		:返り値:	成功時TRUE、失敗した場合FALSE
-		:返り値型:	bool
+		:param	bool	$auto_clear: 自動的にメッセージデータをクリアするかどうか
+		:returns:	成功時TRUE、失敗した場合FALSE
+		:rtype:	bool
 
 		メール送信メソッド。 条件判断が利用できるよう、送信が成功したか失敗したかに
 		基づいてブール値の TRUE か FALSE が返ります::
@@ -310,7 +311,7 @@ Email クラスの設定項目
 			}
 
 		要求が成功した場合、このメソッドは自動的にすべてのパラメータをクリアします。
-		この動作を停止するにはFALSEを渡します。
+		この動作を停止するにはFALSEを渡します::
 
 		 	if ($this->email->send(FALSE))
 		 	{
@@ -318,18 +319,18 @@ Email クラスの設定項目
 		 	}
 
 		.. note:: 「print_debugger」を使用するためには、電子メールのパラメータ
-		をクリアしないようにする必要があります。
+			をクリアしないようにする必要があります。
 
 	.. php:method:: attach($filename[, $disposition = ''[, $newname = NULL[, $mime = '']]])
 
-		:パラメータ	string	$filename: ファイル名
-		:パラメータ	string	$disposition: 添付ファイルを「配置」します。ほとんどの電子メールクライアント
-		にかかわらず、ここで使用されるMIME仕様の独自の判断を下します。
-		https://www.iana.org/assignments/cont-disp/cont-disp.xhtml
-		:パラメータ	string	$newname: 電子メールで使用するカスタムファイル名
-		:パラメータ	string	$mime: MIMEタイプを使用する (バッファリングされたデータに利用)
-		:返り値:	CI_Email インスタンス (メソッドチェイン)
-		:返り値型:	CI_Email
+		:param	string	$filename: ファイル名
+		:param	string	$disposition: 添付ファイルを「配置」します。ほとんどの電子メールクライアント
+			にかかわらず、ここで使用されるMIME仕様の独自の判断を下します。
+			https://www.iana.org/assignments/cont-disp/cont-disp.xhtml
+		:param	string	$newname: 電子メールで使用するカスタムファイル名
+		:param	string	$mime: MIMEタイプを使用する (バッファリングされたデータに利用)
+		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:rtype:	CI_Email
 
 		添付ファイルを送信できます。第1引数にファイルのパスとファイル名を指定してください。
 		複数ファイルを添付する場合は、複数回メソッドを呼んでください。例えば以下のように
@@ -360,9 +361,9 @@ Email クラスの設定項目
 
 	.. php:method:: attachment_cid($filename)
 
-		:パラメータ	string	$filename: 既存の添付ファイル名
-		:返り値:	添付ファイルのContent-ID、見つからない場合はFALSE
-		:返り値型:	string
+		:param	string	$filename: 既存の添付ファイル名
+		:returns:	添付ファイルのContent-ID、見つからない場合はFALSE
+		:rtype:	string
  
 		添付ファイルのセットとContent-IDを返し、添付ファイルをHTMLにインライン（写真）埋め込むため有効にします。
 		最初のパラメータは、すでに添付されたファイル名でなければなりません。
@@ -374,7 +375,7 @@ Email クラスの設定項目
 			{
 				$this->email->to($address);
 				$cid = $this->email->attachment_cid($filename);
-				$this->email->message('<img src='cid:". $cid ."' alt="photo1" />');
+				$this->email->message('<img src="cid:'. $cid .'" alt="photo1" />');
 				$this->email->send();
 			}
 
@@ -382,9 +383,9 @@ Email クラスの設定項目
 
 	.. php:method:: print_debugger([$include = array('headers', 'subject', 'body')])
 
-		:パラメータ	array	$include: メッセージのどの部分を印刷するか
-		:返り値:	フォーマットされたデバッグデータ
-		:返り値型:	string
+		:param	array	$include: メッセージのどの部分を印刷するか
+		:returns:	フォーマットされたデバッグデータ
+		:rtype:	string
 
 		すべてのサーバメッセージ、メールヘッダ、メールメッセージを文字列として返します。
 		デバッグに役立ちます。

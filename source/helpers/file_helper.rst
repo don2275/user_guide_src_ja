@@ -1,8 +1,8 @@
-###########
-File Helper
-###########
+################
+ファイルヘルパー
+################
 
-The File Helper file contains functions that assist in working with files.
+ファイルヘルパーのファイルは、ファイルを処理するのに役立つ関数で構成されます。
 
 .. contents::
   :local:
@@ -11,17 +11,17 @@ The File Helper file contains functions that assist in working with files.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('file');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: read_file($file)
@@ -30,24 +30,24 @@ The following functions are available:
 	:returns:	File contents or FALSE on failure
 	:rtype:	string
 
-	Returns the data contained in the file specified in the path.
+	パスで特定されたファイルのデータを返します。
 
-	Example::
+	例::
 
 		$string = read_file('./path/to/file.php');
 
-	The path can be a relative or full server path. Returns FALSE (boolean) on failure.
+	パスは、サーバの相対パスかフルパスで指定します。読み込みに失敗した場合は FALSE (ブール値) を返します。
 
-	.. note:: The path is relative to your main site index.php file, NOT your
-		controller or view files. CodeIgniter uses a front controller so paths
-		are always relative to the main site index.
+	.. note:: パスは、メインの index.php ファイルからの相対パスで, コントローラファイルやビューファイルからの相対パスではありません。 CodeIgniter 
+		はフロントコントローラを使用するので、常にサイトのインデックスからの
+		相対パスになります。
 
 	.. note:: This function is DEPRECATED. Use the native ``file_get_contents()``
 		instead.
 
-	.. important:: If your server is running an **open_basedir** restriction this
-		function might not work if you are trying to access a file above the
-		calling script.
+	.. important:: サーバで **open_basedir** の制限が有効になっている場合、 呼び出したスクリプト
+		より上の階層にあるファイルにアクセスしようとするとき、このメソッド
+		は動作しないかもしれません。
 
 .. php:function:: write_file($path, $data[, $mode = 'wb'])
 
@@ -57,35 +57,35 @@ The following functions are available:
 	:returns:	TRUE if the write was successful, FALSE in case of an error
 	:rtype:	bool
 
-	Writes data to the file specified in the path. If the file does not exist then the
-	function will create it.
+	パスで指定されたファイルにデータを書き込みます。 ファイルが存在しない場合には、
+	このメソッドによってファイルが作成されます。
 
-	Example::
+	例::
 
 		$data = 'Some file data';
 		if ( ! write_file('./path/to/file.php', $data))
 		{     
-			echo 'Unable to write the file';
+			echo 'ファイルに書き込めません';
 		}
 		else
 		{     
-			echo 'File written!';
+			echo 'ファイルが書き込まれました!';
 		}
 
-	You can optionally set the write mode via the third parameter::
+	第3引数に書き込みモードをオプションで指定できます::
 
 		write_file('./path/to/file.php', $data, 'r+');
 
-	The default mode is 'wb'. Please see the `PHP user guide <http://php.net/manual/en/function.fopen.php>`_
-	for mode options.
+	デフォルトのモードは、 wb です。指定できるモードについては、 `PHP
+	ユーザガイド <http://www.php.net/manual/ja/function.fopen.php>`_ をご覧ください。
 
-	.. note: In order for this function to write data to a file, its permissions must
-		be set such that it is writable. If the file does not already exist,
-		then the directory containing it must be writable.
+	.. note: この関数でファイルにデータを書き込めるようにするには、ファイルのパーミッションを書き込み可能なように
+		(666、777、など)に設定しなければなりません。 ファイルがまだ存在しない
+		場合は、保存先のディレクトリが書き込み可能でなければなりません。
 
-	.. note:: The path is relative to your main site index.php file, NOT your
-		controller or view files. CodeIgniter uses a front controller so paths
-		are always relative to the main site index.
+	.. note:: パスは、メインの index.php ファイルからの相対パスで、コントローラファイルやビューファイルからの相対パスではありません。 CodeIgniter 
+		はフロントコントローラを使用するので、常にサイトのインデックスからの
+		相対パスになります。
 
 	.. note:: This function acquires an exclusive lock on the file while writing to it.
 
@@ -97,20 +97,20 @@ The following functions are available:
 	:returns:	TRUE on success, FALSE in case of an error
 	:rtype:	bool
 
-	Deletes ALL files contained in the supplied path.
+	パスに含まれるすべてのファイルを削除します。
 
-	Example::
+	例::
 
 		delete_files('./path/to/directory/');
 
-	If the second parameter is set to TRUE, any directories contained within the supplied
-	root path will be deleted as well.
+	第2引数を true にセットすると、指定したパスに含まれるいずれの
+	ディレクトリも削除されます。
 
-	Example::
+	例::
 
 		delete_files('./path/to/directory/', TRUE);
 
-	.. note:: The files must be writable or owned by the system in order to be deleted.
+	.. note:: 削除するには、ファイルを書き込み可能にするか、所有者をシステムにしてください。
 
 .. php:function:: get_filenames($source_dir[, $include_path = FALSE])
 
@@ -119,11 +119,11 @@ The following functions are available:
 	:returns:	An array of file names
 	:rtype:	array
 
-	Takes a server path as input and returns an array containing the names of all files
-	contained within it. The file path can optionally be added to the file names by setting
-	the second parameter to TRUE.
+	サーバパスを入力として、そのパスに含まれる全ファイル名の配列を返します。
+	オプションで、第2引数を TRUE に設定すると、
+	ファイルのパスがファイル名に付加されます。
 
-	Example::
+	例::
 
 		$controllers = get_filenames(APPPATH.'controllers/');
 
@@ -134,12 +134,12 @@ The following functions are available:
 	:returns:	An array containing info on the supplied directory's contents
 	:rtype:	array
 
-	Reads the specified directory and builds an array containing the filenames, filesize,
-	dates, and permissions. Sub-folders contained within the specified path are only read
-	if forced by sending the second parameter to FALSE, as this can be an intensive
-	operation.
+	指定されたディレクトリを読み、ファイル名、ファイルサイズ、
+	日付、パーミッションから成る配列を作ります。指定ファイル以下のサブフォルダは、第 2 引数を FALSE
+	に指定した場合のみすべて同様に
+	読まれます。
 
-	Example::
+	例::
 
 		$models_info = get_dir_file_info(APPPATH.'models/');
 
@@ -163,17 +163,17 @@ The following functions are available:
 	:returns:	MIME type string or FALSE on failure
 	:rtype:	string
 
-	Translates a filename extension into a MIME type based on *config/mimes.php*.
-	Returns FALSE if it can't determine the type, or read the MIME config file.
+	*config/mimes.php* にある設定を元にファイル拡張子を  MIMEタイプに変換します。
+	タイプが分からないときや MIME 設定ファイルが開けなかったときは FALSE を返します。
 
 	::
 
 		$file = 'somefile.png';
-		echo $file.' is has a mime type of '.get_mime_by_extension($file);
+		echo $file.' には以下のmimeタイプがついています '.get_mime_by_extension($file);
 
-	.. note:: This is not an accurate way of determining file MIME types, and
-		is here strictly for convenience. It should not be used for security
-		purposes.
+	.. note:: この方法は正確にファイルの MIME タイプを判別するものではなく、
+		あくまで簡単に取得するためだけのものです。セキュリティ用には
+		使わないでください。
 
 .. php:function:: symbolic_permissions($perms)
 
@@ -181,8 +181,8 @@ The following functions are available:
 	:returns:	Symbolic permissions string
 	:rtype:	string
 
-	Takes numeric permissions (such as is returned by ``fileperms()``) and returns
-	standard symbolic notation of file permissions.
+	( ``fileperms()`` で返ってくるような) 数字のパーミッションを引数として渡すと、
+	文字列のファイルパーミッションを返します。
 
 	::
 
@@ -194,8 +194,8 @@ The following functions are available:
 	:returns:	Octal permissions string
 	:rtype:	string
 
-	Takes numeric permissions (such as is returned by ``fileperms()``) and returns
-	a three character octal notation of file permissions.
+	( ``fileperms()`` で返ってくるような) 数字のパーミッションを引数として渡すと、
+	8進数3文字のファイルパーミッションを返します。
 
 	::
 

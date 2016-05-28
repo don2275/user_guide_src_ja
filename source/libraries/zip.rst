@@ -1,6 +1,6 @@
-##################
+##############
 Zip 圧縮クラス
-##################
+##############
 
 CodeIgniter's Zip Encoding Class permits you to create Zip archives.
 Archives can be downloaded to your desktop or saved to a directory.
@@ -12,24 +12,24 @@ Archives can be downloaded to your desktop or saved to a directory.
 
   <div class="custom-index container"></div>
 
-****************************
+************************
 Zip 圧縮クラスを使用する
-****************************
+************************
 
 クラスの初期化
-======================
+==============
 
-CodeIgniterの大部分のクラスと同様に、Zip クラスはコントローラ
+CodeIgniter の大部分のクラスと同様に、Zip クラスはコントローラ
 の中で $this->load->library メソッドを使って初期化できます:
 
 	$this->load->library('zip');
 
-いったん読み込まれれば、Zipライブラリのオブジェクトは次のようにして利用できます:
+いったん読み込まれれば、Zip ライブラリのオブジェクトは次のようにして利用できます::
 
 	$this->zip
 
 使用例
-=============
+======
 
 以下は、ファイルを圧縮し、サーバ上のフォルダに保存し、デスクトップに
 ダウンロードさせる方法を示した例です。
@@ -41,15 +41,15 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	$this->zip->add_data($name, $data);
 
-	// Zipファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。
+	// Zip ファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。
 	$this->zip->archive('/path/to/directory/my_backup.zip');
 
 	// "my_backup.zip" という名前で、デスクトップにファイルをダウンロードします。
 	$this->zip->download('my_backup.zip');
 
-*******************
+******************
 クラスリファレンス
-*******************
+******************
 
 .. php:class:: CI_Zip
 
@@ -57,15 +57,15 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 		圧縮レベルを使用します。
 
-		効果的に圧縮を抑制している0から最も高圧縮な9までの範囲あります。::
+		効果的に圧縮を抑制している 0 から最も高圧縮な 9 までの範囲あります::
 
 			$this->zip->compression_level = 0;
 
 	.. php:method:: add_data($filepath[, $data = NULL])
 
-		:パラメータ	mixed	$filepath: 一つのファイル経路または多数のファイル => 配列
-		:パラメータ	array	$data: ファイルのデータ ($filepath が配列であれば無視されます)
-		:返り値型:	void
+		:param	mixed	$filepath: 一つのファイル経路または多数のファイル => 配列
+		:param	array	$data: ファイルのデータ ($filepath が配列であれば無視されます)
+		:rtype:	void
 
 		Zipアーカイブにデータを追加できます。単独と複数のファイルモードで動作します。
 
@@ -80,8 +80,8 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 			$data = 'Another Data String!';
 			$this->zip->add_data($name, $data);
 
-		複数のファイルを加えるとき、最初のパラメータは　ファイル名=>内容　の配列で渡します。
-		第2のパラメータは無視されます::
+		複数のファイルを加えるとき、最初のパラメータは　ファイル名 => 内容　の配列で渡します。
+		第 2 引数は無視されます::
 
 			$data = array(
 				'mydata1.txt' => 'A Data String!',
@@ -102,8 +102,8 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: add_dir($directory)
 
-		:パラメータ	mixed	$directory: ディレクトリ名　文字列　または　配列
-		:返り値型:	void
+		:param	mixed	$directory: ディレクトリ名　文字列　または　配列
+		:rtype:	void
 
 		ディレクトリを追加できます。$this->zip->add_data() を使った時にデータをフォルダに追加
 		できるので、通常はこのメソッドは必要ないですが、空のフォルダを作成したい場合は、
@@ -113,10 +113,10 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: read_file($path[, $archive_filepath = FALSE])
 
-		:パラメータ	string	$path: ファイルのパス
-		:パラメータ	mixed	$archive_filepath: 新ファイル名/パス (string) または (boolean) オリジナルのファイルパス
-		:返り値:	維持したい場合　TRUE , 維持しない場合　FALSE
-		:返り値型:	bool
+		:param	string	$path: ファイルのパス
+		:param	mixed	$archive_filepath: 新ファイル名/パス (string) または (boolean) オリジナルのファイルパス
+		:returns:	維持したい場合　TRUE , 維持しない場合　FALSE
+		:rtype:	bool
 
 		サーバ上に既に存在しているフォルダ (およびその中身) を圧縮できます。ディレクトまでのパスを指定すると、Zipクラスは、再帰的にその
 		フォルダを読み込み、Zipファイルとして再作成します。指定されたパスに含まれるサブフォルダの配下にあるものも含めてすべてのファイルが圧縮されます。
@@ -152,11 +152,11 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: read_dir($path[, $preserve_filepath = TRUE[, $root_path = NULL]])
 
-		:パラメータ	string	$path: ファイルのパス
-		:パラメータ	bool	$preserve_filepath: オリジナルのファイルパス
-		:パラメータ	string	$root_path: アーカイブディレクトリから除外するパスの一部
-		:返り値:	維持したい場合　TRUE, 維持しない場合　FALSE
-		:返り値型:	bool
+		:param	string	$path: ファイルのパス
+		:param	bool	$preserve_filepath: オリジナルのファイルパス
+		:param	string	$root_path: アーカイブディレクトリから除外するパスの一部
+		:returns:	維持したい場合　TRUE, 維持しない場合　FALSE
+		:rtype:	bool
 
 		サーバ上に既に存在しているフォルダ (およびその中身) を圧縮できます。ディレクトまでのパスを指定すると、
 		Zipクラスは、再帰的にそのフォルダを読み込み、Zipファイルとして再作成します。指定されたパスに含まれる
@@ -182,9 +182,9 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: archive($filepath)
 
-		:パラメータ	string	$filepath: パスはZIPアーカイブを対象とします。
-		:返り値:	成功するとTRUE, 失敗するとFALSE を返します。
-		:返り値型:	bool
+		:param	string	$filepath: パスはZIPアーカイブを対象とします。
+		:returns:	成功するとTRUE, 失敗するとFALSE を返します。
+		:rtype:	bool
 
 		Zip 圧縮ファイルをサーバ上のディレクトリに書き込みます。ファイル名で終わる正しいサーバのパスを
 		渡します。 ディレクトリが書き込み可能(755であれば通常は大丈夫です)かどうかを確かめてください。
@@ -194,11 +194,11 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: download($filename = 'backup.zip')
 
-		:パラメータ	string	$filename: アーカイブ　ファイル名
-		:返り値型:	void
+		:param	string	$filename: アーカイブ　ファイル名
+		:rtype:	void
 
-		サーバから Zipファイルをダウンロードさせます。このメソッドは、
-		Zipファイルにつけたい名前を指定する必要があります。 例:
+		サーバから Zip ファイルをダウンロードさせます。このメソッドは、
+		Zip ファイルにつけたい名前を指定する必要があります。 例::
 
 			$this->zip->download('latest_stuff.zip'); //"latest_stuff.zip" という名前になります。
 
@@ -208,8 +208,8 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: get_zip()
 
-		:パラメータ:	ZIPファイル実体
-		:返り値型:	string
+		:param:	ZIPファイル実体
+		:rtype:	string
 
 		Zip 圧縮データを返します。データを使って何か特別な事をしない限りは、通常はこのメソッドは
 		必要ではありません。 例:
@@ -223,7 +223,7 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. php:method:: clear_data()
 
-		:返り値型:	void
+		:rtype: void
 
 		Zip クラスは、上のメソッドを使うたびにZipアーカイブを再圧縮しなくて済むように、Zipデータを
 		キャッシュします。 しかし、それぞれ異なるデータの複数のZipを作成する場合、それらのメソッド

@@ -1,15 +1,26 @@
-###########
+########
 変更履歴
-###########
+########
 
 Version 3.1.0
 =============
 
 リリース日: 未リリース
 
+-  Core
+
+   -  Changed :doc:`URI Library <libraries/uri>` to ignore the ``$config['url_suffix']``, ``$config['permitted_uri_chars']`` configuration settings for CLI requests.
+
 -  Libraries
 
    -  Added UNIX socket connection support to :doc:`Session Library <libraries/sessions>` 'redis' driver.
+
+   -  :doc:`Cache Library <libraries/caching>` changes include:
+
+      - Added UNIX socket connection support to the 'memcached' driver.
+      - Changed the 'memcached' driver to ignore configurations that don't specify a hostname.
+      - Removed the *socket_type* configuration setting from the 'redis' driver.
+      - Changed data serialization logic in 'redis' driver for better performance.
 
 -  Database
 
@@ -22,10 +33,54 @@ Version 3.1.0
    -  Updated :doc:`HTML Helper <helpers/html_helper>` function :php:func:`meta()` with support for "charset" and "property" properties.
    -  Changed :doc:`HTML Helper <helpers/html_helper>` function :php:func:`doctype()` default document type to HTML 5.
 
-Version 3.0.5
+Bug fixes for 3.1.0
+-------------------
+
+-  Fixed a bug (#4528) - :doc:`Cache Library <libraries/caching>` stored all scalar values as strings with the 'redis' driver.
+
+Version 3.0.7
 =============
 
 リリース日: 未リリース
+
+
+Version 3.0.6
+=============
+
+Release Date: March 21, 2016
+
+-  General Changes
+
+   -  Added a destructor to :doc:`Cache Library <libraries/caching>` 'memcached' driver to ensure that Memcache(d) connections are properly closed.
+   -  Deprecated :doc:`Form Validation Library <libraries/form_validation>` method ``prep_for_form()``.
+
+Bug fixes for 3.0.6
+-------------------
+
+-  Fixed a bug (#4516) - :doc:`Form Validation Library <libraries/form_validation>` always accepted empty array inputs.
+-  Fixed a bug where :doc:`Session Library <libraries/sessions>` allowed accessing ``$_SESSION`` values as class properties but ``isset()`` didn't work on them.
+-  Fixed a bug where :doc:`Form Validation Library <libraries/form_validation>` modified the ``$_POST`` array when the data being validated was actually provided via ``set_data()``.
+-  Fixed a bug (#4539) - :doc:`Migration Library <libraries/migration>` applied migrations before validating that all migrations within the requested version range are valid.
+-  Fixed a bug (#4539) - :doc:`Migration Library <libraries/migration>` triggered failures for migrations that are out of the requested version range.
+
+Version 3.0.5
+=============
+
+Release Date: March 11, 2016
+
+-  Core
+
+   -  Changed :doc:`Loader Library <libraries/loader>` to allow ``$autoload['drivers']`` assigning with custom property names.
+   -  Changed :doc:`Loader Library <libraries/loader>` to ignore variables prefixed with '_ci_' when loading views.
+
+-  General Changes
+
+   -  Updated the :doc:`Session Library <libraries/sessions>` to produce friendlier error messages on failures with drivers other than 'files'.
+
+-  :doc:`Query Builder <database/query_builder>`
+
+   -  Added a ``$batch_size`` parameter to the ``insert_batch()`` method (defaults to 100).
+   -  Added a ``$batch_size`` parameter to the ``update_batch()`` method (defaults to 100).
 
 Bug fixes for 3.0.5
 -------------------
@@ -34,6 +89,25 @@ Bug fixes for 3.0.5
 -  Fixed a bug (#4384) - :doc:`Pagination Library <libraries/pagination>` ignored (possible) *cur_page* configuration value.
 -  Fixed a bug (#4395) - :doc:`Query Builder <database/query_builder>` method ``count_all_results()`` still fails if an ``ORDER BY`` condition is used.
 -  Fixed a bug (#4399) - :doc:`Query Builder <database/query_builder>` methods ``insert_batch()``, ``update_batch()`` produced confusing error messages when called with no data and *db_debug* is enabled.
+-  Fixed a bug (#4401) - :doc:`Query Builder <database/query_builder>` breaks ``WHERE`` and ``HAVING`` conditions that use ``IN()`` with strings containing a closing parenthesis.
+-  Fixed a regression in :doc:`Form Helper <helpers/form_helper>` functions :php:func:`set_checkbox()`, :php:func:`set_radio()` where "checked" inputs aren't recognized after a form submit.
+-  Fixed a bug (#4407) - :doc:`Text Helper <helpers/text_helper>` function :php:func:`word_censor()` doesn't work under PHP 7 if there's no custom replacement provided.
+-  Fixed a bug (#4415) - :doc:`Form Validation Library <libraries/form_validation>` rule **valid_url** didn't accept URLs with IPv6 addresses enclosed in square brackets under PHP 5 (upstream bug).
+-  Fixed a bug (#4427) - :doc:`CAPTCHA Helper <helpers/captcha_helper>` triggers an error if the provided character pool is too small.
+-  Fixed a bug (#4430) - :doc:`File Uploading Library <libraries/file_uploading>` option **file_ext_tolower** didn't work.
+-  Fixed a bug (#4431) - :doc:`Query Builder <database/query_builder>` method ``join()`` discarded opening parentheses.
+-  Fixed a bug (#4424) - :doc:`Session Library <libraries/sessions>` triggered a PHP warning when writing a newly created session with the 'redis' driver.
+-  Fixed a bug (#4437) - :doc:`Inflector Helper <helpers/inflector_helper>` function :php:func:`humanize()` didn't escape its ``$separator`` parameter while using it in a regular expression.
+-  Fixed a bug where :doc:`Session Library <libraries/sessions>` didn't properly handle its locks' statuses with the 'memcached' driver.
+-  Fixed a bug where :doc:`Session Library <libraries/sessions>` triggered a PHP warning when writing a newly created session with the 'memcached' driver.
+-  Fixed a bug (#4449) - :doc:`Query Builder <database/query_builder>` method ``join()`` breaks conditions containing ``IS NULL``, ``IS NOT NULL``.
+-  Fixed a bug (#4491) - :doc:`Session Library <libraries/sessions>` didn't clean-up internal variables for emulated locks with the 'redis' driver.
+-  Fixed a bug where :doc:`Session Library <libraries/sessions>` didn't clean-up internal variables for emulated locks with the 'memcached' driver.
+-  Fixed a bug where :doc:`Database <database/index>` transactions didn't work with the 'ibase' driver.
+-  Fixed a bug (#4475) - :doc:`Security Library <libraries/security>` method ``strip_image_tags()`` preserves only the first URL character from non-quoted *src* attributes.
+-  Fixed a bug where :doc:`Profiler Library <general/profiling>` didn't apply ``htmlspecialchars()`` to all displayed inputs.
+-  Fixed a bug (#4277) - :doc:`Cache Library <libraries/caching>` triggered fatal errors if accessing the Memcache(d) and/or Redis driver and they are not available on the system.
+-  Fixed a bug where :doc:`Cache Library <libraries/caching>` method ``is_supported()`` logged an error message when it returns ``FALSE`` for the APC and Wincache drivers.
 
 Version 3.0.4
 =============
@@ -239,28 +313,28 @@ Release Date: March 30, 2015
    -  Windows 7, Windows 8, Windows 8.1, Android, Blackberry, iOS と PlayStation 3 to the list of user platforms.
    -  Fennec (スマホ用Firefox)のユーザエージェントを取得することができます。
    -  Ability to log certain error types, not all under a threshold.
-   -  pem, p10, p12, p7a, p7c, p7m, p7r, p7s, crt, crl, der, kdb, rsa, cer, sst, csr CertsのMINE形式をサポートします。
-   -  pgp, gpg, zsh , cdr のMINE形式をサポートします。
-   -  3gp, 3g2, mp4, wmv, f4v, vlc といった動画のMINE形式をサポートします。
-   -   m4a, aac, m4u, xspf, au, ac3, flac, ogg, wmaといった音楽のMINE形式をサポートします。
-   -  kmz , kml (Google Earth) のMINE形式をサポートします。
-   -  ics のカレンダーのMINE形式をサポートします。
-   -  rar, jar and 7zip といった阿閦ファイルのMINE形式をサポートします。
-   -  xml ('application/xml') と xsl ('application/xml', 'text/xsl') のMINE形式をアップグレード。
-   -  docファイルのMINE形式をアップグレード。
-   -  docxファイルのMINE形式をアップグレード。
-   -  phpファイルのMINE形式をアップグレード。
-   -  zipファイルのMINE形式をアップグレード。
-   -  csvファイルのMINE形式をアップグレード。
+   -  pem, p10, p12, p7a, p7c, p7m, p7r, p7s, crt, crl, der, kdb, rsa, cer, sst, csr Certsの MIME 形式をサポートします。
+   -  pgp, gpg, zsh , cdr の MIME 形式をサポートします。
+   -  3gp, 3g2, mp4, wmv, f4v, vlc といった動画の MIME 形式をサポートします。
+   -   m4a, aac, m4u, xspf, au, ac3, flac, ogg, wmaといった音楽の MIME 形式をサポートします。
+   -  kmz , kml (Google Earth) の MIME 形式をサポートします。
+   -  ics のカレンダーの MIME 形式をサポートします。
+   -  rar, jar and 7zip といったアーカイブファイルの MIME 形式をサポートします。
+   -  xml ('application/xml') と xsl ('application/xml', 'text/xsl') の MIME 形式をアップグレード。
+   -  docファイルの MIME 形式をアップグレード。
+   -  docxファイルの MIME 形式をアップグレード。
+   -  phpファイルの MIME 形式をアップグレード。
+   -  zipファイルの MIME 形式をアップグレード。
+   -  csvファイルの MIME 形式をアップグレード。
    -  ルーマニア語、ギリシャ語、ベトナム語、キリル文字を *application/config/foreign_characters.php* でサポート
    -  ファイル生成時に設定されるファイルの所有者が変更されました。
    -  非推奨だったSHA1 Libraryが削除されました。
-   -  非推奨だった``$autoload['core']``（ *application/config/autoload.php* ）が削除されました。
-      現在、``$autoload['libraries']``だけが自動ロードされます。
+   -  非推奨だった ``$autoload['core']`` （ *application/config/autoload.php* ）が削除されました。
+      現在、 ``$autoload['libraries']`` だけが自動ロードされます。
    -  非推奨だったEXT定数が削除されました。
-   -  全てのクラスが可読性の高いPHP5形式で書き直され、プロパティにおいて``var``は使われなくなりました。
+   -  全てのクラスが可読性の高いPHP5形式で書き直され、プロパティにおいて ``var`` は使われなくなりました。
    -  例外ハンドラを追加しました。
-   -  エラーテンプレートを *application/views/errors/* へと移動し、``$config['error_views_path']`でパスを指定できるようになりました。
+   -  エラーテンプレートを *application/views/errors/* へと移動し、 ``$config['error_views_path']`` でパスを指定できるようになりました。
    -  コマンドラインインタフェースアプリ向けのnon-HTMLエラーテンプレートに対応しました。
    -  ログクラスを *application/core/* へと変更しました。
    -  グローバル設定ファイルは最初にロードされ、その後環境設定ファイルをロードします。環境設定ファイルは、変更するキーのみグローバル設定ファイルを上書きします。
@@ -270,7 +344,7 @@ Release Date: March 30, 2015
    -  *development* と *testing* と *production* の中で、*development* のみがPHP上での全てのエラーを表示します。
    -  IPv6 address に対応するために、 *ip_address* のデータベースを16から45に変更。:doc:`Trackback Library <libraries/trackback>` と :doc:`Captcha Helper <helpers/captcha_helper>` にドキュメントがあります。
    -  ドキュメンテーションから、 *cheatsheets* と *quick_reference* の記述を削除。
-   -  PHPの危険な関数である ``eval()`` と ``exec()`　は可用性をチェックする機能として取り扱われます。
+   -  PHPの危険な関数である ``eval()`` と ``exec()`` は可用性をチェックする機能として取り扱われます。
    -  ログファイルの拡張子を ``$config['log_file_extension']`` を用いて変更できるようになりました。
    -  Added support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
    -  Added configuration setting ``$config['composer_autoload']`` to enable loading of a `Composer <https://getcomposer.org>`_ auto-loader.

@@ -1,6 +1,6 @@
-########################
+##############
 画像操作クラス
-########################
+##############
 
 CodeIgniter's Image Manipulation class lets you perform the following
 actions:
@@ -26,9 +26,9 @@ ImageMagick
 
   <div class="custom-index container"></div>
 
-**********************
+**************
 クラスの初期化
-**********************
+**************
 
 Like most other classes in CodeIgniter, the image class is initialized
 in your controller using the $this->load->library function::
@@ -39,7 +39,7 @@ Once the library is loaded it will be ready for use. The image library
 object you will use to call all functions is: ``$this->image_lib``
 
 画像の処理
-===================
+==========
 
 Regardless of the type of processing you would like to perform
 (resizing, cropping, rotation, or watermarking), the general process is
@@ -63,7 +63,8 @@ called *mypic.jpg* located in the source_image folder, then create a
 thumbnail that is 75 X 50 pixels using the GD2 image_library. Since the
 maintain_ratio option is enabled, the thumb will be as close to the
 target width and height as possible while preserving the original aspect
-ratio. The thumbnail will be called *mypic_thumb.jpg*
+ratio. The thumbnail will be called *mypic_thumb.jpg* and located at
+the same level as *source_image*.
 
 .. note:: In order for the image class to be allowed to do any
 	processing, the folder containing the image files must have write
@@ -75,7 +76,7 @@ ratio. The thumbnail will be called *mypic_thumb.jpg*
 	adjust PHP memory limits.
 
 処理メソッド
-==================
+============
 
 There are four available processing methods:
 
@@ -106,7 +107,7 @@ error upon failure, like this::
 .. _processing-preferences:
 
 設定
-===========
+====
 
 The preferences described below allow you to tailor the image processing
 to suit your needs.
@@ -167,7 +168,7 @@ preference.
 ======================= ======================= =============================== =========================================================================== =============
 
 設定ファイルによる設定
-====================================
+======================
 
 If you prefer not to set preferences using the above method, you can
 instead put them into a config file. Simply create a new file called
@@ -176,14 +177,14 @@ in *config/image_lib.php* and it will be used automatically. You will
 NOT need to use the ``$this->image_lib->initialize()`` method if you save
 your preferences in a config file.
 
-******************
+**********
 画像の合成
-******************
+**********
 
 画像の合成機能は、GD/GD2 ライブラリが必要になります。
 
 2種類の合成
-=========================
+===========
 
 There are two types of watermarking that you can use:
 
@@ -199,7 +200,7 @@ There are two types of watermarking that you can use:
 .. _watermarking:
 
 画像の合成
-=====================
+==========
 
 Just as with the other methods (resizing, cropping, and rotating) the
 general process for watermarking involves setting the preferences
@@ -229,7 +230,7 @@ bottom/center of the image, 20 pixels from the bottom of the image.
 	For example, 777.
 
 画像合成の設定
-========================
+==============
 
 This table shows the preferences that are available for both types of
 watermarking (text or overlay)
@@ -262,7 +263,7 @@ watermarking (text or overlay)
 ======================= =================== ======================= ==========================================================================
 
 テキストの設定
-----------------
+--------------
 
 This table shows the preferences that are available for the text type of
 watermarking.
@@ -287,7 +288,7 @@ watermarking.
 ======================= =================== =================== ==========================================================================
 
 オーバーレイの設定
--------------------
+------------------
 
 This table shows the preferences that are available for the overlay type
 of watermarking.
@@ -312,24 +313,24 @@ of watermarking.
                                                                 transparent.
 ======================= =================== =================== ==========================================================================
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Image_lib
 
 	.. php:method:: initialize([$props = array()])
 
-		:パラメータ	array	$props: Image processing preferences
-		:返り値:	TRUE on success, FALSE in case of invalid settings
-		:返り値型:	bool
+		:param	array	$props: Image processing preferences
+		:returns:	TRUE on success, FALSE in case of invalid settings
+		:rtype:	bool
 
 		Initializes the class for processing an image.
 
 	.. php:method:: resize()
 
-		:返り値:	TRUE on success, FALSE on failure
-		:返り値型:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
 		The image resizing method lets you resize the original image, create a
 		copy (with or without resizing), or create a thumbnail image.
@@ -375,8 +376,8 @@ of watermarking.
 
 	.. php:method:: crop()
 
-		:返り値:	TRUE on success, FALSE on failure
-		:返り値型:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
 		The cropping method works nearly identically to the resizing function
 		except it requires that you set preferences for the X and Y axis (in
@@ -411,8 +412,8 @@ of watermarking.
 
 	.. php:method:: rotate()
 
-		:返り値:	TRUE on success, FALSE on failure
-		:返り値型:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
 		The image rotation method requires that the angle of rotation be set
 		via its preference::
@@ -443,15 +444,15 @@ of watermarking.
 
 	.. php:method:: watermark()
 
-		:返り値:	TRUE on success, FALSE on failure
-		:返り値型:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
 		Creates a watermark over an image, please refer to the :ref:`watermarking`
 		section for more info.		
 
 	.. php:method:: clear()
 
-		:返り値:	void
+		:returns:	void
 
 		The clear method resets all of the values used when processing an
 		image. You will want to call this if you are processing images in a
@@ -463,10 +464,10 @@ of watermarking.
 
 	.. php:method:: display_errors([$open = '<p>[, $close = '</p>']])
 
-		:パラメータ	string	$open: Error message opening tag
-		:パラメータ	string	$close: Error message closing tag
-		:返り値:	Error messages
-		:返り値型:	string
+		:param	string	$open: Error message opening tag
+		:param	string	$close: Error message closing tag
+		:returns:	Error messages
+		:rtype:	string
 
 		Returns all detected errors formatted as a string.
 		::

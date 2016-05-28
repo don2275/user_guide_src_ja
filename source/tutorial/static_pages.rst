@@ -24,7 +24,7 @@ MVC では非常に頻繁にこのような URL のパターンが見られま�
 URL スキームが複雑化するにつれてこのパターンは変化するかもしれません。
 しかし、一旦はこれを知っていれば十分です。
 
-application/controllers/Pages.php に、下記のコードを記述したファイルを作成
+*application/controllers/Pages.php* に、下記のコードを記述したファイルを作成
 してください。
 
 ::
@@ -97,7 +97,7 @@ CodeIgniter の非常に専門的な議論において、これは *スーパー
 
 	public function view($page = 'home')
 	{
-	        if ( ! file_exists(APPPATH.'/views/pages/'.$page.'.php'))
+	        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
 		{
 			// おっと、そのページはありません!
 			show_404();

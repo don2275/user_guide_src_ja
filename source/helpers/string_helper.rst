@@ -1,12 +1,12 @@
-#############
-String Helper
-#############
+##############
+文字列ヘルパー
+##############
 
-The String Helper file contains functions that assist in working with
-strings.
+文字列ヘルパーファイルは、文字列を処理するのに役立つ関数で
+構成されています。
 
-.. important:: Please note that these functions are NOT intended, nor
-	suitable to be used for any kind of security-related logic.
+.. important:: これらの関数は、いかなる種類のセキュリティ関連のロジックのために
+	使われるのに意図されたものではなく、適切ではないことに注意してください。
 
 .. contents::
   :local:
@@ -15,60 +15,60 @@ strings.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('string');
 
 利用できる機能
 ===================
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: random_string([$type = 'alnum'[, $len = 8]])
 
-	:param	string	$type: Randomization type
-	:param	int	$len: Output string length
-	:returns:	A random string
+	:param	string	$type: ランダム化の種類
+	:param	int	$len: 出力する文字の長さ
+	:returns:	ランダムな文字列
 	:rtype:	string
 
-	Generates a random string based on the type and length you specify.
-	Useful for creating passwords or generating random hashes.
+	指定したタイプとサイズのランダムな文字列を生成します。パスワードを作成
+	したり、ランダムなハッシュ値を生成したりするのに役立ちます。
 
-	The first parameter specifies the type of string, the second parameter
-	specifies the length. The following choices are available:
+	第1引数には文字列のタイプを指定し、第2引数には文字列のサイズ (文字数)
+	を指定します。次の選択肢が使えます:
 
-	-  **alpha**: A string with lower and uppercase letters only.
-	-  **alnum**: Alpha-numeric string with lower and uppercase characters.
-	-  **basic**: A random number based on ``mt_rand()``.
-	-  **numeric**: Numeric string.
-	-  **nozero**: Numeric string with no zeros.
-	-  **md5**: An encrypted random number based on ``md5()`` (fixed length of 32).
-	-  **sha1**: An encrypted random number based on ``sha1()`` (fixed length of 40).
+	-  **alpha**: 大文字小文字の文字列。
+	-  **alnum**: 大文字小文字の英数字。
+	-  **basic**: ``mt_rand()`` に基づいた乱数。
+	-  **numeric**: 数字文字列。
+	-  **nozero**: ゼロ以外の数字文字列。
+	-  **md5**: ``md5()`` に基づいた暗号化された乱数(固定長32文字)。
+	-  **sha1**: ``sha1()`` に基づいた暗号化された乱数(固定長40文字)。
 
-	Usage example::
+	使用例::
 
 		echo random_string('alnum', 16);
 
-	.. note:: Usage of the *unique* and *encrypt* types is DEPRECATED. They
-		are just aliases for *md5* and *sha1* respectively.
+	.. note:: *unique* と *encrypt* は 非推奨です。 それらは、それぞれ
+		*md5* と *sha1* の別名となっています。
 
 .. php:function:: increment_string($str[, $separator = '_'[, $first = 1]])
 
-	:param	string	$str: Input string
-	:param	string	$separator: Separator to append a duplicate number with
-	:param	int	$first: Starting number
-	:returns:	An incremented string
+	:param	string	$str: 入力文字列
+	:param	string	$separator: 番号を増加し追記するためのセパレータ
+	:param	int	$first: 開始番号
+	:returns:	番号を増加させた文字列
 	:rtype:	string
 
-	Increments a string by appending a number to it or increasing the
-	number. Useful for creating "copies" or a file or duplicating database
-	content which has unique titles or slugs.
+	番号を付加する、または増やすことで、文字列を増加させます。 "コピー" または
+	ファイル、ユニークなタイトルかスラッグを持たせたデータベースの
+	コンテンツの複製を作成するのに便利です。
 
-	Usage example::
+	使用例::
 
 		echo increment_string('file', '_'); // "file_1"
 		echo increment_string('file', '-', 2); // "file-2"
@@ -77,20 +77,20 @@ The following functions are available:
 
 .. php:function:: alternator($args)
 
-	:param	mixed	$args: A variable number of arguments
-	:returns:	Alternated string(s)
+	:param	mixed	$args: 可変長引数
+	:returns:	いずれかの文字列
 	:rtype:	mixed
 
-	Allows two or more items to be alternated between, when cycling through
-	a loop. Example::
+	ループの中でローテーションで使うように、2つ以上の項目を入れ替え可能
+	にします。例::
 
 		for ($i = 0; $i < 10; $i++)
 		{     
 			echo alternator('string one', 'string two');
 		}
 
-	You can add as many parameters as you want, and with each iteration of
-	your loop the next item will be returned.
+	必要な数だけ追加でき、
+	各ループで繰り返す度に次の項目が返ります。
 
 	::
 
@@ -99,51 +99,51 @@ The following functions are available:
 			echo alternator('one', 'two', 'three', 'four', 'five');
 		}
 
-	.. note:: To use multiple separate calls to this function simply call the
-		function with no arguments to re-initialize.
+	.. note:: この関数を複数回に分けて呼び出すとき、再度初期化するために、
+		一度、引数なしでこの関数を呼び出してください。
 
 .. php:function:: repeater($data[, $num = 1])
 
-	:param	string	$data: Input
-	:param	int	$num: Number of times to repeat
-	:returns:	Repeated string
+	:param	string	$data: 入力文字列
+	:param	int	$num: 繰り返す回数
+	:returns:	繰り返された文字列
 	:rtype:	string
 
-	Generates repeating copies of the data you submit. Example::
+	渡したデータのコピーを繰り返し生成します。例::
 
 		$string = "\n";
 		echo repeater($string, 30);
 
-	The above would generate 30 newlines.
+	上の例では、30の新しい行が生成されます。
 
-	.. note:: This function is DEPRECATED. Use the native ``str_repeat()``
-		instead.
+	.. note:: この関数は非推奨です。 ネイティブの ``str_repeat()`` を
+		代わりに使用してください。
 
 
 .. php:function:: reduce_double_slashes($str)
 
-	:param	string	$str: Input string
-	:returns:	A string with normalized slashes
+	:param	string	$str: 入力文字列
+	:returns:	複数スラッシュを正常化した文字列
 	:rtype:	string
 
-	Converts double slashes in a string to a single slash, except those
-	found in URL protocol prefixes (e.g. http&#58;//).
+	URL プロトコルのプレフィックス(例 http&#58;//) を除いて、
+	文字列中のダブルスラッシュをシングルスラッシュに変換します。
 
-	Example::
+	例::
 
 		$string = "http://example.com//index.php";
-		echo reduce_double_slashes($string); // results in "http://example.com/index.php"
+		echo reduce_double_slashes($string); // "http://example.com/index.php" を返します
 
 
 .. php:function:: strip_slashes($data)
 
-	:param	mixed	$data: Input string or an array of strings
-	:returns:	String(s) with stripped slashes
+	:param	mixed	$data: 入力文字列または文字列の配列
+	:returns:	スラッシュを除去した文字列
 	:rtype:	mixed
 
-	Removes any slashes from an array of strings.
+	文字列の配列からスラッシュを除去します。
 
-	Example::
+	例::
 
 		$str = array(
 			'question'  => 'Is your name O\'reilly?',
@@ -152,72 +152,72 @@ The following functions are available:
 
 		$str = strip_slashes($str);
 
-	The above will return the following array::
+	上の例では以下の配列が返ります。::
 
 		array(
 			'question'  => "Is your name O'reilly?",
 			'answer' => "No, my name is O'connor."
 		);
 
-	.. note:: For historical reasons, this function will also accept
-		and handle string inputs. This however makes it just an
-		alias for ``stripslashes()``.
+	.. note:: 歴史的な理由で、この関数は文字列の入力を受け入れ扱います。
+		しかし、この使い方は、単に ``stripslashes()`` のエイリアスと
+		見なせます。
 
 .. php:function:: trim_slashes($str)
 
-	:param	string	$str: Input string
-	:returns:	Slash-trimmed string
+	:param	string	$str: 入力文字列
+	:returns:	スラッシュをトリムした文字列
 	:rtype:	string
 
-	Removes any leading/trailing slashes from a string. Example::
+	文字列から、先頭と末尾のスラッシュを除去します。例::
 
 		$string = "/this/that/theother/";
-		echo trim_slashes($string); // results in this/that/theother
+		echo trim_slashes($string); // this/that/theother 返します
 
-	.. note:: This function is DEPRECATED. Use the native ``trim()`` instead:
+	.. note:: この関数は非推奨です。ネイティブの ``trim()`` を代わりに使ってください。
 		|
 		| trim($str, '/');
 
 .. php:function:: reduce_multiples($str[, $character = ''[, $trim = FALSE]])
 
-	:param	string	$str: Text to search in
-	:param	string	$character: Character to reduce
-	:param	bool	$trim: Whether to also trim the specified character
-	:returns:	Reduced string
+	:param	string	$str: 検索対象文字列
+	:param	string	$character: 縮約文字
+	:param	bool	$trim: 先頭と末尾の縮約文字を削除するかどうか
+	:returns:	縮約した文字列
 	:rtype:	string
 
-	Reduces multiple instances of a particular character occuring directly
-	after each other. Example::
+	連続した文字を縮約します。
+	例::
 
 		$string = "Fred, Bill,, Joe, Jimmy";
-		$string = reduce_multiples($string,","); //results in "Fred, Bill, Joe, Jimmy"
+		$string = reduce_multiples($string,","); //"Fred, Bill, Joe, Jimmy" を返します
 
-	If the third parameter is set to TRUE it will remove occurrences of the
-	character at the beginning and the end of the string. Example::
+	第3引数に TRUE を指定した場合は、先頭と末尾にある
+	縮約文字が削除されます。例::
 
 		$string = ",Fred, Bill,, Joe, Jimmy,";
-		$string = reduce_multiples($string, ", ", TRUE); //results in "Fred, Bill, Joe, Jimmy"
+		$string = reduce_multiples($string, ", ", TRUE); //"Fred, Bill, Joe, Jimmy" を返します
 
 .. php:function:: quotes_to_entities($str)
 
-	:param	string	$str: Input string
-	:returns:	String with quotes converted to HTML entities
+	:param	string	$str: 入力文字列
+	:returns:	HTML エンティティに変換したクォートを含む文字列
 	:rtype:	string
 
-	Converts single and double quotes in a string to the corresponding HTML
-	entities. Example::
+	文字列の中のシングルおよびダブルクオートを対応する HTML 文字参照に変換します。
+	例::
 
 		$string = "Joe's \"dinner\"";
-		$string = quotes_to_entities($string); //results in "Joe&#39;s &quot;dinner&quot;"
+		$string = quotes_to_entities($string); //"Joe&#39;s &quot;dinner&quot;" を返します
 
 
 .. php:function:: strip_quotes($str)
 
-	:param	string	$str: Input string
-	:returns:	String with quotes stripped
+	:param	string	$str: 入力文字列
+	:returns:	クォートを除去した文字列
 	:rtype:	string
 
-	Removes single and double quotes from a string. Example::
+	文字列からシングルおよびダブルクオートを除去します。例::
 
 		$string = "Joe's \"dinner\"";
-		$string = strip_quotes($string); //results in "Joes dinner"
+		$string = strip_quotes($string); //"Joes dinner" を返します

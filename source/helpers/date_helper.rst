@@ -1,8 +1,8 @@
-###########
-Date Helper
-###########
+############
+日付ヘルパー
+############
 
-The Date Helper file contains functions that help you work with dates.
+日付ヘルパーのファイルは、日付を処理するのに役立つ関数で構成されています。
 
 .. contents::
   :local:
@@ -11,17 +11,17 @@ The Date Helper file contains functions that help you work with dates.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('date');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: now([$timezone = NULL])
@@ -50,22 +50,22 @@ The following functions are available:
 	:returns:	MySQL-formatted date
 	:rtype:	string
 
-	This function is identical to PHP's `date() <http://php.net/manual/en/function.date.php>`_
-	function, except that it lets you use MySQL style date codes, where each
-	code letter is preceded with a percent sign, e.g. `%Y %m %d`
+	この関数は、%Y %m %d のように各コードの前に % がついている MySQL
+	スタイルの日付コードを利用可能なこと以外は、 PHP の `date()
+	<http://www.php.net/date>`_ 関数と同じです。
 
-	The benefit of doing dates this way is that you don't have to worry
-	about escaping any characters that are not date codes, as you would
-	normally have to do with the ``date()`` function.
+	日付をこの方法で扱う利点は、date()
+	関数を使った時には通常しなければならない、 日付コードでない文字列の
+	エスケープ処理について考慮する必要がないという点です。
 
-	Example::
+	例::
 
 		$datestring = 'Year: %Y Month: %m Day: %d - %h:%i %a';
 		$time = time();
 		echo mdate($datestring, $time);
 
-	If a timestamp is not included in the second parameter the current time
-	will be used.
+	第2引数にタイムスタンプを指定しない場合は、
+	現在時刻が使われます。
 
 .. php:function:: standard_date([$fmt = 'DATE_RFC822'[, $time = NULL]])
 
@@ -74,9 +74,9 @@ The following functions are available:
 	:returns:	Formatted date or FALSE on invalid format
 	:rtype:	string
 
-	Lets you generate a date string in one of several standardized formats.
+	複数の標準フォーマットのうち、ひとつの形式の日付文字列を生成できます。
 
-	Example::
+	例::
 
 		$format = 'DATE_RFC822';
 		$time = time();
@@ -112,9 +112,9 @@ The following functions are available:
 	:returns:	UNIX timestamp
 	:rtype:	int
 
-	Takes a UNIX timestamp as input and returns it as GMT.
+	UNIX タイムスタンプを入力として、その時刻をGMT(グリニッジ標準時)として返します。
 
-	Example::
+	例::
 
 		$gmt = local_to_gmt(time());
 
@@ -126,11 +126,11 @@ The following functions are available:
 	:returns:	UNIX timestamp
 	:rtype:	int
 
-	Takes a UNIX timestamp (referenced to GMT) as input, and converts it to
-	a localized timestamp based on the timezone and Daylight Saving Time
-	submitted.
+	UNIX タイムスタンプ (グリニッジ標準時を指します) を入力として、
+	渡されたタイムゾーンとサマータイム適用区分にもとづいて、その地域の時刻に
+	変換します。
 
-	Example::
+	例::
 
 		$timestamp = 1140153693;
 		$timezone  = 'UM8';
@@ -138,7 +138,7 @@ The following functions are available:
 		echo gmt_to_local($timestamp, $timezone, $daylight_saving);
 
 
-	.. note:: For a list of timezones see the reference at the bottom of this page.
+	.. note:: タイムゾーンのリストは、このページの一番下のリファレンスをご覧ください。
 
 .. php:function:: mysql_to_unix([$time = ''])
 
@@ -146,9 +146,9 @@ The following functions are available:
 	:returns:	UNIX timestamp
 	:rtype:	int
 
-	Takes a MySQL Timestamp as input and returns it as a UNIX timestamp.
+	MySQL タイムスタンプを入力として、その時刻をUNIXタイムスタンプとして返します。
 
-	Example::
+	例::
 
 		$unix = mysql_to_unix('20061124092345');
 
@@ -160,24 +160,24 @@ The following functions are available:
 	:returns:	Formatted date
 	:rtype:	string
 
-	Takes a UNIX timestamp as input and returns it in a human readable
-	format with this prototype::
+	UNIXタイムスタンプを入力として、次の例のように、人間が読める形式で
+	返します::
 
 		YYYY-MM-DD HH:MM:SS AM/PM
 
-	This can be useful if you need to display a date in a form field for
-	submission.
+	これは、フォームの送信のために、フォームフィールドに表示したい場合に
+	役立ちます。
 
-	The time can be formatted with or without seconds, and it can be set to
-	European or US format. If only the timestamp is submitted it will return
-	the time without seconds formatted for the U.S.
+	時間は、秒の部分をつける形式とつけない形式にフォーマットでき、
+	ヨーロッパ形式またはアメリカ形式にセットできます。 タイムスタンプだけが
+	渡された時は、秒の部分がない形式で、アメリカ形式にフォーマットされます。
 
-	Examples::
+	例::
 
 		$now = time();
-		echo unix_to_human($now); // U.S. time, no seconds
-		echo unix_to_human($now, TRUE, 'us'); // U.S. time with seconds
-		echo unix_to_human($now, TRUE, 'eu'); // Euro time with seconds
+		echo unix_to_human($now); // 秒なしのアメリカ形式
+		echo unix_to_human($now, TRUE, 'us'); // 秒ありのアメリカ形式
+		echo unix_to_human($now, TRUE, 'eu'); // 秒ありのヨーロッパ形式
 
 .. php:function:: human_to_unix([$datestr = ''])
 
@@ -203,21 +203,21 @@ The following functions are available:
 	:returns:	Formatted date
 	:rtype:	string
 
-	This function can take a number poorly-formed date formats and convert
-	them into something useful. It also accepts well-formed dates.
+	この関数は不完全な日付フォーマットの数字を引数に取り、有用な形式に変換
+	します。正しい日付フォーマットを引数に取ることもできます。
 
-	The function will return a UNIX timestamp by default. You can, optionally,
-	pass a format string (the same type as the PHP ``date()`` function accepts)
-	as the second parameter.
+	デフォルトでは UNIX タイムスタンプを返します。オプションとして、
+	第2引数にフォーマット文字列( PHP の date 関数が引き受けるものと同じ)
+	を渡すことができます。
 
-	Example::
+	例::
 
 		$bad_date = '199605';
-		// Should Produce: 1996-05-01
+		// 次の日付を生成: 1996-05-01
 		$better_date = nice_date($bad_date, 'Y-m-d');
 
 		$bad_date = '9-11-2001';
-		// Should Produce: 2001-09-11
+		// 次の日付を生成: 2001-09-11
 		$better_date = nice_date($bad_date, 'Y-m-d');
 
 .. php:function:: timespan([$seconds = 1[, $time = ''[, $units = '']]])
@@ -228,7 +228,7 @@ The following functions are available:
 	:returns:	Formatted time difference
 	:rtype:	string
 
-	Formats a UNIX timestamp so that is appears similar to this::
+	UNIX タイムスタンプを次の例で示したようにフォーマットします::
 
 		1 Year, 10 Months, 2 Weeks, 5 Days, 10 Hours, 16 Minutes
 
@@ -249,8 +249,8 @@ The following functions are available:
 		$units = 2;
 		echo timespan($post_date, $now, $units);
 
-	.. note:: The text generated by this function is found in the following language
-		file: `language/<your_lang>/date_lang.php`
+	.. note:: この関数が生成するテキストは、次の言語ファイルの中にあります
+		file: language/<あなたの言語>/date_lang.php
 
 .. php:function:: days_in_month([$month = 0[, $year = '']])
 
@@ -259,14 +259,14 @@ The following functions are available:
 	:returns:	Count of days in the specified month
 	:rtype:	int
 
-	Returns the number of days in a given month/year. Takes leap years into
-	account.
+	指定された年月の日数を返します。
+	うるう年が考慮されます。
 
-	Example::
+	例::
 
 		echo days_in_month(06, 2005);
 
-	If the second parameter is empty, the current year will be used.
+	第2引数が空の時、現在の年が使われます。
 
 	.. note:: This function will alias the native ``cal_days_in_month()``, if
 		it is available.
@@ -297,16 +297,16 @@ The following functions are available:
 	:returns:	Hour difference from UTC
 	:rtype:	int
 
-	Takes a timezone reference (for a list of valid timezones, see the
-	"Timezone Reference" below) and returns the number of hours offset from
-	UTC.
+	タイムゾーンリファレンス(有効なタイムゾーンのリストは、下の
+	"タイムゾーンリファレンス" を参照してください)を引数にとり、UTC
+	からの時差を数字で返します。
 
-	Example::
+	例::
 
 		echo timezones('UM5');
 
 
-	This function is useful when used with :php:func:`timezone_menu()`.
+	このメソッドは、:php:func:`timezone_menu()` とともに使うと役立ちます。
 
 .. php:function:: timezone_menu([$default = 'UTC'[, $class = ''[, $name = 'timezones'[, $attributes = '']]]])
 
@@ -317,7 +317,7 @@ The following functions are available:
 	:returns:	HTML drop down menu with time zones
 	:rtype:	string
 
-	Generates a pull-down menu of timezones, like this one:
+	次のようなタイムゾーンのプルダウンメニューを生成します:
 
 	.. raw:: html
 
@@ -367,27 +367,27 @@ The following functions are available:
 		</form>
 
 
-	This menu is useful if you run a membership site in which your users are
-	allowed to set their local timezone value.
+	このメニューは、ユーザごとのローカル時間ををセットできる会員制サイトの
+	場合に使えます。
 
-	The first parameter lets you set the "selected" state of the menu. For
-	example, to set Pacific time as the default you will do this::
+	第1引数で、メニューの "選択(selected)" 状態 を指定します。たとえば、
+	太平洋標準時をデフォルト値にセットしたい場合は、次のようにします::
 
 		echo timezone_menu('UM8');
 
-	Please see the timezone reference below to see the values of this menu.
+	メニューに指定する値を調べるには、下記のタイムゾーンリファレンスをご覧ください
 
-	The second parameter lets you set a CSS class name for the menu.
+	第2引数では、メニューの CSS クラスの名前を指定できます。
 
 	The fourth parameter lets you set one or more attributes on the generated select tag.
 
-	.. note:: The text contained in the menu is found in the following
-		language file: `language/<your_lang>/date_lang.php`
+	.. note:: このメニューに含まれるテキストは、次の言語ファイルの中にあります:
+		language/<あなたの言語>/date_lang.php
 
-Timezone Reference
-==================
+タイムゾーンリファレンス
+========================
 
-The following table indicates each timezone and its location.
+次の表は、地域ごとの各タイムゾーンを示したものです。
 
 Note some of the location lists have been abridged for clarity and formatting.
 

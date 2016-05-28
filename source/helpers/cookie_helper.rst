@@ -1,9 +1,9 @@
-#############
+###############
 Cookie ヘルパー
-#############
+###############
 
-The Cookie Helper file contains functions that assist in working with
-cookies.
+クッキーヘルパーのファイルは、クッキーを処理するのに役立つ関数で
+構成されています。
 
 .. contents::
   :local:
@@ -13,67 +13,67 @@ cookies.
   <div class="custom-index container"></div>
 
 ヘルパーをロードする
-===================
+====================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('cookie');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: set_cookie($name[, $value = ''[, $expire = ''[, $domain = ''[, $path = '/'[, $prefix = ''[, $secure = FALSE[, $httponly = FALSE]]]]]]])
 
-	:param	mixed	$name: Cookie name *or* associative array of all of the parameters available to this function
-	:param	string	$value: Cookie value
-	:param	int	$expire: Number of seconds until expiration
-	:param	string	$domain: Cookie domain (usually: .yourdomain.com)
-	:param	string	$path: Cookie path
-	:param	string	$prefix: Cookie name prefix
-	:param	bool	$secure: Whether to only send the cookie through HTTPS
-	:param	bool	$httponly: Whether to hide the cookie from JavaScript
+	:param	mixed	$name: クッキー名 *又は* この関数で利用可能なパラメータの全ての連想配列
+	:param	string	$value: クッキーの値
+	:param	int	$expire: 有効期限までの秒数
+	:param	string	$domain: クッキーのドメイン (通例: .yourdomain.com)
+	:param	string	$path: クッキーのパス
+	:param	string	$prefix: クッキー名の接頭辞
+	:param	bool	$secure: HTTPS でのみクッキーを送信するかどうか
+	:param	bool	$httponly: JavaScript からクッキーを隠すかどうか
 	:rtype:	void
 
-	This helper function gives you friendlier syntax to set browser
-	cookies. Refer to the :doc:`Input Library <../libraries/input>` for
-	a description of its use, as this function is an alias for
-	``CI_Input::set_cookie()``.
+	このヘルパー関数はブラウザのクッキーをセットするのに便利な
+	関数です。 この関数は ``CI_Input::set_cookie()`` のエイリアスですので、
+	詳細は :doc:`入力およびセキュリティクラス<../libraries/input>`
+	を参照してください。
 
 .. php:function:: get_cookie($index[, $xss_clean = NULL])
 
-	:param	string	$index: Cookie name
-	:param	bool	$xss_clean: Whether to apply XSS filtering to the returned value
-	:returns:	The cookie value or NULL if not found
+	:param	string	$index: クッキー名
+	:param	bool	$xss_clean: 返却される値に XSS フィルタを適用するかどうか
+	:returns:	クッキーの値又は見つからない場合は NULL
 	:rtype:	mixed
 
-	This helper function gives you friendlier syntax to get browser
-	cookies. Refer to the :doc:`Input Library <../libraries/input>` for
-	detailed description of its use, as this function acts very
-	similarly to ``CI_Input::cookie()``, except it will also prepend
-	the ``$config['cookie_prefix']`` that you might've set in your
-	*application/config/config.php* file.
+	このヘルパー関数はブラウザのクッキーをセットするのに便利な
+	関数です。 この関数は *application/config/config.php* ファイルに
+        ``$config['cookie_prefix']`` を指定した場合に接頭辞が付与される事を除けば
+	``CI_Input::cookie()`` とほとんど一緒です。
+	詳細は  :doc:`入力およびセキュリティクラス<../libraries/input>` を
+	参照してください。
 
 .. php:function:: delete_cookie($name[, $domain = ''[, $path = '/'[, $prefix = '']]])
 
-	:param	string	$name: Cookie name
-	:param	string	$domain: Cookie domain (usually: .yourdomain.com)
-	:param	string	$path: Cookie path
-	:param	string	$prefix: Cookie name prefix
+	:param	string	$name: クッキー名
+	:param	string	$domain: クッキーのドメイン (通例: .yourdomain.com)
+	:param	string	$path: クッキーのパス
+	:param	string	$prefix: クッキー名の接頭辞
 	:rtype:	void
 
-	Lets you delete a cookie. Unless you've set a custom path or other
-	values, only the name of the cookie is needed.
+	クッキーを削除できます。 カスタムパスやその他の値は必要なく、次のように
+	クッキー名のみ指定してください。
 	::
 
 		delete_cookie('name');
 
-	This function is otherwise identical to ``set_cookie()``, except that it
-	does not have the value and expiration parameters. You can submit an
-	array of values in the first parameter or you can set discrete
-	parameters.
+	この関数は、値や有効期限のパラメータがない以外は、 ``set_cookie()`` と
+	同じものです。
+	第1引数に配列で渡すか、
+	個別パラメータで値を渡すことができます。
 	::
 
 		delete_cookie($name, $domain, $path, $prefix);
