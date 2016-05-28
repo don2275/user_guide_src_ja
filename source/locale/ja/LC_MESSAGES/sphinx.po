@@ -1,0 +1,9 @@
+msgid "Parameters"
+msgstr "パラメータ"
+
+msgid "Returns"
+msgstr "返り値"
+
+msgid "Return type"
+msgstr "返り値の型"
+

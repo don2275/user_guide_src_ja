@@ -56,6 +56,7 @@ release = '3.1.0-dev'
 # for a list of supported languages.
 #language = None
 language = "ja"
+locale_dirs = ['locale/']
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
