@@ -69,8 +69,8 @@ SELECT クエリを **$this->db->get()** のようにコンパイルしますが
 
 	// 次の文を出力します: SELECT * FROM mytable
 
-第2引数でクエリビルダのクエリをリセットするかを指定できます(デフォルトでは
- `$this->db->get()` を使用時のようにリセットされます)::
+第2引数でクエリビルダのクエリをリセットするかを指定できます (デフォルトでは
+`$this->db->get()` を使用時のようにリセットされます) ::
 
 	echo $this->db->limit(10,20)->get_compiled_select('mytable', FALSE);
 
@@ -561,7 +561,7 @@ ORDER BY 句を指定できます。
 	// 次のようになります:
 	// SELECT * FROM (`my_table`) WHERE ( `a` = 'a' OR ( `b` = 'b' AND `c` = 'c' ) ) AND `d` = 'd'
 
-.. note:: groups need to be balanced, make sure every group_start() is matched by a group_end().
+.. note:: groups は対称であることが求められます。 group_start() が group_end() と合致していることを確認してください。
 
 **$this->db->group_start()**
 
@@ -642,8 +642,8 @@ Example::
 
 	// SQL 文字列を生成: INSERT INTO mytable (`title`, `name`, `date`) VALUES ('My title', 'My name', 'My date')
 
-第2引数でクエリビルダのクエリをリセットするかを指定できます(デフォルトでは
- `$this->db->insert()` を使用時のようにリセットされます)::
+第2引数でクエリビルダのクエリをリセットするかを指定できます (デフォルトでは
+`$this->db->insert()` を使用時のようにリセットされます) ::
 
 	echo $this->db->set('title', 'My Title')->get_compiled_insert('mytable', FALSE);
 
@@ -694,12 +694,12 @@ Example::
 
 **$this->db->replace()**
 
-This method executes a REPLACE statement, which is basically the SQL
-standard for (optional) DELETE + INSERT, using *PRIMARY* and *UNIQUE*
-keys as the determining factor.
-In our case, it will save you from the need to implement complex
-logics with different combinations of  ``select()``, ``update()``,
-``delete()`` and ``insert()`` calls.
+このメソッドは REPLACE 分を実行します, これは基本的には SQL
+標準の (必要なら) DELETE + INSERT で、 *PRIMARY* と *UNIQUE*
+キーを判定要素として使用します。
+これにより、複雑なロジックを組み込む必要を抑えられます。
+これがないと  ``select()`` 、 ``update()`` 、
+``delete()`` と ``insert()`` の呼び出しを組み合わせることになります。
 
 Example::
 
@@ -711,14 +711,14 @@ Example::
 
 	$this->db->replace('table', $data);
 
-	// Executes: REPLACE INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
+	// 次を生成: REPLACE INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
 
-In the above example, if we assume that the *title* field is our primary
-key, then if a row containing 'My title' as the *title* value, that row
-will be deleted with our new row data replacing it.
+上記の例では、もし *title* フィールドを主キーと決めつけるならば、
+*title* の値に 'My title' を含む行があれば、その行は
+新しいデータで置き換えられる形で削除されます。
 
-Usage of the ``set()`` method is also allowed and all fields are
-automatically escaped, just like with ``insert()``.
+``set()`` メソッドの使い方もまたすべてのフィールドを
+自動的にエスケープします、ちょうど ``insert()`` のように。
 
 **$this->db->set()**
 
@@ -877,12 +877,12 @@ $this->db->where() メソッドを使えば WHERE 句をセットできます。
 
 **$this->db->get_compiled_update()**
 
-This works exactly the same way as ``$this->db->get_compiled_insert()`` except
-that it produces an UPDATE SQL string instead of an INSERT SQL string.
+これは ``$this->db->get_compiled_insert()`` とまったく同じように動作します。違いは
+INSERT SQL 文字列のかわりに UPDATE SQL 文字列を生成することです。
 
-For more information view documentation for `$this->db->get_compiled_insert()`.
+詳しくは `$this->db->get_compiled_insert()` のドキュメントをご覧ください。
 
-.. note:: This method doesn't work for batched updates.
+.. note:: このメソッドは update バッチでは動きません。
 
 *************
 データの削除
@@ -949,10 +949,10 @@ empty_table() が利用できます。
 
 **$this->db->get_compiled_delete()**
 
-This works exactly the same way as ``$this->db->get_compiled_insert()`` except
-that it produces a DELETE SQL string instead of an INSERT SQL string.
+このメソッドは ``$this->db->get_compiled_insert()`` とまったく同じように動作します。違いは
+INSERT SQL 文字列のかわりに DELETE SQL 文字列を生成します。
 
-For more information view documentation for $this->db->get_compiled_insert().
+詳しくは $this->db->get_compiled_insert() のドキュメントをご覧ください。
 
 ***************
 メソッドの連結
