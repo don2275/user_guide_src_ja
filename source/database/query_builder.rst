@@ -9,8 +9,8 @@ CodeIgniter は クエリビルダ データベースパターンの改変版を
 に専用のクラスを必要としたりはしません。そのおかげで、より単純化された
 インターフェースが提供されています。
 
-クエリビルダ 機能を使う大きな利点は、単に単純であるからだけでなく、クエリビルダ 機
-能を使えば、クエリの構文は各種のデータベースアダプタが生成してくれるの
+クエリビルダ 機能を使う大きな利点は、単に単純であるからだけでなく、クエリビルダ
+機能を使えば、クエリの構文は各種のデータベースアダプタが生成してくれるの
 で、 データベースから独立したアプリケーションを作成できるということで
 す。また、システムにより自動的に値のエスケープ処理が行われるので、より
 安全なクエリが利用可能になります。
@@ -162,7 +162,7 @@ select_max() と同様に、結果フィールドをリネームするために�
 
 **$this->db->select_sum()**
 
-クエリの"SELECT SUM(field)"の部分を書き出します。 select_max() と同様
+クエリの "SELECT SUM(field)" の部分を書き出します。 select_max() と同様
 に、結果フィールドをリネームするために、
 追加で第2引数を指定できます。
 
@@ -1095,7 +1095,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$prefix: 新しく使うプリフィックス
 		:returns:	使われているプリフィックス
-		:rtype:	文字列
+		:rtype:	string
 
 		データベースのプリフィックスを再接続せずに設定します。
 
@@ -1103,7 +1103,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$table: プリフィックスを追加するテーブル名
 		:returns:	プリフィックスが追加されたテーブル名
-		:rtype:	文字列
+		:rtype:	string
 
 		データベースのプリフィックスが設定されている場合プリフィックスを追加します。
 
@@ -1112,7 +1112,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: テーブル名
 		:param	bool	$reset: SELECT の値をリセットするか
 		:returns:	クエリ結果の行数
-		:rtype:	整数
+		:rtype:	int
 
 		クエリビルダのクエリにより返された全レコードを数える
 		プラットフォーム固有のクエリ文字列を生成します。
@@ -1218,7 +1218,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$value: 単一のキーを指定した場合、この値に比較される
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリのWHERE部分を生成する。
 		 `AND` で複数のコールを分割する。
@@ -1229,7 +1229,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$value: 単一のキーを指定した場合、この値に比較される
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリのWHERE部分を生成する。
 		 `OR` で複数のコールを分割する。
@@ -1240,7 +1240,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$value: 検索する値
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリの WHERE IN('item', 'item') を生成する。
 		適宜 `OR` で結合する。
@@ -1251,7 +1251,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$value: 検索する値
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリの WHERE NOT IN('item', 'item') を生成する。
 		適宜 `OR` で結合する。
@@ -1262,7 +1262,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	array	$values: 対象の値の配列
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリの WHERE IN('item', 'item') を生成する。
 		適宜 `AND` で結合する。
@@ -1273,7 +1273,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	array	$values: 対象の値の配列
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		クエリの WHERE NOT IN('item', 'item') を生成する。
 		適宜 `AND` で結合する。
@@ -1309,7 +1309,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 	.. php:method:: group_end()
 
 		:returns:	DB_query_builder インスタンス
-		:rtype:	オブジェクト
+		:rtype:	object
 
 		group 表現を終了する。
 
@@ -1538,7 +1538,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: テーブル名
 		:param	bool	$reset: 現在のクエリビルダ値をリセットするかどうか
 		:returns:	コンパイルされた SQL 文の文字列
-		:rtype:	文字列
+		:rtype:	string
 
 		SELECT 文をコンパイルして文字列として返す。
 
@@ -1547,7 +1547,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: テーブル名
 		:param	bool	$reset: 現在のクエリビルダ値をリセットするかどうか
 		:returns:	コンパイルされた SQL 文の文字列
-		:rtype:	文字列
+		:rtype:	string
 
 		INSERT 文をコンパイルして文字列として返す。
 
@@ -1556,7 +1556,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: テーブル名
 		:param	bool	$reset: 現在のクエリビルダ値をリセットするかどうか
 		:returns:	コンパイルされた SQL 文の文字列
-		:rtype:	文字列
+		:rtype:	string
 
 		UPDATE 文をコンパイルして文字列として返す。
 
@@ -1565,6 +1565,6 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: テーブル名
 		:param	bool	$reset: 現在のクエリビルダ値をリセットするかどうか
 		:returns:	コンパイルされた SQL 文の文字列
-		:rtype:	文字列
+		:rtype:	string
 
 		DELETE 文をコンパイルして文字列として返す。
