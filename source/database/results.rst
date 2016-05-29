@@ -402,7 +402,7 @@
 		要求された結果行を ``stdClass`` 型のオブジェクト
 		として返します。
 
-		Usage: see `Result Rows`_.
+		使い方: `結果行`_ を参照。
 
 	.. php:method:: custom_row_object($n, $type)
 
