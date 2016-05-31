@@ -1,24 +1,24 @@
-#############################
-Upgrading from 3.0.1 to 3.0.2
-#############################
+###################################
+3.0.1 から 3.0.2 へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
-Step 2: Update your application/config/constants.php file
-=========================================================
+Step 2: application/config/constants.php ファイルのアップグレード
+=================================================================
 
-The *application/config/constants.php* file has been updated to check
-if constants aren't already defined before doing that, making it easier
-to add an environment-specific configuration.
+*application/config/constants.php* ファイルは、環境固有の設定を
+追加することをより容易にするために、実行前にコンスタントがすでに
+定義されていないかどうかを確認するように更新されました。
 
-.. note:: If you've made modifications to this file, please make a
-	backup first and cross-check the differences first.
+.. note:: もしこのファイルに変更を加えている場合は、
+	最初にバックアップを取り、最初のものとの差分を照合してください。

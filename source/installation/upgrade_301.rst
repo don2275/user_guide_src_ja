@@ -1,19 +1,19 @@
-#############################
-Upgrading from 3.0.0 to 3.0.1
-#############################
+###################################
+3.0.0 から 3.0.1 へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
-Step 2: Update your CLI error templates
-=======================================
+Step 2: CLI エラーテンプレートファイルのアップグレード
+======================================================
 
-Replace all files under your *application/views/errors/cli/* directory.
+ *application/views/errors/cli/* ディレクトリ以下のすべてのファイルを置き換えてください。
