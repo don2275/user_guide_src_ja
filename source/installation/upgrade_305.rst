@@ -1,14 +1,14 @@
-#############################
-Upgrading from 3.0.4 to 3.0.5
-#############################
+###################################
+3.0.4 から 3.0.5 へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。

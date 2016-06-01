@@ -1,37 +1,37 @@
-#############################
-Upgrading from 3.0.2 to 3.0.3
-#############################
+###################################
+3.0.2 から 3.0.3 へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
-Step 2: Make sure your 'base_url' config value is not empty
-===========================================================
+Step 2: 'base_url' 設定値が空でないか確認してください
+=====================================================
 
-When ``$config['base_url']`` is not set, CodeIgniter tries to automatically
-detect what your website's base URL is. This is done purely for convenience
-when you are starting development of a new application.
+``$config['base_url']`` がセットされていない時、CodeIgniter は自動的に
+Web サイトのベース URL を検出します。これは新しいアプリケーション開発を
+開始する時に単に便宜上行われるものです。
 
-Auto-detection is never reliable and also has security implications, which
-is why you should **always** have it manually configured!
+自動検出は決して信頼できるものではなく、セキュリティへの影響もあります。
+これが、 **常に** 手動で設定されている必要がある理由です。
 
-One of the changes in CodeIgniter 3.0.3 is how this auto-detection works,
-and more specifically it now falls back to the server's IP address instead
-of the hostname requested by the client. Therefore, if you've ever relied
-on auto-detection, it will change how your website works now.
+CodeIgniter 3.0.3 の中の変更の一つには、この自動検出の動作方法があります。
+より具体的には、クライアントがリクエストしたホスト名の代わりに
+現在はサーバーのIPアドレスを返します。従って、自動検出に依存していた場合、
+現在ではあなたの Web サイトの動作が変更されることがあります。
 
-In case you need to allow e.g. multiple domains, or both http:// and
-https:// prefixes to be dynamically used depending on the request,
-remember that *application/config/config.php* is still a PHP script, in
-which you can create this logic with a few lines of code. For example::
+例として複数ドメインや http:// や https:// プレフィックスの両方を
+リクエストに応じて動的に使用することを許可する必要がある場合、
+*application/config/config.php* は PHP スクリプトであるということを覚えておいてください。
+数行のコードでこのロジックを作成することができます。例::
 
 	$allowed_domains = array('domain1.tld', 'domain2.tld');
 	$default_domain  = 'domain1.tld';

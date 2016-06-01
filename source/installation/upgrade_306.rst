@@ -1,48 +1,48 @@
-#############################
-Upgrading from 3.0.5 to 3.0.6
-#############################
+###################################
+3.0.5 から 3.0.6 へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
-Step 2: Update your index.php file (optional)
+Step 2: index.php ファイル (任意)のアップグレード
+=================================================
+
+私たちは、index.php ファイルへいくつかの微調整を行いました。
+主なものはディレクトリセパレータの適切な使用法（例: ハードコードされた "/" の代わりに
+``DIRECTORY_SEPARATOR`` を利用する）に関連しています。
+
+このステップを飛ばしても壊れることはありませんが、Windows を実行している場合や
+全ての変更に追随したい場合、index.php ファイルを更新することを
+推奨します。
+
+*Tip: 古いファイルから ``ENVIRONMENT``, ``$system_path``, ``$application_folder``
+と ``$view_folder`` の定義をコピーし、新しいファイルの
+デフォルトのものと置き換えます。*
+
+Step 3: 'prep_for_form' 使用の削除 (廃止予定)
 =============================================
 
-We've made some tweaks to the index.php file, mostly related to proper
-usage of directory separators (i.e. use the ``DIRECTORY_SEPARATOR``
-constant instead of a hard coded forward slash "/").
+:doc:`フォームバリデーション (検証) <../libraries/form_validation>` には
+``set_rules()`` 内のルールとして、自動的に入力データをHTMLエンコードする/可能性のある
+``prep_for_form()`` メソッドがあります。
 
-Nothing will break if you skip this step, but if you're running Windows
-or just want to be up to date with every change - we do recommend that
-you update your index.php file.
+最初の段階で自動敵にエンコードされた入力（出力の代わりとなる）データというのは
+良くない動作と言えます。CodeIgniter と PHP は、
+このメソッド以外に他の選択肢を提供します。
+例えば、:doc:`フォームヘルパー <../helpers/form_helper>` の関数は、必要な時に
+自動的に HTML エスケープを実施します。
 
-*Tip: Just copy the ``ENVIRONMENT``, ``$system_path``, ``$application_folder``
-and ``$view_folder`` declarations from the old file and put them into the
-new one, replacing the defaults.*
+従って、 *prep_for_form* メソッド/ルールは、まったく実用的ではありません。
+そして、現在は非推奨であり、3.1以上で削除される予定です。
 
-Step 3: Remove 'prep_for_form' usage (deprecation)
-==================================================
-
-The :doc:`Form Validation Library <../libraries/form_validation>` has a
-``prep_for_form()`` method, which is/can also be used as a rule in
-``set_rules()`` to automatically perform HTML encoding on input data.
-
-Automatically encoding input (instead of output) data is a bad practice in
-the first place, and CodeIgniter and PHP itself offer other alternatives
-to this method anyway.
-For example, :doc:`Form Helper <../helpers/form_helper>` functions will
-automatically perform HTML escaping when necessary.
-
-Therefore, the *prep_for_form* method/rule is pretty much useless and is now
-deprecated and scheduled for removal in 3.1+.
-
-.. note:: The method is still available, but you're strongly encouraged to
-	remove its usage sooner rather than later.
+.. note:: このメソッドは、まだ利用可能ですが、すぐにでもその使用を削除することを
+	強く推奨します。
