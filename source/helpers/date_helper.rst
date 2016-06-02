@@ -30,29 +30,29 @@
 	:returns:	UNIX timestamp
 	:rtype:	int
 
-	Returns the current time as a UNIX timestamp, referenced either to your server's
-	local time or any PHP suported timezone, based on the "time reference" setting
-	in your config file. If you do not intend to set your master time reference to
-	any other PHP supported timezone (which you'll typically do if you run a site
-	that lets each user set their own timezone settings) there is no benefit to using
-	this function over PHP's ``time()`` function.
+	現在時刻をUNIXタイムスタンプで返します。設定ファイルの "time reference" の
+	設定により、サーバのローカル時間または PHP でサポートされるタイムゾーンを
+	指す時刻になります。
+	マスターの時間を PHP でサポートされるタイムゾーンに設定しないつもりなら、
+	(各ユーザが各々のタイムゾーンを設定することができるサイトであれば通常そうすると
+	思います) PHP の time()関数を使わずに、この関数を利用する利点はありません。
 	::
 
 		echo now('Australia/Victoria');
 
-	If a timezone is not provided, it will return ``time()`` based on the
-	**time_reference** setting.
+	タイムゾーンを指定しない場合、 戻り値として **time_reference** の設定に基づく
+	UNIXタイムスタンプの値を返却します。
 
 .. php:function:: mdate([$datestr = ''[, $time = '']])
 
-	:param	string	$datestr: Date string
-	:param	int	$time: UNIX timestamp
-	:returns:	MySQL-formatted date
+	:param	string	$datestr: 日付文字列
+	:param	int	$time: UNIX タイムスタンプ
+	:returns:	MySQL フォーマットされた日付
 	:rtype:	string
 
-	この関数は、%Y %m %d のように各コードの前に % がついている MySQL
-	スタイルの日付コードを利用可能なこと以外は、 PHP の `date()
-	<http://www.php.net/date>`_ 関数と同じです。
+	この関数は、%Y %m %d のように各コードの前に % がついている MySQLスタイルの
+	日付コードを利用可能なこと以外は、 PHP の `date()<http://www.php.net/date>`_ 関数と
+	同じです。
 
 	日付をこの方法で扱う利点は、date()
 	関数を使った時には通常しなければならない、 日付コードでない文字列の
@@ -69,9 +69,9 @@
 
 .. php:function:: standard_date([$fmt = 'DATE_RFC822'[, $time = NULL]])
 
-	:param	string	$fmt: Date format
-	:param	int	$time: UNIX timestamp
-	:returns:	Formatted date or FALSE on invalid format
+	:param	string	$fmt: 日付文字列
+	:param	int	$time: UNIX タイムスタンプ
+	:returns:	フォーマットされた日付又は不正なフォーマットの場合に FALSE
 	:rtype:	string
 
 	複数の標準フォーマットのうち、ひとつの形式の日付文字列を生成できます。
@@ -82,10 +82,10 @@
 		$time = time();
 		echo standard_date($format, $time);
 
-	.. note:: This function is DEPRECATED. Use the native ``date()`` combined with
+	.. 注:: この関数は廃止予定です。 代わりにPHP 標準の ``date()`` と
 		`DateTime's format constants
-		<http://php.net/manual/en/class.datetime.php#datetime.constants.types>`_
-		instead::
+		<http://php.net/manual/ja/class.datetime.php#datetime.constants.types>`_
+		を使用してください。::
 
 			echo date(DATE_RFC822, time());
 
@@ -108,8 +108,8 @@
 
 .. php:function:: local_to_gmt([$time = ''])
 
-	:param	int	$time: UNIX timestamp
-	:returns:	UNIX timestamp
+	:param	int	$time: UNIX タイムスタンプ
+	:returns:	UNIX タイムスタンプ
 	:rtype:	int
 
 	UNIX タイムスタンプを入力として、その時刻をGMT(グリニッジ標準時)として返します。
@@ -120,10 +120,10 @@
 
 .. php:function:: gmt_to_local([$time = ''[, $timezone = 'UTC'[, $dst = FALSE]]])
 
-	:param	int	$time: UNIX timestamp
-	:param	string	$timezone: Timezone
-	:param	bool	$dst: Whether DST is active
-	:returns:	UNIX timestamp
+	:param	int	$time: UNIX タイムスタンプ
+	:param	string	$timezone: タイムゾーン
+	:param	bool	$dst: サマータイムが有効かどうか
+	:returns:	UNIX タイムスタンプ
 	:rtype:	int
 
 	UNIX タイムスタンプ (グリニッジ標準時を指します) を入力として、
@@ -142,11 +142,11 @@
 
 .. php:function:: mysql_to_unix([$time = ''])
 
-	:param	string	$time: MySQL timestamp
-	:returns:	UNIX timestamp
+	:param	string	$time: MySQL タイムスタンプ
+	:returns:	UNIX タイムスタンプ
 	:rtype:	int
 
-	MySQL タイムスタンプを入力として、その時刻をUNIXタイムスタンプとして返します。
+	MySQL タイムスタンプを入力として、その時刻を UNIX タイムスタンプとして返します。
 
 	例::
 
@@ -154,10 +154,10 @@
 
 .. php:function:: unix_to_human([$time = ''[, $seconds = FALSE[, $fmt = 'us']]])
 
-	:param	int	$time: UNIX timestamp
-	:param	bool	$seconds: Whether to show seconds
-	:param	string	$fmt: format (us or euro)
-	:returns:	Formatted date
+	:param	int	$time: UNIX タイムスタンプ
+	:param	bool	$seconds: 秒を表示するかどうか
+	:param	string	$fmt: フォーマット (us 又は euro)
+	:returns:	フォーマットされた日付
 	:rtype:	string
 
 	UNIXタイムスタンプを入力として、次の例のように、人間が読める形式で
@@ -181,14 +181,14 @@
 
 .. php:function:: human_to_unix([$datestr = ''])
 
-	:param	int	$datestr: Date string
-	:returns:	UNIX timestamp or FALSE on failure
+	:param	int	$datestr: 日付文字列
+	:returns:	UNIX タイムスタンプ又は失敗した場合は FALSE
 	:rtype:	int
 
-	The opposite of the :php:func:`unix_to_time()` function. Takes a "human"
-	time as input and returns it as a UNIX timestamp. This is useful if you
-	accept "human" formatted dates submitted via a form. Returns boolean FALSE
-	date string passed to it is not formatted as indicated above.
+	:php:func:`unix_to_time()` 関数の反対です。"人" の時間を入力として、
+	UNIXタイムスタンプを返します。 これは、フォームから "人"が読める形式に
+	フォーマットされた日付を受け取る時に役立ちます。渡された文字列が、
+	上で示したようなフォーマットでない場合、ブール値の FALSE を返します。
 
 	Example::
 
@@ -198,9 +198,9 @@
 
 .. php:function:: nice_date([$bad_date = ''[, $format = FALSE]])
 
-	:param	int	$bad_date: The terribly formatted date-like string
-	:param	string	$format: Date format to return (same as PHP's ``date()`` function)
-	:returns:	Formatted date
+	:param	int	$bad_date: 不完全な日付フォーマット
+	:param	string	$format: 返却される日付フォーマット ( PHP の ``date()`` 関数と同様)
+	:returns:	フォーマットされた日付
 	:rtype:	string
 
 	この関数は不完全な日付フォーマットの数字を引数に取り、有用な形式に変換
@@ -222,41 +222,41 @@
 
 .. php:function:: timespan([$seconds = 1[, $time = ''[, $units = '']]])
 
-	:param	int	$seconds: Number of seconds
-	:param	string	$time: UNIX timestamp
-	:param	int	$units: Number of time units to display
-	:returns:	Formatted time difference
+	:param	int	$seconds: 秒数
+	:param	string	$time: UNIX タイムスタンプ
+	:param	int	$units: 表示する時間の単位
+	:returns:	フォーマットされた時刻の差
 	:rtype:	string
 
 	UNIX タイムスタンプを次の例で示したようにフォーマットします::
 
 		1 Year, 10 Months, 2 Weeks, 5 Days, 10 Hours, 16 Minutes
 
-	The first parameter must contain a UNIX timestamp.
-	The second parameter must contain a timestamp that is greater that the
-	first timestamp.
-	The thirdparameter is optional and limits the number of time units to display.
+	第1引数には、 UNIX タイムスタンプを指定する必要があります。
+	第2引数には、第1引数で渡したタイムスタンプよりも大きい(後の時間の)
+	UNIX タイムスタンプを指定する必要があります。
+	第3引数は、オプションです。表示する時間の単位を数値で制限します。
 
-	If the second parameter empty, the current time will be used.
+	もし第2引数が空だった場合は現在時刻が使用されます。
 
-	The most common purpose for this function is to show how much time has
-	elapsed from some point in time in the past to now.
+	この関数の主要な目的は、過去のある時点から現在までの経過時間を表示するというものです
+	表示するというものです。
 
-	Example::
+	例::
 
 		$post_date = '1079621429';
 		$now = time();
 		$units = 2;
 		echo timespan($post_date, $now, $units);
 
-	.. note:: この関数が生成するテキストは、次の言語ファイルの中にあります
+	.. 注:: この関数が生成するテキストは、次の言語ファイルの中にあります
 		file: language/<あなたの言語>/date_lang.php
 
 .. php:function:: days_in_month([$month = 0[, $year = '']])
 
-	:param	int	$month: a numeric month
-	:param	int	$year: a numeric year
-	:returns:	Count of days in the specified month
+	:param	int	$month: 月数
+	:param	int	$year: 年数
+	:returns:	指定された月の日数
 	:rtype:	int
 
 	指定された年月の日数を返します。
@@ -268,21 +268,21 @@
 
 	第2引数が空の時、現在の年が使われます。
 
-	.. note:: This function will alias the native ``cal_days_in_month()``, if
-		it is available.
+	.. 注:: この関数は ``cal_days_in_month()`` が利用できる場合は
+		エイリアスになります。
 
 .. php:function:: date_range([$unix_start = ''[, $mixed = ''[, $is_unix = TRUE[, $format = 'Y-m-d']]]])
 
-	:param	int	$unix_start: UNIX timestamp of the range start date
-	:param	int	$mixed: UNIX timestamp of the range end date or interval in days
-	:param	bool	$is_unix: set to FALSE if $mixed is not a timestamp
-	:param	string	$format: Output date format, same as in ``date()``
-	:returns:	An array of dates
+	:param	int	$unix_start: 開始日の UNIX タイムスタンプ
+	:param	int	$mixed: 終了日の UNIX タイムスタンプ又は日数
+	:param	bool	$is_unix: 第2引数がタイムスタンプでない場合は FALSE を設定する
+	:param	string	$format: 出力する日付フォーマット。 ``date()`` 関数と同様。
+	:returns:	日付の配列
 	:rtype:	array
 
-	Returns a list of dates within a specified period.
+	指定した期間で日付のリストが返却されます。
 
-	Example::
+	例::
 
 		$range = date_range('2012-01-01', '2012-01-15');
 		echo "First 15 days of 2012:";
@@ -293,8 +293,8 @@
 
 .. php:function:: timezones([$tz = ''])
 
-	:param	string	$tz: A numeric timezone
-	:returns:	Hour difference from UTC
+	:param	string	$tz: 数値のタイムゾーン
+	:returns:	UTCからの時差
 	:rtype:	int
 
 	タイムゾーンリファレンス(有効なタイムゾーンのリストは、下の
@@ -310,11 +310,11 @@
 
 .. php:function:: timezone_menu([$default = 'UTC'[, $class = ''[, $name = 'timezones'[, $attributes = '']]]])
 
-	:param	string	$default: Timezone
-	:param	string	$class: Class name
-	:param	string	$name: Menu name
-	:param	mixed	$attributes: HTML attributes
-	:returns:	HTML drop down menu with time zones
+	:param	string	$default: タイムゾーン
+	:param	string	$class: クラス名
+	:param	string	$name: メニュー名
+	:param	mixed	$attributes: HTML 属性
+	:returns:	タイムゾーンの HTML プルダウンメニュー
 	:rtype:	string
 
 	次のようなタイムゾーンのプルダウンメニューを生成します:
@@ -379,7 +379,7 @@
 
 	第2引数では、メニューの CSS クラスの名前を指定できます。
 
-	The fourth parameter lets you set one or more attributes on the generated select tag.
+	第4引数は生成されるプルダウンメニューに一つ以上の HTML 属性を設定できます。
 
 	.. note:: このメニューに含まれるテキストは、次の言語ファイルの中にあります:
 		language/<あなたの言語>/date_lang.php
@@ -389,7 +389,7 @@
 
 次の表は、地域ごとの各タイムゾーンを示したものです。
 
-Note some of the location lists have been abridged for clarity and formatting.
+いくつかの地域のリストは見易さとフォーマットの都合で要約されています。
 
 ===========     =====================================================================
 Time Zone       Location
