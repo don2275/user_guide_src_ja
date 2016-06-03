@@ -82,7 +82,7 @@
 		$time = time();
 		echo standard_date($format, $time);
 
-	.. 注:: この関数は廃止予定です。 代わりにPHP 標準の ``date()`` と
+	.. note:: この関数は廃止予定です。 代わりにPHP 標準の ``date()`` と
 		`DateTime's format constants
 		<http://php.net/manual/ja/class.datetime.php#datetime.constants.types>`_
 		を使用してください。::
@@ -249,7 +249,7 @@
 		$units = 2;
 		echo timespan($post_date, $now, $units);
 
-	.. 注:: この関数が生成するテキストは、次の言語ファイルの中にあります
+	.. note:: この関数が生成するテキストは、次の言語ファイルの中にあります
 		file: language/<あなたの言語>/date_lang.php
 
 .. php:function:: days_in_month([$month = 0[, $year = '']])
@@ -268,7 +268,7 @@
 
 	第2引数が空の時、現在の年が使われます。
 
-	.. 注:: この関数は ``cal_days_in_month()`` が利用できる場合は
+	.. note:: この関数は ``cal_days_in_month()`` が利用できる場合は
 		エイリアスになります。
 
 .. php:function:: date_range([$unix_start = ''[, $mixed = ''[, $is_unix = TRUE[, $format = 'Y-m-d']]]])
