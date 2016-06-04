@@ -26,9 +26,9 @@
 
 .. php:function:: force_download([$filename = ''[, $data = ''[, $set_mime = FALSE]]])
 
-	:param	string	$filename: Filename
-	:param	mixed	$data: File contents
-	:param	bool	$set_mime: Whether to try to send the actual MIME type
+	:param	string	$filename: ファイル名
+	:param	mixed	$data: ファイルのデータ
+	:param	bool	$set_mime: 実際の MIME タイプを送信するかどうか
 	:rtype:	void
 
 	データを強制的にデスクトップにダウンロードさせるためのサーバヘッダを
@@ -36,21 +36,21 @@
 	第1引数には、ダウンロードファイルにつけたい名前を指定し、第2引数には、
 	ファイルのデータを指定します。
 
-	If you set the second parameter to NULL and ``$filename`` is an existing, readable
-	file path, then its content will be read instead.
+	第2引数に NULL を設定している場合、 ``$filename`` が読込み可能であれば、ファイルのデータを
+	読み出します。
 
-	If you set the third parameter to boolean TRUE, then the actual file MIME type
-	(based on the filename extension) will be sent, so that if your browser has a
-	handler for that type - it can use it.
+	第3引数に TRUE を設定した場合、指定したファイルの 
+	MIME タイプ(ファイル名の拡張子が指すものになります)が送信され、
+	ブラウザはそのタイプのハンドラを使用します。
 
-	Example::
+	例::
 
 		$data = 'Here is some text!';
 		$name = 'mytext.txt';
 		force_download($name, $data);
 
-	If you want to download an existing file from your server you'll need to
-	do the following::
+	サーバに存在するファイルをダウンロードさせたい場合は次のようにする
+	必要があります。::
 
-		// Contents of photo.jpg will be automatically read
+		// photo.jpg のデータは自動的に読み出されます
 		force_download('/path/to/photo.jpg', NULL);
