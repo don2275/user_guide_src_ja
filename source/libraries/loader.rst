@@ -1,12 +1,12 @@
 ############################
-ローダ (読み込み処理) クラス
+ローダ（読み込み処理）クラス
 ############################
 
 ローダは、名前が示すように、要素をロードするために使用されます。
 それら要素は :doc:`ビューファイル <../general/views>` 、
 :doc:`ドライバー <../general/drivers>` 、
 :doc:`ヘルパー <../general/helpers>` 、
-:doc:`モデル <../general/models>` 、または独自のファイルをライブラリ (クラス) とすることができます。
+:doc:`モデル <../general/models>` 、または独自のファイルをライブラリ（クラス）とすることができます。
 
 .. note:: このクラスはシステムによって自動的に初期化されますので、
 	手動で初期化する必要はありません。
@@ -82,9 +82,9 @@ application/third_party ディレクトリに配置することをおすすめ�
 	.. php:method:: library($library[, $params = NULL[, $object_name = NULL]])
 
 		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
-		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
-		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列（オプション）
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名（オプション）
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		このメソッドはコアクラスをロードするために使用されます。
@@ -120,7 +120,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		**設定オプション**
 
-		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		第 2 引数（オプション） を使用すると、コンフィグ設定を任意で渡すことができます。
 		通常、これらは配列として渡します::
 
 			$config = array (
@@ -140,7 +140,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		**ライブラリに別のオブジェクト名を割り当てる**
 
-		第 3 引数 (オプション) が渡されない場合、通常、
+		第 3 引数（オプション） が渡されない場合、通常、
 		ライブラリはそれと同じ名前のオブジェクトに割り当てられます。たとえば
 		Calendar というライブラリの場合、それは
 		``$this->calendar`` という名前の変数に代入されます。
@@ -159,9 +159,9 @@ application/third_party ディレクトリに配置することをおすすめ�
 	.. php:method:: driver($library[, $params = NULL[, $object_name]])
 
 		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
-		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
-		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列（オプション）
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名（オプション）
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		このメソッドはドライバライブラリをロードするために使用され、
@@ -187,7 +187,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		**設定オプション**
 
-		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		第 2 引数（オプション） を使用すると、コンフィグ設定を任意で渡すことができます。
 		通常、これらは配列として渡します::
 
 			$config = array(
@@ -204,7 +204,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		**ライブラリに別のオブジェクト名を割り当てる**
 
-		第 3 引数 (オプション) が渡されない場合、
+		第 3 引数（オプション）が渡されない場合、
 		ライブラリは親クラスと同じ名前のオブジェクトに割り当てられます。
 		たとえば Session というライブラリの場合、
 		それは ``$this->session`` という名前の変数に代入されます。
@@ -222,7 +222,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 		:param	string	$view: ビュー名
 		:param	array	$vars: 変数の連想配列
 		:param	bool	$return: ロードされたビューを返すかどうか
-		:returns:	$return を TRUE に設定した場合は表示内容の文字列、そうでなければ CI_Loader インスタンス (メソッドチェイン)
+		:returns:	$return を TRUE に設定した場合は表示内容の文字列、そうでなければ CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	mixed
 
 		このメソッドはビューファイルをロードするために使用します。
@@ -245,7 +245,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 		**省略可能な** 第 3 引数はメソッドの動作を変更することができます、
 		ブラウザに送信するのではなく、文字列としてデータを返すようにです。
 		これは、なにかしらデータを処理したい場合に便利です。
-		このパラメータを TRUE (真偽値) に設定すると、データが返されます。
+		このパラメータを TRUE（真偽値）に設定すると、データが返されます。
 		デフォルトの動作は FALSE で、これはブラウザにデータを送信します。
 		データを返すようにしたときは変数に代入するのを忘れないでください::
 
@@ -254,7 +254,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 	.. php:method:: vars($vars[, $val = ''])
 
 		:param	mixed	$vars: 変数の配列または単一の変数名
-		:param	mixed	$val: 変数値 (オプション)
+		:param	mixed	$val: 変数値（オプション）
 		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
@@ -287,7 +287,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: clear_vars()
 
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		貯め込まれているビュー変数を消去します。
@@ -295,9 +295,9 @@ application/third_party ディレクトリに配置することをおすすめ�
 	.. php:method:: model($model[, $name = ''[, $db_conn = FALSE]])
 
 		:param	mixed	$model: モデル名または複数のモデル名を含む配列
-		:param	string	$name: モデルを割り当てるオブジェクト名 (オプション)
-		:param	string	$db_conn: ロードするデータベース設定グループ (オプション)
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:param	string	$name: モデルを割り当てるオブジェクト名（オプション）
+		:param	string	$db_conn: ロードするデータベース設定グループ（オプション）
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		::
@@ -322,7 +322,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 		:param	mixed	$params: データベースグループ名または設定オプション
 		:param	bool	$return: ロードされたデータベースオブジェクトを返すかどうか
 		:param	bool	$query_builder: クエリビルダをロードするかどうか
-		:returns:		$return が TRUE に設定されている場合は CI_DB インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
+		:returns:		$return が TRUE に設定されている場合は CI_DB インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	mixed
 
 		このメソッドではデータベースクラスをロードできます。
@@ -333,7 +333,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		:param	object	$db: データベースオブジェクト
 		:param	bool	$return: データベースフォージのインスタンスを返すかどうか
-		:returns:	$return が TRUE に設定されている場合は CI_DB_forge インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
+		:returns:	$return が TRUE に設定されている場合は CI_DB_forge インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	mixed
 
 		:doc:`データベースフォージ <../database/forge>` クラスをロードします、
@@ -343,7 +343,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		:param	object	$db: データベースオブジェクト
 		:param	bool	$return: データベースユーティリティのインスタンスを返すかどうか
-		:returns:	$return が TRUE に設定されている場合は CI_DB_utility インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
+		:returns:	$return が TRUE に設定されている場合は CI_DB_utility インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	mixed
 
 		:doc:`データベースユーティリティ <../database/utilities>` クラスをロードします。
@@ -352,7 +352,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 	.. php:method:: helper($helpers)
 
 		:param	mixed	$helpers: ヘルパー名文字列、または複数のヘルパー名を含む配列
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		このメソッドはヘルパーファイルをロードします。 file_name は ファイルの名前で、
@@ -362,7 +362,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		:param	string	$path: ファイルパス
 		:param	bool	$return: ロードされたファイルを返すかどうかを
-		:returns:	$return が TRUE に設定されている場合は ファイルの内容、そうでなければ CI_Loader インスタンス (メソッドチェイン)
+		:returns:	$return が TRUE に設定されている場合は ファイルの内容、そうでなければ CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	mixed
 
 		これは汎用的なファイルをロードするメソッドです。
@@ -375,7 +375,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 		:param	mixed	$files: 言語ファイル名または複数の言語ファイル名の配列
 		:param	string	$lang: 言語名
-		:returns:	CI_Loader インスタンス (メソッドチェイン)
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
 		このメソッドは :doc:`言語読み込み
@@ -394,68 +394,68 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: is_loaded($class)
 
-		:param	string	$class: Class name
-		:returns:	Singleton property name if found, FALSE if not
+		:param	string	$class: クラス名
+		:returns:	見つかった場合は単一のプロパティ名、そうでない場合は FALSE
 		:rtype:	mixed
 
-		Allows you to check if a class has already been loaded or not.
+		クラスがすでにロードされているかどうかを確認できます。
 
-		.. note:: The word "class" here refers to libraries and drivers.
+		.. note:: ここでの単語「クラス」は、ライブラリやドライバを指します。
 
-		If the requested class has been loaded, the method returns its assigned
-		name in the CI Super-object and FALSE if it's not::
+		要求されたクラスがロードされている場合、このメソッドはそのクラスが割り当てられた
+		CI スーパーオブジェクト内の名前を返します。そうでない場合は FALSE を返します::
 
 			$this->load->library('form_validation');
-			$this->load->is_loaded('Form_validation');	// returns 'form_validation'
+			$this->load->is_loaded('Form_validation');	// 'form_validation' を返します
 
-			$this->load->is_loaded('Nonexistent_library');	// returns FALSE
+			$this->load->is_loaded('Nonexistent_library');	// FALSE を返します
 
-		.. important:: If you have more than one instance of a class (assigned to
-			different properties), then the first one will be returned.
+		.. important:: （別のプロパティに割り当てられた）クラスのインスタンスを複数持っている場合、
+			最初のものが返されます。
 
 		::
 
 			$this->load->library('form_validation', $config, 'fv');
 			$this->load->library('form_validation');
 
-			$this->load->is_loaded('Form_validation');	// returns 'fv'
+			$this->load->is_loaded('Form_validation');	// 'fv' を返します
 
 	.. php:method:: add_package_path($path[, $view_cascade = TRUE])
 
-		:param	string	$path: Path to add
-		:param	bool	$view_cascade: Whether to use cascading views
-		:returns:	CI_Loader instance (method chaining)
+		:param	string	$path: 追加するパス
+		:param	bool	$view_cascade: カスケードビューを使用するかどうか
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
-		Adding a package path instructs the Loader class to prepend a given path
-		for subsequent requests for resources. As an example, the "Foo Bar"
-		application package above has a library named Foo_bar.php. In our
-		controller, we'd do the following::
+		パッケージパスの追加により、後続のリソースへのリクエストで
+		ローダクラスが与えられたパスを見るようになります。例として、
+		上記の「Foo Bar」アプリケーションパッケージは
+		Foo_bar.php という名前のライブラリを持っているとします。コントローラで、次のようにしてください::
 
 			$this->load->add_package_path(APPPATH.'third_party/foo_bar/')
 				->library('foo_bar');
 
 	.. php:method:: remove_package_path([$path = ''])
 
-		:param	string	$path: Path to remove
-		:returns:	CI_Loader instance (method chaining)
+		:param	string	$path: 削除するパス
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
-		When your controller is finished using resources from an application
-		package, and particularly if you have other application packages you
-		want to work with, you may wish to remove the package path so the Loader
-		no longer looks in that directory for resources. To remove the last path
-		added, simply call the method with no parameters.
+		コントローラでアプリケーションパッケージのリソースの利用が完了し、
+		さらに他のアプリケーションパッケージを使いたい場合、
+		もう前のリソースのディレクトリ内を検索したくないので
+		パッケージのパスを削除したくなる場合があることでしょう。
+		最後に追加されたパスを削除するには、単にパラメータなしでメソッドを呼び出します。
 
-		Or to remove a specific package path, specify the same path previously
-		given to ``add_package_path()`` for a package.::
+		または特定のパッケージパスを削除するには、前にパッケージを
+		``add_package_path()`` に指定したのとまったく同じパスで指定します::
 
 			$this->load->remove_package_path(APPPATH.'third_party/foo_bar/');
 
 	.. php:method:: get_package_paths([$include_base = TRUE])
 
-		:param	bool	$include_base: Whether to include BASEPATH
-		:returns:	An array of package paths
+		:param	bool	$include_base: BASEPATH を含めるかどうか
+		:returns:	パッケージパスの配列
 		:rtype:	array
 
-		Returns all currently available package paths.
+		現在使用可能なすべてのパッケージのパスを返します。
