@@ -1,39 +1,39 @@
-#############################
-Upgrading from 3.0.x to 3.1.x
-#############################
+###################################
+3.0.x から 3.1.x へのアップグレード
+###################################
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
-=====================================
+Step 1: CodeIgniter ファイルのアップグレード
+============================================
 
-Replace all files and directories in your *system/* directory.
+*system/* ディレクトリのすべてのファイルとディレクトリを新しいものに置き換えてください。
 
-.. note:: If you have any custom developed files in these directories,
-	please make copies of them first.
+.. note:: ユーザバージョンのファイルがディレクトリ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
-Step 2: Change database connection handling
-===========================================
+Step 2: データベース接続方法の変更
+==================================
 
-"Loading" a database, whether by using the *config/autoload.php* settings
-or manually via calling ``$this->load->database()`` or the less-known
-``DB()`` function, will now throw a ``RuntimeException`` in case of a
-failure.
+*config/autoload.php* 設定や、手動で ``$this->load->database()`` を呼び出すことや
+あまり知られていない ``DB()`` 関数を使うかどうかに関わらず
+データベースの "ローディング" に失敗すると、現在は ``RuntimeException`` を
+スローします。
 
-In addition, being unable to set the configured character set is now also
-considered a connection failure.
+また、指定された文字コードを設定することができない場合も、
+現在は接続の失敗とみなされます。
 
 .. note:: This has been the case for most database drivers in the in the
 	past as well (i.e. all but the 'mysql', 'mysqli' and 'postgre'
 	drivers).
 
-What this means is that if you're unable to connect to a database, or
-have an erroneous character set configured, CodeIgniter will no longer
-fail silently, but will throw an exception instead.
+これが意味していることは、もしデータベースに接続できない場合や
+誤った文字コードが設定されている場合、CodeIgniter は黙ってエラーにせずに、
+代わりに例外をスローします。
 
-You may choose to explicitly catch it (and for that purpose you can't use
-*config/autoload.php* to load the :doc:`Database Class <../database/index>`)
+明示的に例外を捕捉することを選択できます。（その用途では :doc:`データベースクラス <../database/index>`
+をロードするのに *config/autoload.php* を使うことはできません。）
 ::
 
 	try
@@ -45,68 +45,68 @@ You may choose to explicitly catch it (and for that purpose you can't use
 		// Handle the failure
 	}
 
-Or you may leave it to CodeIgniter's default exception handler, which would
-log the error message and display an error screen if you're running in
-development mode.
+または、CodeIgniter のデフォルトの例外ハンドラに残すことができます。
+もし development モードで実行していれば、エラーメッセージがログに出力され
+エラー画面が表示されます。
 
-Remove db_set_charset() calls
------------------------------
+db_set_charset() の呼び出しを削除
+---------------------------------
 
-With the above-mentioned changes, the purpose of the ``db_set_charset()``
-method would now only be to change the connection character set at runtime.
-That doesn't make sense and that's the reason why most database drivers
-don't support it at all.
-Thus, ``db_set_charset()`` is no longer necessary and is removed.
+上述の変更により、 ``db_set_charset()`` メソッドの目的は、
+現在は実行時に接続時の文字コードを変更することだけです。
+それは意味がありません。ほとんどのデータベースドライバーが
+それをサポートしていないというのが理由です。
+従って、 ``db_set_charset()`` はもはや必要でなく、削除されました。
 
-Step 3: Check logic related to URI parsing of CLI requests
-==========================================================
+Step 3: CLI リクエストの URI の解析に関連したロジックを確認
+===========================================================
 
-When running a CodeIgniter application from the CLI, the
-:doc:`URI Library <../libraries/uri>` will now ignore the
-``$config['url_suffix']`` and ``$config['permitted_uri_chars']``
-configuration settings.
+CLI から CodeIgniter のアプリケーションを実行する時、
+:doc:`URI クラス <../libraries/uri>` は、現在
+``$config['url_suffix']`` と ``$config['permitted_uri_chars']`` の設定は
+無視されます。
 
-These two options don't make sense under the command line (which is why
-this change was made) and therefore you shouldn't be affected by this, but
-if you've relied on them for some reason, you'd probably have to make some
-changes to your code.
+これらの2つのオプションは、コマンドラインでは意味がありません。
+（この変更が行われた理由です。）そのため、このことによって影響を受けることは
+ありません。しかし、何がしかの理由でそれらを使用してきた場合、コードに
+いくつかの変更を加える必要があります。
 
-Step 4: Check Cache Library configurations for Redis, Memcache(d)
-=================================================================
+Step 4: Redis、Memcache(d) キャッシュライブラリの設定ファイルを確認
+===================================================================
 
-The new improvements for the 'redis' and 'memcached' drivers of the
-:doc:`Cache Library <../libraries/caching>` may require some small
-adjustments to your configuration values ...
+:doc:`キャッシングドライバ <../libraries/caching>` の
+'redis' 、'memcached' ドライバのための新しい改善は、
+設定値への小さな修正が必要となる場合があります...
 
 Redis
 -----
 
-If you're using the 'redis' driver with a UNIX socket connection, you'll
-have to move the socket path from ``$config['socket']`` to
-``$config['host']`` instead.
+UNIX ソケット接続を使って 'redis' ドライバを利用してる場合、
+ソケットのパスを ``$config['socket']`` から ``$config['host']`` へ
+移行する必要があります。
 
-The ``$config['socket_type']`` option is also removed, although that won't
-affect your application - it will be ignored and the connection type will
-be determined by the format used for ``$config['host']`` instead.
+``$config['socket_type']`` オプションもまた削除されました。しかしながら
+それはアプリケーションへ影響しません。 - それは無視されます。
+そして接続タイプは ``$config['host']`` のフォーマットによって決定されます。
 
 Memcache(d)
 -----------
 
-The 'memcached' will now ignore configurations that don't specify a ``host``
-value (previously, it just set the host to the default '127.0.0.1').
+'memcached' は、現在、``host`` 値を指定しない設定を無視します。
+（以前は、ホストにデフォルトの '127.0.0.1' を設定していました）
 
-Therefore, if you've added a configuration that only sets e.g. a ``port``,
-you will now have to explicitly set the ``host`` to '127.0.0.1' as well.
+従って、例えば ``port`` のみ設定を追加していた場合、
+現在はその上、明示的に ``host`` に '127.0.0.1' を設定する必要があります。
 
-Step 5: Check usage of doctype() HTML helper
-============================================
+Step 5: doctype() HTML ヘルパーの使用を確認
+===========================================
 
-The :doc:`HTML Helper <../helpers/html_helper>` function
-:php:func:`doctype()` used to default to 'xhtml1-strict' (XHTML 1.0 Strict)
-when no document type was specified. That default value is now changed to
-'html5', which obviously stands for the modern HTML 5 standard.
+:doc:`HTML ヘルパー <../helpers/html_helper>` の 関数である
+:php:func:`doctype()` は ドキュメントタイプが指定されていない場合
+'xhtml1-strict' (XHTML 1.0 Strict) をデフォルトで使用していました。デフォルト値は現在、
+言うまでもなくモダンな HTML 5 スタンダードを表す 'html5' に変更されました。
 
-Nothing should be really broken by this change, but if your application
-relies on the default value, you should double-check it and either
-explicitly set the desired format, or adapt your front-end to use proper
-HTML 5 formatting.
+この変更によって、本当に壊れるべきではありません。もし、アプリケーションが
+デフォルト値に依存していた場合、それをダブルクリックし
+望むべきフォーマットをセットするか、HTML 5 のフォーマットを使用するように
+フロントエンドを適用させるべきです。
