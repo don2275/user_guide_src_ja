@@ -24,9 +24,9 @@ Step 2: データベース接続方法の変更
 また、指定された文字コードを設定することができない場合も、
 現在は接続の失敗とみなされます。
 
-.. note:: This has been the case for most database drivers in the in the
-	past as well (i.e. all but the 'mysql', 'mysqli' and 'postgre'
-	drivers).
+.. note:: これは今までもほとんどのデータベースドライバ
+（例えば 'mysql' 、'mysqli' 、'postgre' 以外）で
+そうでした。
 
 これが意味していることは、もしデータベースに接続できない場合や
 誤った文字コードが設定されている場合、CodeIgniter は黙ってエラーにせずに、
