@@ -1,9 +1,9 @@
-###########
-HTML Helper
-###########
+#############
+HTML ヘルパー
+#############
 
-The HTML Helper file contains functions that assist in working with
-HTML.
+HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数で
+構成されています。
 
 .. contents::
 	:local:
@@ -12,42 +12,42 @@ HTML.
 
 	<div class="custom-index container"></div>
 
-Loading this Helper
-===================
+ヘルパーのロード
+================
 
-This helper is loaded using the following code::
+このヘルパーは次のコードを使ってロードします::
 
 	$this->load->helper('html');
 
 利用できる機能
-===================
+==============
 
-The following functions are available:
+次の関数が利用できます:
 
 
 .. php:function:: heading([$data = ''[, $h = '1'[, $attributes = '']]])
 
-	:param	string	$data: Content
-	:param	string	$h: Heading level
-	:param	mixed	$attributes: HTML attributes
-	:returns:	HTML heading tag
+	:param	string	$data: 内容
+	:param	string	$h: 見出しのレベル
+	:param	mixed	$attributes: HTML 属性
+	:returns:	HTML 見出しタグ
 	:rtype:	string
 
-	Lets you create HTML heading tags. The first parameter will contain the
-	data, the second the size of the heading. Example::
+	HTML 見出しタグを生成できます。第1引数にデータを、
+	第2引数には見出しレベルを指定します。例::
 
 		echo heading('Welcome!', 3);
 
-	The above would produce: <h3>Welcome!</h3>
+	上記は次のように生成されます: <h3>Welcome!</h3>
 
-	Additionally, in order to add attributes to the heading tag such as HTML
-	classes, ids or inline styles, a third parameter accepts either a string
-	or an array::
+	加えて、例えば HTML クラス、 ID 、またはインラインスタイルなどの属性を
+	見出しタグに追加するために、第3引数は文字列または配列のどちらかを
+	受け付けます。
 
 		echo heading('Welcome!', 3, 'class="pink"');
 		echo heading('How are you?', 4, array('id' => 'question', 'class' => 'green'));
 
-	The above code produces:
+	上記は次のように生成されます:
 
 	.. code-block:: html
 
@@ -56,29 +56,29 @@ The following functions are available:
 
 .. php:function:: img([$src = ''[, $index_page = FALSE[, $attributes = '']]])
 
-	:param	string	$src: Image source data
-	:param	bool	$index_page: Whether to treat $src as a routed URI string
-	:param	array	$attributes: HTML attributes
-	:returns:	HTML image tag
+	:param	string	$src: 画像ソースデータ
+	:param	bool	$index_page: $src をルーティングされた URI 文字列として扱うかどうか
+	:param	array	$attributes: HTML 属性
+	:returns:	HTML 画像タグ
 	:rtype:	string
 
-	Lets you create HTML <img /> tags. The first parameter contains the
-	image source. Example::
+	<img /> タグを生成できます。第1引数には
+	画像のソースを指定します。 例::
 
-		echo img('images/picture.jpg'); // gives <img src="http://site.com/images/picture.jpg" />
+		echo img('images/picture.jpg'); // 結果 <img src="http://site.com/images/picture.jpg" />
 
-	There is an optional second parameter that is a TRUE/FALSE value that
-	specifics if the *src* should have the page specified by
-	``$config['index_page']`` added to the address it creates.
-	Presumably, this would be if you were using a media controller::
+	*src* が ``$config['index_page']``  に指定されたページを
+	アドレスに追加するかどうかという、TRUE/FALSE で指定する
+	オプションの第2引数があります。
+	おそらく、メディアコントローラーを使用していた場合は、次のようになります::
 
-		echo img('images/picture.jpg', TRUE); // gives <img src="http://site.com/index.php/images/picture.jpg" alt="" />
+		echo img('images/picture.jpg', TRUE); // 結果 <img src="http://site.com/index.php/images/picture.jpg" alt="" />
 
-	Additionally, an associative array can be passed to the ``img()`` function
-	for complete control over all attributes and values. If an *alt* attribute
-	is not provided, CodeIgniter will generate an empty string.
+	また、すべての属性と値を完全に制御するために
+	連想配列を ``img()`` 関数に渡すことができます。もし、*alt* 属性が
+	与えられない場合、 CodeIgniter は空の文字列を出力します。
 
-	Example::
+	例::
 
 		$image_properties = array(
 			'src' 	=> 'images/picture.jpg',
@@ -95,28 +95,28 @@ The following functions are available:
 
 .. php:function:: link_tag([$href = ''[, $rel = 'stylesheet'[, $type = 'text/css'[, $title = ''[, $media = ''[, $index_page = FALSE]]]]]])
 
-	:param	string	$href: What are we linking to
-	:param	string	$rel: Relation type
-	:param	string	$type: Type of the related document
-	:param	string	$title: Link title
-	:param	string	$media: Media type
-	:param	bool	$index_page: Whether to treat $src as a routed URI string
-	:returns:	HTML link tag
+	:param	string	$href: リンクするもの
+	:param	string	$rel: リンクの種類
+	:param	string	$type: リンクドキュメントの種類
+	:param	string	$title: リンクのタイトル
+	:param	string	$media: メディアタイプ
+	:param	bool	$index_page: $src をルーティングされた URI 文字列として扱うかどうか
+	:returns:	HTML link タグ
 	:rtype:	string
 
-	Lets you create HTML <link /> tags. This is useful for stylesheet links,
-	as well as other links. The parameters are *href*, with optional *rel*,
-	*type*, *title*, *media* and *index_page*.
+	<link /> タグを生成できます。これは、スタイルシートのリンクだけでなく
+	他のリンクのためにも役立ちます。引数には *href* 、オプションで *rel* 、
+	*type* 、 *title* 、 *media* 、*index_page* を指定できます。
 
-	*index_page* is a boolean value that specifies if the *href* should have
-	the page specified by ``$config['index_page']`` added to the address it creates.
+	*index_page* は、 *href* が ``$config['index_page']``
+	に指定されたページをアドレスに追加するかどうかという真偽値です。
 
-	Example::
+	例::
 
 		echo link_tag('css/mystyles.css');
-		// gives <link href="http://site.com/css/mystyles.css" rel="stylesheet" type="text/css" />
+		// 結果 <link href="http://site.com/css/mystyles.css" rel="stylesheet" type="text/css" />
 
-	Further examples::
+	その他の例::
 
 		echo link_tag('favicon.ico', 'shortcut icon', 'image/ico');
 		// <link href="http://site.com/favicon.ico" rel="shortcut icon" type="image/ico" />
@@ -124,8 +124,8 @@ The following functions are available:
 		echo link_tag('feed', 'alternate', 'application/rss+xml', 'My RSS Feed');
 		// <link href="http://site.com/feed" rel="alternate" type="application/rss+xml" title="My RSS Feed" />
 
-	Additionally, an associative array can be passed to the ``link()`` function
-	for complete control over all attributes and values::
+	また、すべての属性と値を完全に制御するために
+	連想配列を ``link()`` 関数に渡すことができます::
 
 		$link = array(
 			'href'	=> 'css/printer.css',
@@ -140,13 +140,13 @@ The following functions are available:
 
 .. php:function:: ul($list[, $attributes = ''])
 
-	:param	array	$list: List entries
-	:param	array	$attributes: HTML attributes
-	:returns:	HTML-formatted unordered list
+	:param	array	$list: リスト項目
+	:param	array	$attributes: HTML 属性
+	:returns:	HTML フォーマットされた順番なしのリスト
 	:rtype:	string
 
-	Permits you to generate unordered HTML lists from simple or
-	multi-dimensional arrays. Example::
+	順番なし HTML リストを単純な配列または
+	多次元配列から生成できます。例::
 
 		$list = array(
 			'red',
@@ -162,7 +162,7 @@ The following functions are available:
 
 		echo ul($list, $attributes);
 
-	The above code will produce this:
+	上記のコードは以下を生成します:
 
 	.. code-block:: html
 
@@ -173,7 +173,7 @@ The following functions are available:
 			<li>yellow</li>
 		</ul>
 
-	Here is a more complex example, using a multi-dimensional array::
+	多次元配列を使ったもう少し複雑な例です::
 
 		$attributes = array(
 			'class'	=> 'boldlist',
@@ -212,7 +212,7 @@ The following functions are available:
 
 		echo ul($list, $attributes);
 
-	The above code will produce this:
+	上記のコードは以下を生成します:
 
 	.. code-block:: html
 
@@ -260,37 +260,37 @@ The following functions are available:
 
 .. php:function:: ol($list, $attributes = '')
 
-	:param	array	$list: List entries
-	:param	array	$attributes: HTML attributes
-	:returns:	HTML-formatted ordered list
+	:param	array	$list: リスト項目
+	:param	array	$attributes: HTML 属性
+	:returns:	HTML フォーマットされた順番付きのリスト
 	:rtype:	string
 
-	Identical to :php:func:`ul()`, only it produces the <ol> tag for
-	ordered lists instead of <ul>.
+	<ul> の代わりに 順序付きリストのための <ol> タグ
+	を生成するだけで、 :php:func:`ul()` と同一です。
 
 .. php:function:: meta([$name = ''[, $content = ''[, $type = 'name'[, $newline = "\n"]]]])
 
-	:param	string	$name: Meta name
-	:param	string	$content: Meta content
-	:param	string	$type: Meta type
-	:param	string	$newline: Newline character
-	:returns:	HTML meta tag
+	:param	string	$name: メタタグの名前
+	:param	string	$content: メタタグの内容
+	:param	string	$type: メタタグの種類
+	:param	string	$newline: 改行文字
+	:returns:	HTML メタタグ
 	:rtype:	string
 
-	Helps you generate meta tags. You can pass strings to the function, or
-	simple arrays, or multidimensional ones.
+	メタタグの生成を手伝います。この関数には、文字列、または
+	単純な配列、または多次元配列を渡す事が出来ます。
 
-	Examples::
+	例::
 
 		echo meta('description', 'My Great site');
-		// Generates:  <meta name="description" content="My Great Site" />
+		// 生成するメタタグ:  <meta name="description" content="My Great Site" />
 
 		echo meta('Content-type', 'text/html; charset=utf-8', 'equiv');
 		// Note the third parameter.  Can be "charset", "http-equiv", "name" or "property"
-		// Generates:  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		// 生成するメタタグ:  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
 		echo meta(array('name' => 'robots', 'content' => 'no-cache'));
-		// Generates:  <meta name="robots" content="no-cache" />
+		// 生成するメタタグ:  <meta name="robots" content="no-cache" />
 
 		$meta = array(
 			array(
@@ -321,7 +321,7 @@ The following functions are available:
 		);
 
 		echo meta($meta);
-		// Generates:
+		// 生成するメタタグ:
 		// <meta name="robots" content="no-cache" />
 		// <meta name="description" content="My Great Site" />
 		// <meta name="keywords" content="love, passion, intrigue, deception" />
@@ -332,24 +332,24 @@ The following functions are available:
 
 .. php:function:: doctype([$type = 'html5'])
 
-	:param	string	$type: Doctype name
-	:returns:	HTML DocType tag
+	:param	string	$type: Doctype 名
+	:returns:	HTML DocType タグ
 	:rtype:	string
 
-	Helps you generate document type declarations, or DTD's. HTML 5
-	is used by default, but many doctypes are available.
-
-	Example::
+	DOCTYPE 宣言、または DTD 生成を手伝います。HTML 5 が
+	デフォルトで使用されますが、多くの DOCTYPE が利用可能です。
+	
+	例::
 
 		echo doctype(); // <!DOCTYPE html>
 
 		echo doctype('html4-trans'); // <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-	The following is a list of doctype choices. These are configurable, and
-	pulled from application/config/doctypes.php
+	以下は、DOCTYPE 選択肢の一覧です。これらは、
+	application/config/doctypes.php で指定可能です。
 
 	=============================== =================== ==================================================================================================================================================
-	Document type                   Option              Result
+	DOCTYPE                         引数                生成結果
 	=============================== =================== ==================================================================================================================================================
 	XHTML 1.1                       xhtml11             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 	XHTML 1.0 Strict                xhtml1-strict       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -374,40 +374,40 @@ The following functions are available:
 
 .. php:function:: br([$count = 1])
 
-	:param	int	$count: Number of times to repeat the tag
-	:returns:	HTML line break tag
+	:param	int	$count: タグを繰り返す数
+	:returns:	HTML 改行タグ
 	:rtype:	string
 
-	Generates line break tags (<br />) based on the number you submit.
-	Example::
+	改行タグ (<br />) を指定した回数だけ生成します。
+	例::
 
 		echo br(3);
 
-	The above would produce:
+	上記は次のように生成されます:
 
 	.. code-block:: html
 
 		<br /><br /><br />
 
-	.. note:: This function is DEPRECATED. Use the native ``str_repeat()``
-		in combination with ``<br />`` instead.
+	.. note:: この関数は廃止予定です。代わりに ``<br />`` を組み合わせて
+		PHP標準の ``str_repeat()`` を使ってください。
 
 .. php:function:: nbs([$num = 1])
 
-	:param	int	$num: Number of space entities to produce
-	:returns:	A sequence of non-breaking space HTML entities
+	:param	int	$num: 生成するスペースエンティティの数
+	:returns:	改行なしスペース HTML エンティティを連続させたもの
 	:rtype:	string
 
-	Generates non-breaking spaces (&nbsp;) based on the number you submit.
-	Example::
+	改行なしスペース (&nbsp;) を指定した数だけ生成します。
+	例::
 
 		echo nbs(3);
 
-	The above would produce:
+	上記は次のように生成されます:
 
 	.. code-block:: html
 
 		&nbsp;&nbsp;&nbsp;
 
-	.. note:: This function is DEPRECATED. Use the native ``str_repeat()``
-		in combination with ``&nbsp;`` instead.
+	.. note:: この関数は廃止予定です。代わりに ``&nbsp;`` を組み合わせて
+		PHP標準の ``str_repeat()`` を使ってください。
