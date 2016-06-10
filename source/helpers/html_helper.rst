@@ -70,7 +70,7 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 	*src* が ``$config['index_page']``  に指定されたページを
 	アドレスに追加するかどうかという、TRUE/FALSE で指定する
 	オプションの第2引数があります。
-	おそらく、メディアコントローラーを使用していた場合は、次のようになります::
+	おそらく、メディアコントローラを使用していた場合は、次のようになります::
 
 		echo img('images/picture.jpg', TRUE); // 結果 <img src="http://site.com/index.php/images/picture.jpg" alt="" />
 
@@ -265,7 +265,7 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 	:returns:	HTML フォーマットされた順番付きのリスト
 	:rtype:	string
 
-	<ul> の代わりに 順序付きリストのための <ol> タグ
+	<ul> のかわりに 順序付きリストのための <ol> タグ
 	を生成するだけで、 :php:func:`ul()` と同一です。
 
 .. php:function:: meta([$name = ''[, $content = ''[, $type = 'name'[, $newline = "\n"]]]])
@@ -378,7 +378,7 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 	:returns:	HTML 改行タグ
 	:rtype:	string
 
-	改行タグ (<br />) を指定した回数だけ生成します。
+	改行タグ（<br />）を指定した回数だけ生成します。
 	例::
 
 		echo br(3);
@@ -389,7 +389,7 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 
 		<br /><br /><br />
 
-	.. note:: この関数は廃止予定です。代わりに ``<br />`` を組み合わせて
+	.. note:: この関数は廃止予定です。かわりに ``<br />`` を組み合わせて
 		PHP標準の ``str_repeat()`` を使ってください。
 
 .. php:function:: nbs([$num = 1])
@@ -398,7 +398,7 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 	:returns:	改行なしスペース HTML エンティティを連続させたもの
 	:rtype:	string
 
-	改行なしスペース (&nbsp;) を指定した数だけ生成します。
+	改行なしスペース（&nbsp;）を指定した数だけ生成します。
 	例::
 
 		echo nbs(3);
@@ -409,5 +409,5 @@ HTML ヘルパーのファイルは、HTML を処理するのに役立つ関数�
 
 		&nbsp;&nbsp;&nbsp;
 
-	.. note:: この関数は廃止予定です。代わりに ``&nbsp;`` を組み合わせて
+	.. note:: この関数は廃止予定です。かわりに ``&nbsp;`` を組み合わせて
 		PHP標準の ``str_repeat()`` を使ってください。
