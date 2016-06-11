@@ -264,7 +264,7 @@ CodeIgniter 3 では **:any** が **[^/]+** を表わすようになり、
 'Main' コントローラをロードします。
 
 ところで、もし *application/controllers/admin/* ディレクトリがあり、
-ユーザが ``http://example.com/admin/`` にアクセスしたらどうなるでしょう?
+ユーザが ``http://example.com/admin/`` にアクセスしたらどうなるでしょう？
 CodeIgniter 3 では、ルータが admin/ ディレクトリの下の 'Main' コントローラ
 を探します。見つからなければ、Not Found (404) が起こります。
 
@@ -554,7 +554,7 @@ Encrypt ライブラリ
 	ために使用可能です。
 
 .. important:: できるだけ早く新しい :doc:`Encryption ライブラリ
-	<../libraries/encryption>` に移行することが強く推奨されます!
+	<../libraries/encryption>` に移行することが強く推奨されます！
 
 Cart ライブラリ
 ================
@@ -784,7 +784,7 @@ Database Forge の AFTER 句を伴う add_column() メソッド
 .. note:: このパラメータはまだ利用可能ですが、早急に使用を止めることを強く
 	推奨します。
 
-.. note:: これは MySQL と CUBRID データベースだけで使えます! 他のドライバはこの句をサポートしておらず、
+.. note:: これは MySQL と CUBRID データベースだけで使えます！　他のドライバはこの句をサポートしておらず、
 	黙って無視します。
 
 URI ルーティングのメソッド fetch_directory()、fetch_class()、fetch_method()

@@ -47,7 +47,7 @@
 
 	if ($this->dbforge->create_database('my_db'))
 	{
-		echo 'Database が作成されました!';
+		echo 'Database が作成されました！';
 	}
 
 **$this->dbforge->drop_database('db_name')**
@@ -57,7 +57,7 @@ TRUE/FALSE で成功か失敗を示します::
 
 	if ($this->dbforge->drop_database('my_db'))
 	{
-		echo 'Database が削除されました!';
+		echo 'Database が削除されました！';
 	}
 
 

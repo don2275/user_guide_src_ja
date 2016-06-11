@@ -140,8 +140,8 @@ this code and save it to your application/controllers/ folder::
 		}
 	}
 
-動かしてみよう!
-===============
+動かしてみよう！
+================
 
 To try your form, visit your site using a URL similar to this one::
 
