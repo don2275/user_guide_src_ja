@@ -64,7 +64,7 @@ PHP でネイティブに提供しているものの、より新しいバージ�
 	詳しくは
 	`password_hash() の PHP マニュアル <http://php.net/password_hash>`_ を参照してください。
 
-	.. note:: 指定の (有効な) saltを提供しない限り、
+	.. note:: 指定の（有効な）saltを提供しない限り、
 		この機能はさらに CSPRNG ソースにも依存します。
 		下記のいずれかがそれを満たします:
 		- ``mcrypt_create_iv()`` と ``MCRYPT_DEV_URANDOM``
@@ -93,9 +93,9 @@ PHP でネイティブに提供しているものの、より新しいバージ�
 	詳しくは
 	`password_verify() の PHP マニュアル <http://php.net/password_verify>`_ を参照してください。
 
-*********************************
-ハッシュ (メッセージダイジェスト)
-*********************************
+**********************************
+ハッシュ（メッセージダイジェスト）
+**********************************
 
 この互換レイヤには ``hash_equals()`` 関数と
 ``hash_pbkdf2()`` 関数のバックポートが含まれています。本来おのおの PHP 5.6 およびまたは
@@ -225,7 +225,7 @@ PHP バージョンを必要とする PHP 標準関数のいくらかをサポ�
 .. php:function:: array_replace(array $array1[, ...])
 
 	:param	array	$array1: 要素を置き換えたい配列
-	:param	array	...: 置き換える配列 (または複数のそれ)
+	:param	array	...: 置き換える配列（または複数のそれ）
 	:returns:	編集された配列
 	:rtype:	array
 
@@ -235,7 +235,7 @@ PHP バージョンを必要とする PHP 標準関数のいくらかをサポ�
 .. php:function:: array_replace_recursive(array $array1[, ...])
 
 	:param	array	$array1: 要素を置き換えたい配列
-	:param	array	...: 引き抜きたい要素を持つ配列 (または複数のそれ)
+	:param	array	...: 引き抜きたい要素を持つ配列（または複数のそれ）
 	:returns:	編集された配列
 	:rtype:	array
 

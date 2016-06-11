@@ -1,6 +1,6 @@
-#############################
-フォームバリデーション (検証)
-#############################
+##############################
+フォームバリデーション（検証）
+##############################
 
 CodeIgniter は、最小限のコードで総合的なフォームバリデーションとデータ
 の準備をするクラスを提供します。
@@ -285,8 +285,8 @@ you use this approach, you must name your array keys as indicated::
 
 	$this->form_validation->set_rules($config);
 
-ルールの連結 (カスケード)
-=========================
+ルールの連結（カスケード）
+==========================
 
 CodeIgniter lets you pipe multiple rules together. Let's try it. Change
 your rules in the third parameter of rule setting method, like this::
@@ -341,8 +341,8 @@ rule, like ``htmlspecialchars()``, ``trim()``, etc.**
 	**after** the validation rules so if there is an error, the
 	original data will be shown in the form.
 
-フォームの再表示 (データの引き継ぎ)
-===================================
+フォームの再表示（データの引き継ぎ）
+====================================
 
 Thus far we have only been dealing with errors. It's time to repopulate
 the form field with the submitted data. CodeIgniter offers several
@@ -476,8 +476,8 @@ For more info please see the :ref:`using-arrays-as-field-names` section below.
 コーラブル: 何でもルールとして使う
 ==================================
 
-もしコールバックルールが十分でないない場合 (例えば、コールバックはコントローラ内
-に制限されます)、がっかりしないでください。
+もしコールバックルールが十分でないない場合（例えば、コールバックはコントローラ内に
+制限されます）、がっかりしないでください。
 もう 1 つ独自ルールを作成する方法があります。``is_callable()`` が TRUE を返すものをルールとする方法です。
 
 次の例を検討してみましょう::
@@ -522,7 +522,7 @@ For more info please see the :ref:`using-arrays-as-field-names` section below.
 		)
 	);
 
-匿名関数 (PHP 5.3+) 版::
+匿名関数（PHP 5.3+）版::
 
 	$this->form_validation->set_rules(
 		'username', 'ユーザ名',
@@ -677,9 +677,8 @@ message will appear.
 
 For more info please see the :ref:`using-arrays-as-field-names` section below.
 
-配列 ($_POST 以外の) のバリデーション
-=====================================
->>>>>>> 675d07c... Sphinxの文法エラーをまとめて修正
+配列（$_POST 以外）のバリデーション
+===================================
 
 Sometimes you may want to validate an array that does not originate from ``$_POST`` data.
 

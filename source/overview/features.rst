@@ -20,8 +20,8 @@ CodeIgniter の機能
 -  セキュリティと XSS フィルタリング
 -  セッション管理
 -  Email 送信クラス。添付・HTML/Text eメール・複数プロトコル
-   (sendmail、 SMTP、および Mail)などに対応。
--  画像操作ライブラリ(切り抜き、リサイズ、回転など)。
+   （sendmail、 SMTP、および Mail）などに対応。
+-  画像操作ライブラリ（切り抜き、リサイズ、回転など）。
    GD・ImageMagick・NetPBM のサポート。
 -  ファイルアップロードクラス
 -  FTP クラス

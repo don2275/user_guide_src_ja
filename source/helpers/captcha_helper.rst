@@ -57,7 +57,7 @@ CAPTCHA ヘルパーのファイルは、CAPTCHA
 -  TRUE TYPE フォントのパスが指定されない場合、標準の見苦しい GD
    フォントが使用されます。
 -  "captcha" ディレクトリは書込可能でなければなりません。
--  **expiration** (単位: 秒) は有効期限で、 captcha
+-  **expiration**（単位: 秒）は有効期限で、 captcha
    ディレクトリから削除されるまでの時間です。
    デフォルトでは2時間です。
 -  **word_length** のデフォルトは8, **pool** のデフォルトは '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' です。
@@ -149,7 +149,7 @@ CAPTCHA ヘルパーのファイルは、CAPTCHA
 
 		array(
 			'image'	=> IMAGE TAG
-			'time'	=> TIMESTAMP (マイクロ秒まで含む)
+			'time'	=> TIMESTAMP（マイクロ秒まで含む）
 			'word'	=> CAPTCHA WORD
 		)
 

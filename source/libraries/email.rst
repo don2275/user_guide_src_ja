@@ -93,35 +93,35 @@ Email クラスの設定項目
 設定項目            初期値                 選択肢                       説明
 =================== ====================== ============================ =======================================================================
 **useragent**       CodeIgniter            なし                         ユーザエージェント
-**protocol**        mail                   mail, sendmail, または smtp  メールを送信するプロトコル
+**protocol**        mail                   mail、sendmail、または smtp  メールを送信するプロトコル
 **mailpath**        /usr/sbin/sendmail     なし                         Sendmail へのパス
 **smtp_host**       初期値なし             なし                         SMTP サーバのアドレス
 **smtp_user**       初期値なし             なし                         SMTP のユーザ名
 **smtp_pass**       初期値なし             なし                         SMTP のパスワード
 **smtp_port**       25                     なし                         SMTP のポート番号
-**smtp_timeout**    5                      なし                         SMTP のタイムアウト (秒単位)
-**smtp_keepalive**  FALSE                  TRUE または FALSE(boolean)   持続的SMTP接続の有効化
+**smtp_timeout**    5                      なし                         SMTP のタイムアウト（秒単位）
+**smtp_keepalive**  FALSE                  TRUE または FALSE（boolean） 持続的SMTP接続の有効化
 **smtp_crypto**     初期値なし             tls または ssl               SMTP暗号化
-**wordwrap**        TRUE                   TRUE または FALSE (boolean)  ワードラップの有効化設定
+**wordwrap**        TRUE                   TRUE または FALSE（boolean） ワードラップの有効化設定
 **wrapchars**       76                                                  何番目の文字で折り返すか
 **mailtype**        text                   text または html             メールのタイプ。HTML メールを送信すると、メールは完全な Web 
                                                                         ページとして送信されます。このとき、相対リンクや画像への相対
 
                                                                         パスがないか確かめてください。それらは動作しません。
-**charset**         ``$config['charset']``                              文字セット (utf-8、iso-8859-1、など)
-**validate**        FALSE                  TRUE または FALSE(boolean)   メールアドレスを検証するかどうか
+**charset**         ``$config['charset']``                              文字セット（utf-8、iso-8859-1、など）
+**validate**        FALSE                  TRUE または FALSE（boolean） メールアドレスを検証するかどうか
 **priority**        3                      1, 2, 3, 4, 5                メールの優先度。 1 = 最高 5 = 最低 3 = 通常
-**crlf**            \\n                    "\\r\\n" or "\\n" or "\\r"   CRLF ("\\r\\n" RFC 822に応じて使用). 
-**newline**         \\n                    "\\r\\n" or "\\n" or "\\r"   改行文字 ("\\r\\n" RFC 822に応じて使用). 
-**bcc_batch_mode**  FALSE                  TRUE またはFALSE(boolean)    BCC バッチモードを有効にするかどうか
+**crlf**            \\n                    "\\r\\n" or "\\n" or "\\r"   CRLF（"\\r\\n" RFC 822に応じて使用）。
+**newline**         \\n                    "\\r\\n" or "\\n" or "\\r"   改行文字（"\\r\\n" RFC 822に応じて使用）。
+**bcc_batch_mode**  FALSE                  TRUE またはFALSE（boolean）  BCC バッチモードを有効にするかどうか
 **bcc_batch_size**  200                    なし                         各 BCC バッチで送るメール件数。
-**dsn**             FALSE                  TRUE または FALSE (boolean)  サーバーからのメッセージ通知を有効にする
+**dsn**             FALSE                  TRUE または FALSE（boolean） サーバーからのメッセージ通知を有効にする
 =================== ====================== ============================ =======================================================================
 
 ワードラップ設定の上書き
 ========================
 
-ワードラップが有効になっている (RFC 822 に従うことを推奨します)
+ワードラップが有効になっている（RFC 822 に従うことを推奨します）
 場合 、email に非常に長いリンクがあると折り返されてしまい、受信
 した人がクリックできないようになります。 CodeIgniter では、次の
 ようにして、メッセージの一部で手動でワードラップ設定を上書きする
@@ -149,7 +149,7 @@ Email クラスの設定項目
 		:param	string	$from: "From" メールアドレス
 		:param	string	$name: "From" 表示名
 		:param	string	$return_path: 未配達の電子メールをリダイレクトするオプションのメールアドレス
-		:returns:	CI_Email インスタンス (メソッドチエーン)
+		:returns:	CI_Email インスタンス（メソッドチェーン）
 		:rtype:	CI_Email
 
 		電子メール送信者の電子メールアドレスと氏名をセットします::
@@ -167,7 +167,7 @@ Email クラスの設定項目
 
 		:param	string	$replyto: 返信の電子メール・アドレス
 		:param	string	$name: 返信の電子メールアドレス名を示します
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
 		返信先アドレスをセットします。指定しない場合は、"from" メソッド
@@ -178,10 +178,10 @@ Email クラスの設定項目
 	.. php:method:: to($to)
 
 		:param	mixed	$to: メールアドレス　カンマで区切られた列または配列
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
-		受取人のメールアドレスをセットします(複数可)。次のように、単一のメールアドレス、
+		受取人のメールアドレスをセットします（複数可）。次のように、単一のメールアドレス、
 		カンマ区切りのリスト、あるいは配列で指定可能です:
 
 			$this->email->to('someone@example.com');
@@ -199,20 +199,20 @@ Email クラスの設定項目
 	.. php:method:: cc($cc)
 
 		:param	mixed	$cc: メールアドレス　カンマで区切られた列または配列
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
-		CC のメールアドレスをセットします(複数可)。 "to" メソッドのように、単一のメールアドレス、
+		CC のメールアドレスをセットします（複数可）。 "to" メソッドのように、単一のメールアドレス、
 		カンマ区切りのリスト、あるいは配列で指定可能です。
 
 	.. php:method:: bcc($bcc[, $limit = ''])
 
 		:param	mixed	$bcc: メールアドレス　カンマで区切られた列または配列
 		:param	int	$limit: バッチ送信する電子メールの最大数
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
-		BCC のメールアドレスをセットします(複数可)。"to" メソッドのように、単一のメールアドレス、
+		BCC のメールアドレスをセットします（複数可）。"to" メソッドのように、単一のメールアドレス、
 		ンマ区切りのリスト、あるいは配列で指定可能です。
 
 		「$LIMIT」が設定されている場合は、「バッチモード」は、各バッチ
@@ -222,7 +222,7 @@ Email クラスの設定項目
 	.. php:method:: subject($subject)
 
 		:param	string	$subject: 電子メールの件名
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
 		電子メールの件名をセットします::
@@ -232,7 +232,7 @@ Email クラスの設定項目
 	.. php:method:: message($body)
 
 		:param	string	$body: 電子メール本文
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
 		電子メールの本文をセットします::
@@ -242,7 +242,7 @@ Email クラスの設定項目
 	.. php:method:: set_alt_message($str)
 
 		:param	string	$str: 代替のメール本文:
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
 		代替のメール本文をセットします::
@@ -260,7 +260,7 @@ Email クラスの設定項目
 
 		:param	string	$header: ヘッダ名
 		:param	string	$value: ヘッダ内容
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype: CI_Email
 
 		電子メールの追加のヘッダーを付加::
@@ -271,7 +271,7 @@ Email クラスの設定項目
 	.. php:method:: clear([$clear_attachments = FALSE])
 
 		:param	bool	$clear_attachments: 添付ファイルをクリアするかどうか
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype: CI_Email
 
 		メールの設定を空状態にします。 このメソッドは、ループの
@@ -328,8 +328,8 @@ Email クラスの設定項目
 			にかかわらず、ここで使用されるMIME仕様の独自の判断を下します。
 			https://www.iana.org/assignments/cont-disp/cont-disp.xhtml
 		:param	string	$newname: 電子メールで使用するカスタムファイル名
-		:param	string	$mime: MIMEタイプを使用する (バッファリングされたデータに利用)
-		:returns:	CI_Email インスタンス (メソッドチェイン)
+		:param	string	$mime: MIMEタイプを使用する（バッファリングされたデータに利用）
+		:returns:	CI_Email インスタンス（メソッドチェイン）
 		:rtype:	CI_Email
 
 		添付ファイルを送信できます。第1引数にファイルのパスとファイル名を指定してください。

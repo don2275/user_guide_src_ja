@@ -103,7 +103,7 @@ Step 5: doctype() HTML ヘルパーの使用を確認
 
 :doc:`HTML ヘルパー <../helpers/html_helper>` の 関数である
 :php:func:`doctype()` は ドキュメントタイプが指定されていない場合
-'xhtml1-strict' (XHTML 1.0 Strict) をデフォルトで使用していました。デフォルト値は現在、
+'xhtml1-strict'（XHTML 1.0 Strict）をデフォルトで使用していました。デフォルト値は現在、
 言うまでもなくモダンな HTML 5 スタンダードを表す 'html5' に変更されました。
 
 この変更によって、本当に壊れるべきではありません。もし、アプリケーションが

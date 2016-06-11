@@ -15,7 +15,7 @@
 
 **$this->db->affected_rows()**
 
-「書き込み」タイプのクエリ (insert、update、など)
+「書き込み」タイプのクエリ（insert、update、など）
 が実行されたとき、処理された行の数を取得します。
 
 .. note:: MySQLでは、"DELETE FROM TABLE" を実行すると0行と返します。
@@ -26,7 +26,7 @@
 **$this->db->last_query()**
 
 最後に実行されたクエリを返します
-(クエリの文字列で、結果ではありません)。例::
+（クエリの文字列で、結果ではありません）。例::
 
 	$str = $this->db->last_query();
 	

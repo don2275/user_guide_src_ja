@@ -44,7 +44,7 @@ Web ページを送信します。また、あなたが Web ページの
 	.. php:method:: set_output($output)
 
 		:param	string	$output: 出力へ設定する文字列
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		手動で最終的な出力文字列を設定することを可能にします。使用例::
@@ -59,7 +59,7 @@ Web ページを送信します。また、あなたが Web ページの
 
 		:param	string	$mime_type: MIME タイプ文字列
 		:param	string	$charset: 文字セット
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		ページの MIME タイプを設定することを可能にします。これにより JSON データ、 JPEG 、 XML などの提供が簡単になります。
@@ -126,7 +126,7 @@ Web ページを送信します。また、あなたが Web ページの
 	.. php:method:: append_output($output)
 
 		:param	string	$output: 追加の出力データ
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		出力文字列にデータを追加します。
@@ -138,7 +138,7 @@ Web ページを送信します。また、あなたが Web ページの
 
 		:param	string	$header: HTTP レスポンスヘッダ
 		:param	bool	$replace: すでに設定済みの場合、古いヘッダの値を置換するかどうか
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		手動でサーバのヘッダを設定することができます。
@@ -155,7 +155,7 @@ Web ページを送信します。また、あなたが Web ページの
 
 		:param	int	$code: HTTP ステータスコード
 		:param	string	$text: オプションのメッセージ
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		サーバステータスヘッダを手動で設定することができます。例::
@@ -171,7 +171,7 @@ Web ページを送信します。また、あなたが Web ページの
 	.. php:method:: enable_profiler([$val = TRUE])
 
 		:param	bool	$val: プロファイラを有効または無効にするかどうか
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		:doc:`プロファイラ <../general/profiling>` を有効/無効にすることができます。
@@ -191,7 +191,7 @@ Web ページを送信します。また、あなたが Web ページの
 	.. php:method:: set_profiler_sections($sections)
 
 		:param	array	$sections: プロファイラセクション
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		プロファイラが有効になっているとき、特定のセクションを有効/無効にすることができます。
@@ -200,7 +200,7 @@ Web ページを送信します。また、あなたが Web ページの
 	.. php:method:: cache($time)
 
 		:param	int	$time: 秒単位でキャッシュの有効期限
-		:returns:	CI_Output インスタンス (メソッドチェイン)
+		:returns:	CI_Output インスタンス（メソッドチェイン）
 		:rtype:	CI_Output
 
 		指定された秒数で現在のページをキャッシュします。

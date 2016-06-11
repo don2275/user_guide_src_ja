@@ -42,7 +42,7 @@ SELECT クエリを実行し、結果を返します。次のように、単独�
 	$query = $this->db->get('mytable', 10, 20);
 
 	// Executes: SELECT * FROM mytable LIMIT 20, 10
-	// 生成する文: SELECT * FROM mytable LIMIT 20, 10 (MySQL での例。他のデータベースでは、若干違う構文になります)
+	// 生成する文: SELECT * FROM mytable LIMIT 20, 10（MySQL での例。他のデータベースでは、若干違う構文になります）
 
 上の例ではメソッドは $query という名前の変数にアサインされていますが、
 この変数は、結果を表示させるのに使用できます::
@@ -69,8 +69,8 @@ SELECT クエリを **$this->db->get()** のようにコンパイルしますが
 
 	// 次の文を出力します: SELECT * FROM mytable
 
-第2引数でクエリビルダのクエリをリセットするかを指定できます (デフォルトでは
-`$this->db->get()` を使用時のようにリセットされます) ::
+第2引数でクエリビルダのクエリをリセットするかを指定できます（デフォルトでは
+`$this->db->get()` を使用時のようにリセットされます）::
 
 	echo $this->db->limit(10,20)->get_compiled_select('mytable', FALSE);
 
@@ -108,12 +108,12 @@ where メソッドについては、詳しくは下をご覧ください。
 
 	// 生成される SQL 文: SELECT title, content, date FROM mytable
 
-.. note:: テーブルからすべての列(\*)を取得する場合は、
+.. note:: テーブルからすべての列（\*）を取得する場合は、
 	このメソッドは不要です。このメソッドが省略されると、
-	CodeIgniter はすべての列を選択する(SELECT * ... )ものとします。
+	CodeIgniter はすべての列を選択する（SELECT \* ... ）ものとします。
 
-``$this->db->select()`` は追加で第2引数をセットできます。第2引数に FALSE をセットすると、CodeIgniter はバッククォート(バックチック)でフィールド
-名やテーブル名を保護しないようになります [ 訳注: 識別子(テーブル名や列名など)が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。第2引数に FALSE
+``$this->db->select()`` は追加で第2引数をセットできます。第2引数に FALSE をセットすると、CodeIgniter はバッククォート（バックチック）でフィールド
+名やテーブル名を保護しないようになります [ 訳注: 識別子（テーブル名や列名など）が予約語の場合や、特殊文字が含まれる場合、たとえば MySQL では、バッククォート「`」でそれらを囲む必要があります。第2引数に FALSE
 をセットするとこれを自動では行いません ]。
 これは、複合的な SELECT 文が必要な場合に有用です。
 
@@ -224,7 +224,7 @@ outer。
 
 		$this->db->where('name', $name); // 次を生成: WHERE name = 'Joe'
 
-	等号 (=) が付加されることに注意してください。
+	等号（=）が付加されることに注意してください。
 
 	複数回このメソッドを呼ぶと、
 	それらは AND で連結されます:
@@ -357,8 +357,8 @@ SQLクエリを生成します
 		$this->db->like('body', 'match');
 		// WHERE `title` LIKE '%match%' ESCAPE '!' AND  `body` LIKE '%match% ESCAPE '!'
 
-	ワイルドカード (%) が付加される場所を制御したい場合は、追加の第3引数を
-	利用できます。'before'、'after' そして 'both' (規定値)
+	ワイルドカード（%）が付加される場所を制御したい場合は、追加の第3引数を
+	利用できます。'before'、'after' そして 'both'（規定値）
 	が指定できる選択肢になります。
 
 	::
@@ -642,8 +642,8 @@ Example::
 
 	// SQL 文字列を生成: INSERT INTO mytable (`title`, `name`, `date`) VALUES ('My title', 'My name', 'My date')
 
-第2引数でクエリビルダのクエリをリセットするかを指定できます (デフォルトでは
-`$this->db->insert()` を使用時のようにリセットされます) ::
+第2引数でクエリビルダのクエリをリセットするかを指定できます（デフォルトでは
+`$this->db->insert()` を使用時のようにリセットされます）::
 
 	echo $this->db->set('title', 'My Title')->get_compiled_insert('mytable', FALSE);
 
@@ -695,7 +695,7 @@ Example::
 **$this->db->replace()**
 
 このメソッドは REPLACE 分を実行します, これは基本的には SQL
-標準の (必要なら) DELETE + INSERT で、 *PRIMARY* と *UNIQUE*
+標準の（必要なら）DELETE + INSERT で、 *PRIMARY* と *UNIQUE*
 キーを判定要素として使用します。
 これにより、複雑なロジックを組み込む必要を抑えられます。
 これがないと  ``select()`` 、 ``update()`` 、
@@ -741,7 +741,7 @@ inserts または updates で値をセットするのに使います。
 	$this->db->insert('mytable');
 
 また、 **set()** は、FALSE をセットするとデータをエスケープするのを回避する、
-第3引数( ``$escape`` )をセットできます。違いを示すため、escape パラメータを
+第3引数（``$escape``）をセットできます。違いを示すため、escape パラメータを
 利用する場合と利用しない場合、両方の ``set()`` の使用の
 説明を挙げます。
 
@@ -973,10 +973,10 @@ INSERT SQL 文字列のかわりに DELETE SQL 文字列を生成します。
 ****************************
 
 "本当の" キャッシングではないのですが、クエリビルダ では、後で再利用
-するためにクエリの特定の部分を保存(あるいは、"キャッシュ")することがで
-きます。 通常は、クエリビルダ の呼び出しが完了したときには、保存され
-た全情報は、次の呼び出しのためにリセットされます。キャッシングを利用す
-ると、このリセットを回避することができ、情報を簡単に再利用できます。
+するためにクエリの特定の部分を保存（あるいは、"キャッシュ"）することができます。
+通常は、クエリビルダ の呼び出しが完了したときには、保存された全情報は、
+次の呼び出しのためにリセットされます。キャッシングを利用すると、
+このリセットを回避することができ、情報を簡単に再利用できます。
 
 キャッシュされた呼び出しは、累積されます。2回のキャッシュされた
 select() を呼び出し、その後に 2回キャッシュされていないselect() を呼び出した場合、
@@ -1064,7 +1064,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 	.. php:method:: reset_query()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		現在のクエリビルダ状態をリセット。ある特定条件下でキャンセルしたい
@@ -1072,21 +1072,21 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 	.. php:method:: start_cache()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリビルダのキャッシュを開始します。
 
 	.. php:method:: stop_cache()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリビルダのキャッシュを停止します。
 
 	.. php:method:: flush_cache()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリビルダのキャッシュを空にします。
@@ -1122,7 +1122,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$table: クエリするテーブル
 		:param	int	$limit: LIMIT 句
 		:param	int	$offset: OFFSET 句
-		:returns:	CI_DB_result インスタンス (メソッドチェイン)
+		:returns:	CI_DB_result インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_result
 
 		すでに呼ばれたクエリビルダのメソッドを元に生成された SELECT 文
@@ -1130,11 +1130,11 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 	.. php:method:: get_where([$table = ''[, $where = NULL[, $limit = NULL[, $offset = NULL]]]])
 
-		:param	mixed	$table: データをフェッチするテーブル(複数可); 文字列か配列
+		:param	mixed	$table: データをフェッチするテーブル（複数可）; 文字列か配列
 		:param	string	$where: WHERE 句
 		:param	int	$limit: LIMIT 句
 		:param	int	$offset: OFFSET 句
-		:returns:	CI_DB_result インスタンス (メソッドチェイン)
+		:returns:	CI_DB_result インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_result
 
 		``get()`` と同じですが、WHERE を直接追加できます。
@@ -1143,7 +1143,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$select: クエリの SELECT 部分
 		:param	bool	$escape: 値や識別子をエスケープするか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに SELECT 句 を追加します。
@@ -1152,7 +1152,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$select: 平均値を計算するフィールド
 		:param	string	$alias: 結果の値のエイリアス
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに SELECT AVG(field) 句 を追加します。
@@ -1161,7 +1161,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$select: 最大値を計算するフィールド
 		:param	string	$alias: 結果の値のエイリアス
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに SELECT MAX(field) 句 を追加します。
@@ -1170,7 +1170,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$select: 最小値を計算するフィールド
 		:param	string	$alias: 結果の値のエイリアス
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに SELECT MIN(field) 句 を追加します。
@@ -1179,7 +1179,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	string	$select: 累計を計算するフィールド
 		:param	string	$alias: 結果の値のエイリアス
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに SELECT SUM(field) 句 を追加します。
@@ -1187,7 +1187,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 	.. php:method:: distinct([$val = TRUE])
 
 		:param	bool	$val: "distinct" フラグの値
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリビルダの SELECT 部分に DISTINCT 句を追加するか
@@ -1196,7 +1196,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 	.. php:method:: from($from)
 
 		:param	mixed	$from: テーブル名(複数可); 文字列か配列
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリの FROM 句 を指定します。
@@ -1207,7 +1207,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$cond: JOIN ON 条件
 		:param	string	$type: JOIN の種類
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		Adds a JOIN 句 to a query.
@@ -1280,28 +1280,28 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 	.. php:method:: group_start()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		group 表現を開始し、中の条件内は AND で結合する。
 
 	.. php:method:: or_group_start()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		group 表現を開始し、中の条件内は OR で結合する。
 
 	.. php:method:: not_group_start()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		group 表現を開始し、中の条件内は AND NOT で結合する。
 
 	.. php:method:: or_not_group_start()
 
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		group 表現を開始し、中の条件内は OR NOT で結合する。
@@ -1319,7 +1319,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$match: マッチさせるテキスト
 		:param	string	$side: 文のどの側に '%' ワイルドカードを挿入するか
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに LIKE 句を追加する。複数のコールは AND で分割する。
@@ -1330,7 +1330,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$match: マッチさせるテキスト
 		:param	string	$side: 文のどの側に '%' ワイルドカードを挿入するか
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに LIKE 句を追加する。複数のコールは OR で分割する。
@@ -1341,7 +1341,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$match: マッチさせるテキスト
 		:param	string	$side: 文のどの側に '%' ワイルドカードを挿入するか
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに NOT LIKE 句を追加する。複数のコールは AND で分割する。
@@ -1352,7 +1352,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$match: マッチさせるテキスト
 		:param	string	$side: 文のどの側に '%' ワイルドカードを挿入するか
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに NOT LIKE 句を追加する。複数のコールは OR で分割する。
@@ -1362,7 +1362,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$key: 識別子（文字列）か、フィールド／値の連想配列
 		:param	string	$value: $key が識別子の場合の値
 		:param	string	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに HAVING 句を追加する。複数のコールは AND で分割する。
@@ -1372,7 +1372,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$key: 識別子（文字列）か、フィールド／値の連想配列
 		:param	string	$value: $key が識別子の場合の値
 		:param	string	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに HAVING 句を追加する。複数のコールは OR で分割する。
@@ -1380,7 +1380,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 	.. php:method:: group_by($by[, $escape = NULL])
 
 		:param	mixed	$by: グループするフィールド（複数可）；文字列か配列
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに GROUP BY 句を追加する。
@@ -1390,7 +1390,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$orderby: ソートするフィールド
 		:param	string	$direction: 指定の順序 - ASC, DESC, かランダム
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに ORDER BY 句を追加する。
@@ -1399,7 +1399,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 
 		:param	int	$value: 結果を制限する行数
 		:param	int	$offset: スキップする行数
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに LIMIT と OFFSET 句を追加する。
@@ -1407,7 +1407,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 	.. php:method:: offset($offset)
 
 		:param	int	$offset: スキップする行数
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		クエリに OFFSET 句を追加する。
@@ -1417,7 +1417,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$key: フィールド名か、フィールド／値の配列
 		:param	string	$value: $key が単一フィールドの場合の値
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		``insert()``, ``update()``, か ``replace()`` に渡される
@@ -1453,7 +1453,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$key: フィールド名か、フィールド名／値の配列
 		:param	string	$value: $key が単一フィールドの場合のフィールド値
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		``insert_batch()`` で挿入されるべきフィールド／値を追加。
@@ -1489,7 +1489,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	mixed	$key: フィールド名か、フィールド名／値の配列
 		:param	string	$value: $key が単一フィールドの場合のフィールド値
 		:param	bool	$escape: 値や識別子をエスケープするかどうか
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン)
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）
 		:rtype:	CI_DB_query_builder
 
 		``update_batch()`` で更新されるべきフィールド／値を追加。
@@ -1509,7 +1509,7 @@ select() を呼び出し、その後に 2回キャッシュされていないsel
 		:param	string	$where: WHERE 句
 		:param	int	$limit: LIMIT 句
 		:param	bool	$reset_data: クエリの "write" 句をリセットするには TRUE
-		:returns:	CI_DB_query_builder インスタンス (メソッドチェイン) or FALSE on failure
+		:returns:	CI_DB_query_builder インスタンス（メソッドチェイン）or FALSE on failure
 		:rtype:	mixed
 
 		DELETE クエリをコンパイルして実行。

@@ -31,11 +31,11 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 	:rtype:	string
 
 	設定ファイルで指定されているサイトの URL を返します。 index.php
-	ファイル (または、設定ファイルで設定しているユーザサイトの **index_page**
-	) が URL に追加され、この関数に渡された URI
+	ファイル（または、設定ファイルで設定しているユーザサイトの **index_page**）が
+	URL に追加され、この関数に渡された URI
 	セグメントと設定ファイルで指定された **url_suffix** が追加されます。
 
-	ローカルの(サイト内の) URL を生成する必要がある時は、
+	ローカルの（サイト内の）URL を生成する必要がある時は、
 	いつもこの関数を使うようおすすめします。
 	この関数を使うと、URL が変更になった時でも、移植性が高まります。
 
@@ -93,7 +93,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 	:returns:	現在の URL
 	:rtype:	string
 
-	現在表示されているページの完全な URL (セグメントを含む) を
+	現在表示されているページの完全な URL（セグメントを含む）を
 	返します。
 
 	.. note:: この関数の呼び出しは次のようなものと同じ意味になります。:
@@ -134,7 +134,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 	:param	string	$uri: URI 文字列
 	:param	string	$title: アンカータイトル
 	:param	mixed	$attributes: HTML 属性
-	:returns:	HTML ハイパーリンク (アンカータグ)
+	:returns:	HTML ハイパーリンク（アンカータグ）
 	:rtype:	string
 
 	サイトの URL にもとづいて、標準の HTML アンカーリンクを生成します。
@@ -143,7 +143,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 	上の :php:func:`site_url()` 関数のように、文字列または、
 	配列でセグメントを指定します。
 
-	.. note:: アプリケーション内部のリンクを生成するときは、ベースURL(http&#58;//...) を含まないようにしてください。
+	.. note:: アプリケーション内部のリンクを生成するときは、ベースURL（http&#58;//...）を含まないようにしてください。
 		設定ファイルで指定されている情報から、ベース URL
 		は自動的に追加されます。URL に追加したい URI
 		セグメントだけを含めるようにしてください。
@@ -244,7 +244,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 .. php:function:: auto_link($str, $type = 'both', $popup = FALSE)
 
 	:param	string	$str: 入力文字列
-	:param	string	$type: リンクタイプ ('email', 'url' or 'both')
+	:param	string	$type: リンクタイプ（'email', 'url' or 'both'）
 	:param	bool	$popup: ポップアップリンクを生成するかどうか
 	:returns:	リンク可能な文字列
 	:rtype:	string
@@ -268,7 +268,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 		$string = auto_link($string, 'email');
 
 	第3引数は、リンクを新しいウィンドウで開くかどうかを指定します。
-	値は、TRUE または FALSE (ブール値) になります::
+	値は、TRUE または FALSE（ブール値）になります::
 
 		$string = auto_link($string, 'both', TRUE);
 
@@ -289,8 +289,8 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 		$url_title = url_title($title);
 		// Produces: Whats-wrong-with-CSS
 
-	第2引数で、単語の区切りを決めます。初期状態では、ダッシュ ( "-" )
-	が使用されます。次のオプションが選べます: **-**( dash ) または **_** ( underscore )
+	第2引数で、単語の区切りを決めます。初期状態では、ダッシュ（ "-" ）
+	が使用されます。次のオプションが選べます: **-** （dash）または **_** （underscore）
 
 	例::
 
@@ -302,7 +302,7 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 		非推奨になっています。
 
 	第3引数で、文字列を強制的に小文字に変換するかどうかを決めます。
-	デフォルトでは変換されません。次のオプション (ブール値) が選べます: TRUE / FALSE :
+	デフォルトでは変換されません。次のオプション（ブール値）が選べます: TRUE / FALSE :
 
 	例::
 
@@ -328,8 +328,8 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 .. php:function:: redirect($uri = '', $method = 'auto', $code = NULL)
 
 	:param	string	$uri: URI 文字列
-	:param	string	$method: リダイレクトメソッド ('auto', 'location' or 'refresh')
-	:param	string	$code: HTTP Response Code (通常 302 or 303)
+	:param	string	$method: リダイレクトメソッド（'auto', 'location' or 'refresh'）
+	:param	string	$code: HTTP Response Code（通常 302 or 303）
 	:returns:	void
 
 	指定した URI に対して "ヘッダ リダイレクト" します。完全な URL

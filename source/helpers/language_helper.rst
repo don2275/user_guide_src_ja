@@ -28,7 +28,7 @@
 .. php:function:: lang($line[, $for = ''[, $attributes = array()]])
 
 	:param	string	$line: 言語文字列キー
-	:param	string	$for: HTML "for" 属性 (作成するラベルの for に使用する要素の ID )
+	:param	string	$for: HTML "for" 属性（作成するラベルの for に使用する要素の ID）
 	:param	array	$attributes: 追加で指定する HTML 属性
 	:returns:    	HTML フォーマットされた言語文字列のラベル
 	:rtype:	string

@@ -311,16 +311,16 @@ Release Date: March 30, 2015
    -  PHPエラー時のテンプレートを独自に追加することができます。
    -  Androidのユーザエージェントを取得することができます。
    -  Windows 7, Windows 8, Windows 8.1, Android, Blackberry, iOS と PlayStation 3 to the list of user platforms.
-   -  Fennec (スマホ用Firefox)のユーザエージェントを取得することができます。
+   -  Fennec（スマホ用Firefox）のユーザエージェントを取得することができます。
    -  Ability to log certain error types, not all under a threshold.
    -  pem, p10, p12, p7a, p7c, p7m, p7r, p7s, crt, crl, der, kdb, rsa, cer, sst, csr Certsの MIME 形式をサポートします。
    -  pgp, gpg, zsh , cdr の MIME 形式をサポートします。
    -  3gp, 3g2, mp4, wmv, f4v, vlc といった動画の MIME 形式をサポートします。
    -   m4a, aac, m4u, xspf, au, ac3, flac, ogg, wmaといった音楽の MIME 形式をサポートします。
-   -  kmz , kml (Google Earth) の MIME 形式をサポートします。
+   -  kmz , kml（Google Earth）の MIME 形式をサポートします。
    -  ics のカレンダーの MIME 形式をサポートします。
    -  rar, jar and 7zip といったアーカイブファイルの MIME 形式をサポートします。
-   -  xml ('application/xml') と xsl ('application/xml', 'text/xsl') の MIME 形式をアップグレード。
+   -  xml（'application/xml'）と xsl（'application/xml', 'text/xsl'）の MIME 形式をアップグレード。
    -  docファイルの MIME 形式をアップグレード。
    -  docxファイルの MIME 形式をアップグレード。
    -  phpファイルの MIME 形式をアップグレード。

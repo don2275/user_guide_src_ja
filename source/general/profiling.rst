@@ -73,7 +73,7 @@ TRUE または FALSE に設定することで有効または無効にするこ�
 **controller_info**     リクエストされたコントローラクラスとメソッド                  TRUE
 **get**                 リクエストで渡された GET データ                               TRUE
 **http_headers**        現在のリクエストの HTTP ヘッダ                                TRUE
-**memory_usage**        現在のリクエストによって消費されるメモリの量 (byteで)         TRUE
+**memory_usage**        現在のリクエストによって消費されるメモリの量（byteで）        TRUE
 **post**                リクエストで渡されたあらゆる POST データ                      TRUE
 **queries**             実行されたすべてのデータベースクエリのリスト、実行時間を含む  TRUE
 **uri_string**          現在のリクエストの URI                                        TRUE

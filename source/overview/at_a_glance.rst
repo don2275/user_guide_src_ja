@@ -38,7 +38,7 @@ CodeIgniter は高速に動作します
 CodeIgniter は M-V-C を採用しています
 =====================================
 
-CodeIgniter はModel(モデル)-View(ビュー)-Controller(コントローラ)アプローチを採用
+CodeIgniter はModel（モデル）-View（ビュー）-Controller（コントローラ）アプローチを採用
 しています。Model-View-Controller は、ロジックとプレゼンテーションのすぐれた分離を
 可能にします。これは、最低限のコードだけでできたテンプレートファイルをデザイナーが
 利用して作業するようなプロジェクトで、特に優れたアプローチです。MVC については、

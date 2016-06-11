@@ -30,7 +30,7 @@ Cookie ヘルパー
 	:param	mixed	$name: クッキー名 *又は* この関数で利用可能なパラメータの全ての連想配列
 	:param	string	$value: クッキーの値
 	:param	int	$expire: 有効期限までの秒数
-	:param	string	$domain: クッキーのドメイン (通例: .yourdomain.com)
+	:param	string	$domain: クッキーのドメイン（通例: .yourdomain.com）
 	:param	string	$path: クッキーのパス
 	:param	string	$prefix: クッキー名の接頭辞
 	:param	bool	$secure: HTTPS でのみクッキーを送信するかどうか
@@ -59,7 +59,7 @@ Cookie ヘルパー
 .. php:function:: delete_cookie($name[, $domain = ''[, $path = '/'[, $prefix = '']]])
 
 	:param	string	$name: クッキー名
-	:param	string	$domain: クッキーのドメイン (通例: .yourdomain.com)
+	:param	string	$domain: クッキーのドメイン（通例: .yourdomain.com）
 	:param	string	$path: クッキーのパス
 	:param	string	$prefix: クッキー名の接頭辞
 	:rtype:	void

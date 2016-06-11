@@ -140,8 +140,8 @@ URL を指すリンクになります。
    指定しなければ、 *controller/method* にセットされます。
 -  カレンダー生成関数に指定する「年」と「月」には、
    URI セグメントに出現するものを指定します
-   (Note: カレンダークラスは基準の URL に対して
-   年と月を自動的に追加します)
+   （Note: カレンダークラスは基準の URL に対して
+   年と月を自動的に追加します）
 
 カレンダーテンプレートの作成
 ============================
@@ -218,7 +218,7 @@ URL を指すリンクになります。
 	.. php:method:: initialize([$config = array()])
 
 		:param	array	$config: 構成パラメータ
-		:returns:	    CI_Calendar インスタンス (メソッドチェーン)
+		:returns:	    CI_Calendar インスタンス（メソッドチェーン）
 		:rtype:	CI_Calendar
 
 		カレンダーの環境設定を初期化します。表示設定を含む入力として連想配列を受け入れます。
@@ -300,7 +300,7 @@ URL を指すリンクになります。
 
 	.. php:method:: parse_template()
 
-		:returns:	CI_Calendar インスタンス (メソッドチェーン)
+		:returns:	CI_Calendar インスタンス（メソッドチェーン）
 		:rtype:	CI_Calendar
 
 		テンプレート内のデータを収集

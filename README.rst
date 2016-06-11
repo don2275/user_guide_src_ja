@@ -25,7 +25,7 @@ http://python.org/download/releases/2.7.2/
 1. `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_ をインストール
 2. ``easy_install "sphinx==1.2.3"``
 3. ``easy_install sphinxcontrib-phpdomain``
-4. CI Lexer をインストールして、コードサンプルで PHP、HTML、CSS、Javascript がシンタックスハイライトされるようにする (*cilexer/README* を参照)
+4. CI Lexer をインストールして、コードサンプルで PHP、HTML、CSS、Javascript がシンタックスハイライトされるようにする（*cilexer/README* を参照）
 5. ``cd user_guide_src``
 6. ``make html``
 

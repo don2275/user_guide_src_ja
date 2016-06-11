@@ -30,7 +30,7 @@
 .. php:function:: directory_map($source_dir[, $directory_depth = 0[, $hidden = FALSE]])
 
 	:param	string	$source_dir: ソースディレクトリのパス
-	:param	int	$directory_depth: 横断するディレクトリの深さ (0 = 全てのディレクトリを再帰的に行う、 1 = 現在のディレクトリ、その他)
+	:param	int	$directory_depth: 横断するディレクトリの深さ（0 = 全てのディレクトリを再帰的に行う、 1 = 現在のディレクトリ、その他）
 	:param	bool	$hidden: 隠しディレクトリを含めるかどうか
 	:returns:	ファイルの配列
 	:rtype:	array
@@ -43,13 +43,13 @@
 
 
 	ディレクトリに含まれるサブフォルダも同様にマップされます。 第2引数
-	(integer) で再帰的にマップされる階層を指定出来ます。1を指定すると
+	（integer）で再帰的にマップされる階層を指定出来ます。1を指定すると
 	最上位階層のディレクトリのみマッピングされます。::
 
 		$map = directory_map('./mydirectory/', 1);
 
 	デフォルトでは、戻り値の配列に隠しファイルは含まれません。
-	この動作をオーバーライドするには、第3引数に true (ブール値)を指定します::
+	この動作をオーバーライドするには、第3引数に true（ブール値）を指定します::
 
 		$map = directory_map('./mydirectory/', FALSE, TRUE);
 

@@ -29,7 +29,7 @@ XML ヘルパーファイルは、 XML データを処理するのに役立つ�
 .. php:function:: xml_convert($str[, $protect_all = FALSE])
 
 	:param string $str: 変換する文字列
-	:param bool $protect_all: 数値文字エンティティ(例: &foo;)のようなエンティティのように見える可能性のあるコンテンツを全てそのまま出力するかどうか
+	:param bool $protect_all: 数値文字エンティティ（例: &foo;）のようなエンティティのように見える可能性のあるコンテンツを全てそのまま出力するかどうか
 	:returns: XML 変換文字列
 	:rtype:	string
 

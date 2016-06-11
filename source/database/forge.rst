@@ -74,8 +74,8 @@ CodeIgniter はこのようなことに関してのメカニズムを提供し�
 
 フィールドは連想配列を通して作成されます。配列の中には、フィールドのデ
 ータタイプを指定する 'type' キーが必要となります。たとえば、
-INT 、 VARCHAR 、 TEXT などです。多くのデータタイプ (たとえば VARCHAR
-など) は 'constraint' キーも必要です。
+INT 、 VARCHAR 、 TEXT などです。多くのデータタイプ（たとえば VARCHAR
+など）は 'constraint' キーも必要です。
 
 ::
 
