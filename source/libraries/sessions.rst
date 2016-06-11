@@ -419,7 +419,7 @@ CodeIgniter の以前のバージョンでは、セッションデータ配列�
 
   - session_id: ``session_id()``
   - ip_address: ``$_SERVER['REMOTE_ADDR']``
-  - user_agent: ``$this->input->user_agent()``（セッションでは使われません）
+  - user_agent: ``$this->input->user_agent()`` （セッションでは使われません）
   - last_activity: ストレージによります。ストレートな方法はありません。ごめんなさい！
 
 セッションの設定
