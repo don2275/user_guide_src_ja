@@ -66,8 +66,8 @@ URL ヘルパーファイルは、URL を処理するのに役立つ関数で構
 
 		echo base_url();
 
-	この関数は *index_page* がないことと、また、 *url_suffix*
-	が追加されること以外は :php:func:`site_url()` と同じ結果を返します。
+	この関数は *index_page* がないことと、また、 *url_suffix* が
+	追加されないこと以外は :php:func:`site_url()` と同じ結果を返します。
 
 	また :php:func:`site_url()` のように、セグメントを文字列または配列として、
 	この関数に渡すことができます。下記は文字列での例です::
