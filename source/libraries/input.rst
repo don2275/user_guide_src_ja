@@ -245,7 +245,7 @@ a boolean value as the second parameter::
 		data::
 
 			$this->input->cookie('some_cookie');
-			$this->input->cookie('some_cookie, TRUE); // with XSS filter
+			$this->input->cookie('some_cookie', TRUE); // with XSS filter
 
 		To return an array of multiple cookie values, pass all the required keys
 		as an array.
