@@ -2,7 +2,7 @@
 語形変換ヘルパー
 ################
 
-語形変換ヘルパーのファイルには、語句を複数形、単数形、キャメル記法など
+語形変換ヘルパーのファイルには **英語の** 語句を複数形、単数形、キャメル記法など
 に変換できる関数が含まれます。
 
 .. contents::
@@ -38,7 +38,7 @@
 .. php:function:: plural($str)
 
 	:param	string	$str: Input string
-	:returns:	A plular word
+	:returns:	A plural word
 	:rtype:	string
 
 	単数形の単語を複数形に変換します。例::

@@ -30,7 +30,7 @@
 	:param	string	$line: 言語文字列キー
 	:param	string	$for: HTML "for" 属性（作成するラベルの for に使用する要素の ID）
 	:param	array	$attributes: 追加で指定する HTML 属性
-	:returns:    	HTML フォーマットされた言語文字列のラベル
+	:returns:    	language 行と、 ``$for`` 引数が指定されている場合は HTML のラベルタグ
 	:rtype:	string
 
 	この関数は、ビューファイルで言語クラスの ``CI_Lang::line()`` 
@@ -38,6 +38,9 @@
 	ロードされた言語ファイルからのテキスト行を返します。
 
 	例::
+
+		echo lang('language_key');
+		// 出力: Language 行
 
 		echo lang('language_key', 'form_item_id', array('class' => 'myClass'));
 		// 出力: <label for="form_item_id" class="myClass">Language line</label>

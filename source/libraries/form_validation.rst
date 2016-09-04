@@ -465,7 +465,7 @@ For more info please see the :ref:`using-arrays-as-field-names` section below.
 コールバックを呼び出すには、あるルールに従ってメソッド名を指定します。そのルール
 とは、"callback\_" という **プリフィックス** をメソッド名に付け加えるという
 ものです。もし、コールバックメソッドが追加のパラメータを受け取る必要がある
-場合、"callback_foo**[bar]**" のようにメソッド名の後の角カッコの間にパラメータを
+場合、 ``callback_foo[bar]`` のようにメソッド名の後の角カッコの間にパラメータを
 追加してください。そうすれば、第 2 引数としてコールバックメソッドに渡されます。
 
 .. note:: また、コールバックに渡されたフォームデータを処理し、
@@ -495,8 +495,7 @@ For more info please see the :ref:`using-arrays-as-field-names` section below.
 
 もちろんこれは 1 つの例であり、コールバック関数はモデルに限定されません。
 第 1 引数にフィールドの値を受け取るあらゆるオブジェクト/メソッドを使うことが
-できます。また、もし PHP 5.3+ であれば、
-匿名関数を使うこともできます::
+できます。匿名関数を使うこともできます::
 
 	$this->form_validation->set_rules(
 		'username', 'ユーザ名',
@@ -522,7 +521,7 @@ For more info please see the :ref:`using-arrays-as-field-names` section below.
 		)
 	);
 
-匿名関数（PHP 5.3+）版::
+匿名関数版::
 
 	$this->form_validation->set_rules(
 		'username', 'ユーザ名',
