@@ -11,35 +11,35 @@ CodeIgniter は、最小限のコードで総合的なフォームバリデー�
 概要
 ****
 
-Before explaining CodeIgniter's approach to data validation, let's
-describe the ideal scenario:
+CodeIgniter のデータ検証に対するアプローチを説明する前に、
+理想的なシナリオを説明してみましょう:
 
-#. A form is displayed.
-#. You fill it in and submit it.
-#. If you submitted something invalid, or perhaps missed a required
-   item, the form is redisplayed containing your data along with an
-   error message describing the problem.
-#. This process continues until you have submitted a valid form.
+#. フォームが表示されます。
+#. それを記入し、送信します。
+#. 無効なものを送信したなら、つまりもしかしたら必須項目を逃した場合は、
+   問題を説明するエラーメッセージとともに
+   フォームはあなたのデータを再表示します。
+#. 有効なフォームを送信するまで、このプロセスが継続します。
 
-On the receiving end, the script must:
+受信側では、スクリプトは次のことを満たす必要があります:
 
-#. Check for required data.
-#. Verify that the data is of the correct type, and meets the correct
-   criteria. For example, if a username is submitted it must be
-   validated to contain only permitted characters. It must be of a
-   minimum length, and not exceed a maximum length. The username can't
-   be someone else's existing username, or perhaps even a reserved word.
-   Etc.
-#. Sanitize the data for security.
-#. Pre-format the data if needed (Does the data need to be trimmed? HTML
-   encoded? Etc.)
-#. Prep the data for insertion in the database.
+#. 必須データを確認します。
+#. データが正しい型であり、正しく基準を満たしていることを確認します。
+   例えばユーザ名が送信された場合、
+   許可された文字だけを含むように検証する必要があります。
+   これは最小長より大きく、最大長を超えてはなりません。
+   ユーザ名は他の誰かの既存ユーザ名は使えず、またはおそらく予約語も使えません。
+   など。
+#. セキュリティのためにデータをサニタイズします。
+#. 必要に応じてデータをプリフォーマットします
+   （データはトリミングを必要とする？　HTMLのエンコードは？　など）。
+#. データベースに挿入するためのデータを準備します。
 
-Although there is nothing terribly complex about the above process, it
-usually requires a significant amount of code, and to display error
-messages, various control structures are usually placed within the form
-HTML. Form validation, while simple to create, is generally very messy
-and tedious to implement.
+上記のプロセスはひどく複雑なものではありませんが、
+通常はかなりの量コードを必要とし、エラーメッセージを表示するために、
+通常、様々な制御構造がフォームのHTML内に配置されます。
+フォームの検証は、作成は簡単ながら、
+一般的には非常に面倒で退屈な実装作業になります。
 
 **************
 チュートリアル
