@@ -10,7 +10,7 @@ Pull Request がマージされたら、[CREDITS.md](CREDITS.md) にご自分の
 
 現在、以下のブランチで翻訳を進めています。
 
-* `develop_japanese` ブランチ (本家 `develop` ブランチに対応。現在 3.1.0-dev)
+* `develop_japanese` ブランチ (本家 `develop` ブランチに対応。現在 3.2.0-dev)
 
 日本語化途中のドキュメントは、以下から閲覧できます (手動更新のため最新の状態ではないことがあります)。
 
@@ -18,7 +18,7 @@ Pull Request がマージされたら、[CREDITS.md](CREDITS.md) にご自分の
 
 翻訳状況は、以下の Google Docs で管理されています。
 
-* [3.1.0-dev 翻訳状況](https://docs.google.com/spreadsheets/d/1ZWD5XqwH-Uo9X7MR644jbL6O8p5LxIngLT8M547H8wc/edit?pref=2&pli=1#gid=0)
+* [3.2.0-dev 翻訳状況](https://docs.google.com/spreadsheets/d/1ZWD5XqwH-Uo9X7MR644jbL6O8p5LxIngLT8M547H8wc/edit?pref=2&pli=1#gid=0)
 
 また、過去のバージョンの翻訳途中のものが
 
