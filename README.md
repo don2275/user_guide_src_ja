@@ -14,7 +14,7 @@ Pull Request がマージされたら、[CREDITS.md](CREDITS.md) にご自分の
 
 日本語化途中のドキュメントは、以下から閲覧できます (手動更新のため最新の状態ではないことがあります)。
 
-* <http://codeigniter-jp.github.io/user_guide_src_ja/>
+* <http://codeigniter.jp/user_guide/3/>
 
 翻訳状況は、以下の Google Docs で管理されています。
 
