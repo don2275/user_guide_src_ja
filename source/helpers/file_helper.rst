@@ -26,8 +26,8 @@
 
 .. php:function:: read_file($file)
 
-	:param	string	$file: File path
-	:returns:	File contents or FALSE on failure
+	:param	string	$file: ファイルパス
+	:returns:	ファイルの内容または失敗時は FALSE
 	:rtype:	string
 
 	パスで特定されたファイルのデータを返します。
@@ -42,8 +42,8 @@
 		はフロントコントローラを使用するので、常にサイトのインデックスからの
 		相対パスになります。
 
-	.. note:: This function is DEPRECATED. Use the native ``file_get_contents()``
-		instead.
+	.. note:: この関数は廃止予定です。
+		かわりに ``file_get_contents()`` を使ってください。
 
 	.. important:: サーバで **open_basedir** の制限が有効になっている場合、 呼び出したスクリプト
 		より上の階層にあるファイルにアクセスしようとするとき、このメソッド
@@ -51,10 +51,10 @@
 
 .. php:function:: write_file($path, $data[, $mode = 'wb'])
 
-	:param	string	$path: File path
-	:param	string	$data: Data to write to file
-	:param	string	$mode: ``fopen()`` mode
-	:returns:	TRUE if the write was successful, FALSE in case of an error
+	:param	string	$path: ファイルパス
+	:param	string	$data: ファイルに書き込むデータ
+	:param	string	$mode: ``fopen()`` モード
+	:returns:	書き込みに成功した場合は TRUE 、エラーの場合は FALSE
 	:rtype:	bool
 
 	パスで指定されたファイルにデータを書き込みます。 ファイルが存在しない場合には、
@@ -87,14 +87,14 @@
 		はフロントコントローラを使用するので、常にサイトのインデックスからの
 		相対パスになります。
 
-	.. note:: This function acquires an exclusive lock on the file while writing to it.
+	.. note:: この関数はファイルへデータを書き込んでいる間排他ロックを取得します。
 
 .. php:function:: delete_files($path[, $del_dir = FALSE[, $htdocs = FALSE]])
 
-	:param	string	$path: Directory path
-	:param	bool	$del_dir: Whether to also delete directories
-	:param	bool	$htdocs: Whether to skip deleting .htaccess and index page files
-	:returns:	TRUE on success, FALSE in case of an error
+	:param	string	$path: ディレクトリパス
+	:param	bool	$del_dir: ディレクトリも合わせて削除するかどうか
+	:param	bool	$htdocs: .htaccess やインデックスファイルの削除をスキップするかどうか
+	:returns:	成功した場合は TRUE 、失敗した場合は FALSE
 	:rtype:	bool
 
 	パスに含まれるすべてのファイルを削除します。
@@ -114,9 +114,9 @@
 
 .. php:function:: get_filenames($source_dir[, $include_path = FALSE])
 
-	:param	string	$source_dir: Directory path
-	:param	bool	$include_path: Whether to include the path as part of the filenames
-	:returns:	An array of file names
+	:param	string	$source_dir: ディレクトリパス
+	:param	bool	$include_path: ファイルまでのパスを含めるかどうか
+	:returns:	ファイル名の配列
 	:rtype:	array
 
 	サーバパスを入力として、そのパスに含まれる全ファイル名の配列を返します。
@@ -129,9 +129,9 @@
 
 .. php:function:: get_dir_file_info($source_dir, $top_level_only)
 
-	:param	string	$source_dir: Directory path
-	:param	bool	$top_level_only: Whether to look only at the specified directory (excluding sub-directories)
-	:returns:	An array containing info on the supplied directory's contents
+	:param	string	$source_dir: ディレクトリパス
+	:param	bool	$top_level_only: 指定されたディレクトリのみを参照するかどうか (サブディレクトリを除外するということ)
+	:returns:	指定されたディレクトリの情報が含まれた配列
 	:rtype:	array
 
 	指定されたディレクトリを読み、ファイル名、ファイルサイズ、
@@ -145,22 +145,22 @@
 
 .. php:function:: get_file_info($file[, $returned_values = array('name', 'server_path', 'size', 'date')])
 
-	:param	string	$file: File path
-	:param	array	$returned_values: What type of info to return
-	:returns:	An array containing info on the specified file or FALSE on failure
+	:param	string	$file: ファイルパス
+	:param	array	$returned_values: 戻り値の情報の形式
+	:returns:	指定されたファイルの情報が含まれた配列または失敗した場合 FALSE
 	:rtype:	array
 
-	Given a file and path, returns (optionally) the *name*, *path*, *size* and *date modified*
-	information attributes for a file. Second parameter allows you to explicitly declare what
-	information you want returned.
+	ファイルとパスを引数に取り、*name* 、 *path* 、 *size* や *date modified* 等の
+	ファイルの属性情報を返却(オプション)します。 第2引数は返却して欲しい情報を明示的に
+	指定することが可能です。
 
-	Valid ``$returned_values`` options are: `name`, `size`, `date`, `readable`, `writeable`,
-	`executable` and `fileperms`.
+	有効な ``$returned_values`` のオプション: `name` 、 `size` 、 `date` 、 `readable` 、 `writeable` 、
+	`executable` や `fileperms`.
 
 .. php:function:: get_mime_by_extension($filename)
 
-	:param	string	$filename: File name
-	:returns:	MIME type string or FALSE on failure
+	:param	string	$filename: ファイル名
+	:returns:	MIME タイプまたは失敗した場合 FALSE
 	:rtype:	string
 
 	*config/mimes.php* にある設定を元にファイル拡張子を  MIMEタイプに変換します。
@@ -177,8 +177,8 @@
 
 .. php:function:: symbolic_permissions($perms)
 
-	:param	int	$perms: Permissions
-	:returns:	Symbolic permissions string
+	:param	int	$perms: パーミッション
+	:returns:	シンボリックモードのパーミッション文字列
 	:rtype:	string
 
 	( ``fileperms()`` で返ってくるような) 数字のパーミッションを引数として渡すと、
@@ -190,8 +190,8 @@
 
 .. php:function:: octal_permissions($perms)
 
-	:param	int	$perms: Permissions
-	:returns:	Octal permissions string
+	:param	int	$perms: パーミッション
+	:returns:	8進数表記のパーミッション文字列
 	:rtype:	string
 
 	( ``fileperms()`` で返ってくるような) 数字のパーミッションを引数として渡すと、
