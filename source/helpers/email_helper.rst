@@ -6,7 +6,7 @@ Email ヘルパーは Email 処理を支援する関数を提供します。よ�
 Email の処理方法については CodeIgniter の :doc:`Email クラス
 <../libraries/email>` を参照してください。
 
-.. important:: Email ヘルパーは日推奨で、利用されるべきではりません。
+.. important:: Email ヘルパーは非推奨です。
 	現在は、後方互換のためのみに維持されているものです。
 
 .. contents::
