@@ -1,13 +1,13 @@
-##############
-Email ヘルパー
-##############
+###################
+イーメールヘルパー
+###################
 
-Email ヘルパーは Email 処理を支援する関数を提供します。より堅牢な
-Email の処理方法については CodeIgniter の :doc:`Email クラス
+イーメールヘルパーはイーメールの処理を支援する関数を提供します。より堅牢な
+イーメールの処理方法については CodeIgniter の :doc:`Email クラス
 <../libraries/email>` を参照してください。
 
-.. important:: The Email helper is DEPRECATED and is currently
-	only kept for backwards compatibility.
+.. important:: イーメールヘルパーは非推奨です。
+	現在は、後方互換のためのみに維持されているものです。
 
 .. contents::
   :local:
@@ -31,15 +31,15 @@ Email の処理方法については CodeIgniter の :doc:`Email クラス
 
 .. php:function:: valid_email($email)
 
-	:param	string	$email: E-mail address
-	:returns:	TRUE if a valid email is supplied, FALSE otherwise
+	:param	string	$email: メールアドレス
+	:returns:	有効なメールアドレスであれば TRUE そうではない場合は FALSE
 	:rtype:	bool
 
-	Checks if the input is a correctly formatted e-mail address. Note that is
-	doesn't actually prove that the address will be able recieve mail, but
-	simply that it is a validly formed address.
+	入力値が正しくフォーマットされたメールアドレスかどうかを確認します。そのアドレスで
+	メールの受信ができることを保障するものではなく、単純に有効なメールアドレスの形式である
+	ことを確認します。
 
-	Example::
+	例::
 
 		if (valid_email('email@somesite.com'))
 		{
@@ -50,22 +50,22 @@ Email の処理方法については CodeIgniter の :doc:`Email クラス
 			echo 'email is not valid';
 		}
 
-	.. note:: All that this function does is to use PHP's native ``filter_var()``::
+	.. note:: この関数で行うことはPHP標準の ``filter_var()`` でもできます::
 
 		(bool) filter_var($email, FILTER_VALIDATE_EMAIL);
 
 .. php:function:: send_email($recipient, $subject, $message)
 
-	:param	string	$recipient: E-mail address
-	:param	string	$subject: Mail subject
-	:param	string	$message: Message body
-	:returns:	TRUE if the mail was successfully sent, FALSE in case of an error
+	:param	string	$recipient: メールアドレス
+	:param	string	$subject: メールの件名
+	:param	string	$message: メールの内容
+	:returns:	メールの送信に成功すれば TRUE エラーの場合は FALSE 
 	:rtype:	bool
 
 	PHP の `mail() <http://www.php.net/function.mail>`_
 	関数を使ってメールを送信します。
 
-	.. note:: All that this function does is to use PHP's native ``mail``
+	.. note:: この関数で行うことはPHP標準の ``mail`` でもできます
 
 		::
 
