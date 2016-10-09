@@ -94,8 +94,8 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: connect([$config = array()])
 
-		:param	array	$config: Connection values
-		:returns:	TRUE on success, FALSE on failure
+		:param	array	$config: 接続情報
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		FTP サーバに接続してログインします。
@@ -137,11 +137,11 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: upload($locpath, $rempath[, $mode = 'auto'[, $permissions = NULL]])
 
-		:param	string	$locpath: Local file path
-		:param	string	$rempath: Remote file path
-		:param	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
-		:param	int	$permissions: File permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$locpath: ローカルのファイルパス
+		:param	string	$rempath: リモートのファイルパス
+		:param	string	$mode: FTP モード、 デフォルトは 'auto' （'auto' 、 'binary' 、 'ascii' を指定する）
+		:param	int	$permissions: File パーミッション（8進数）
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		サーバにファイルをアップロードします。ローカルのパスとリモートのパス、オプションで、
@@ -150,16 +150,16 @@ $this->load->library メソッドを使って初期化します::
 
 			$this->ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);
 
-		If 'auto' mode is used it will base the mode on the file extension of the source file.
+		'auto' モードが使用されているときは、転送するファイルの拡張子によって転送モードが決められます。
 
-		If set, permissions have to be passed as an octal value.
+		パーミッションを設定する場合は8進数の値を渡さなければなりません。
 
 	.. php:method:: download($rempath, $locpath[, $mode = 'auto'])
 
-		:param	string	$rempath: Remote file path
-		:param	string	$locpath: Local file path
-		:param	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$rempath: リモートのファイルパス
+		:param	string	$locpath: ローカルのファイルパス
+		:param	string	$mode: FTP モード、 デフォルトは 'auto' （'auto' 、 'binary' 、 'ascii' を指定する）
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		サーバからファイルをダウンロードします。リモートとローカルのパスを指定
@@ -167,17 +167,17 @@ $this->load->library メソッドを使って初期化します::
 
 			$this->ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');
 
-		If 'auto' mode is used it will base the mode on the file extension of the source file.
+		'auto' モードが使用されているときは、転送するファイルの拡張子によって転送モードが決められます。
 
 		ダウンロードに成功しなかった場合は FALSE を返します。
 		（ローカルファイルに対するパーミッションがなかった場合も含む）
 
 	.. php:method:: rename($old_file, $new_file[, $move = FALSE])
 
-		:param	string	$old_file: Old file name
-		:param	string	$new_file: New file name
-		:param	bool	$move: Whether a move is being performed
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$old_file: 変更するファイルの名前
+		:param	string	$new_file: 新しいファイルの名前
+		:param	bool	$move: move を行うかどうか
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ファイルをリネームします。変更するファイルの名前/パスと、新しいファイルの名前/パスを指定します。
@@ -188,9 +188,9 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: move($old_file, $new_file)
 
-		:param	string	$old_file: Old file name
-		:param	string	$new_file: New file name
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$old_file: 変更するファイルの名前
+		:param	string	$new_file: 新しいファイルの名前
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ファイルを移動できます。移動元と移動先のパスを指定します::
@@ -202,8 +202,8 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: delete_file($filepath)
 
-		:param	string	$filepath: Path to file to delete
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$filepath: 削除するファイルのパス
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ファイルを削除できます。削除するファイルのパスとファイル名を指定します。
@@ -213,17 +213,17 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: delete_dir($filepath)
 
-		:param	string	$filepath: Path to directory to delete
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$filepath: 削除するディレクトリのパス
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ディレクトリとそのディレクトリに含まれるものをすべて削除します。
 		削除するディレクトリへのパスを末尾にスラッシュをつけて指定します。
 
-		.. important:: Be VERY careful with this method!
-			It will recursively delete **everything** within the supplied path,
-			including sub-folders and all files. Make absolutely sure your path
-			is correct. Try using ``list_files()`` first to verify that your path is correct.
+		.. 重要:: このメソッドを使うときは、「厳重に」注意してください！！
+			渡されたパス以下のサブフォルダと全ファイルの **すべてのもの**を再帰的に削除します。
+			パスが完全に正しいかを確認するようにしてください。
+			``list_files()`` メソッドをまず使って、パスが正しいかを検証するようにしてください。
 
 		::
 
@@ -231,8 +231,8 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: list_files([$path = '.'])
 
-		:param	string	$path: Directory path
-		:returns:	An array list of files or FALSE on failure
+		:param	string	$path: ディレクトリのパス
+		:returns:	ファイルの配列、失敗時は FALSE
 		:rtype:	array
 
 		サーバにあるファイルのリストを取得して 配列 として返します。
@@ -244,9 +244,9 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: mirror($locpath, $rempath)
 
-		:param	string	$locpath: Local path
-		:param	string	$rempath: Remote path
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$locpath: ローカルのパス
+		:param	string	$rempath: リモートのパス
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ローカルフォルダ内のすべて(サブフォルダ含む)を再帰的に読み取って、
@@ -258,9 +258,9 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: mkdir($path[, $permissions = NULL])
 
-		:param	string	$path: Path to directory to create
-		:param	int	$permissions: Permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$path: 作成するディレクトリのパス
+		:param	int	$permissions: パーミッション（8進数）
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッ
@@ -274,9 +274,9 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: chmod($path, $perm)
 
-		:param	string	$path: Path to alter permissions for
-		:param	int	$perm: Permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$path: パーミッションを変更するファイルまたはディレクトリのパス
+		:param	int	$perm: パーミッション（8進数）
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		ファイルのパーミッションをセットできます。パーミッションを設定したいファイルまたは
@@ -287,19 +287,16 @@ $this->load->library メソッドを使って初期化します::
 
 	.. php:method:: changedir($path[, $suppress_debug = FALSE])
 
-		:param	string	$path: Directory path
-		:param	bool	$suppress_debug: Whether to turn off debug messages for this command
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$path: ディレクトリのパス
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
-		Changes the current working directory to the specified path.
+		作業ディレクトリを指定したパスへ変更します。
 
-		The ``$suppress_debug`` parameter is useful in case you want to use this method
-		as an ``is_dir()`` alternative for FTP.
 
 	.. php:method:: close()
 
-		:returns:	TRUE on success, FALSE on failure
+		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		サーバとのコネクションを切断します。アップロードが終わったら、
