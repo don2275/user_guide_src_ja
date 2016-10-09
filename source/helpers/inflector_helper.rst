@@ -27,8 +27,8 @@
 
 .. php:function:: singular($str)
 
-	:param	string	$str: Input string
-	:returns:	A singular word
+	:param	string	$str: 入力文字列
+	:returns:	単数形の単語
 	:rtype:	string
 
 	複数形の単語を単数形に変換します。例::
@@ -37,8 +37,8 @@
 
 .. php:function:: plural($str)
 
-	:param	string	$str: Input string
-	:returns:	A plural word
+	:param	string	$str: 入力文字列
+	:returns:	複数形の単語
 	:rtype:	string
 
 	単数形の単語を複数形に変換します。例::
@@ -47,8 +47,8 @@
 
 .. php:function:: camelize($str)
 
-	:param	string	$str: Input string
-	:returns:	Camelized string
+	:param	string	$str: 入力文字列
+	:returns:	キャメル記法の文字列
 	:rtype:	string
 
 	スペースまたはアンダースコアで区切られた語句をキャメル記法に変換します。
@@ -58,8 +58,8 @@
 
 .. php:function:: underscore($str)
 
-	:param	string	$str: Input string
-	:returns:	String containing underscores instead of spaces
+	:param	string	$str: 入力文字列
+	:returns:	スペースの代わりにアンダースコアを含んだ文字列
 	:rtype:	string
 
 	スペースで区切られた複数の単語を取り出して、アンダースコアでつなぎます。
@@ -69,9 +69,9 @@
 
 .. php:function:: humanize($str[, $separator = '_'])
 
-	:param	string	$str: Input string
-	:param	string	$separator: Input separator
-	:returns:	Humanized string
+	:param	string	$str: 入力文字列
+	:param	string	$separator: 入力区切り文字
+	:returns:	人が読み易い文字列
 	:rtype:	string
 
 	アンダースコアで区切られた複数の単語を取り出して、スペースでつなぎます。
@@ -81,16 +81,16 @@
 
 		echo humanize('my_dog_spot'); // 'My Dog Spot'を返します
 
-	To use dashes instead of underscores::
+	アンダースコアの代わりにハイフンを使用する::
 
 		echo humanize('my-dog-spot', '-'); // Prints 'My Dog Spot'
 
 .. php:function:: is_countable($word)
 
-	:param	string	$word: Input string
-	:returns:	TRUE if the word is countable or FALSE if not
+	:param	string	$word: 入力文字列
+	:returns:	単語が複数形であれば TRUE そうでない場合は FALSE
 	:rtype:	bool
 
-	Checks if the given word has a plural version. Example::
+	与えられた単語が複数形かどうかをチェックします。例::
 
 		is_countable('equipment'); // Returns FALSE
