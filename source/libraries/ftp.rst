@@ -2,13 +2,13 @@
 FTP クラス
 ##########
 
-CodeIgniter's FTP Class permits files to be transfered to a remote
-server. Remote files can also be moved, renamed, and deleted. The FTP
-class also includes a "mirroring" function that permits an entire local
-directory to be recreated remotely via FTP.
+CodeIgniter の FTP クラスを使うと、リモートサーバにファイルを転送できます。
+リモートにあるファイルは、移動、リネーム、そして削除も可能です。
+また、FTP クラスには、FTP経由でローカルディレクトリをすべてリモートに
+再作成する "ミラーリング"機能もあります。
 
-.. note:: SFTP and SSL FTP protocols are not supported, only standard
-	FTP.
+.. note:: SFTP と SSL FTP プロトコルはサポートされていません。
+          通常の FTPのみサポートされます。
 
 .. contents::
   :local:
@@ -24,19 +24,19 @@ FTPクラスの機能
 クラスの初期化
 ==============
 
-Like most other classes in CodeIgniter, the FTP class is initialized in
-your controller using the $this->load->library function::
+CodeIgniter の大部分のクラスと同様、FTP クラスは、コントローラの中で
+$this->load->library メソッドを使って初期化します::
 
 	$this->load->library('ftp');
 
-Once loaded, the FTP object will be available using: $this->ftp
+一度読み込まれると、FTP オブジェクトは、次のようにして利用できます: $this->ftp
 
 使用例
 ======
 
-In this example a connection is opened to the FTP server, and a local
-file is read and uploaded in ASCII mode. The file permissions are set to
-755.
+以下の例では、FTPサーバに対してコネクションが開かれ、ローカルファイルが ASCII
+ローカルファイルが ASCII モードで読み取られてアップロードされます。
+ファイルのパーミッションは755に設定します。
 ::
 
 	$this->load->library('ftp');
@@ -52,7 +52,7 @@ file is read and uploaded in ASCII mode. The file permissions are set to
 
 	$this->ftp->close();
 
-In this example a list of files is retrieved from the server.
+以下の例では、サーバからファイルのリストが取得されます。
 ::
 
 	$this->load->library('ftp');
@@ -70,7 +70,7 @@ In this example a list of files is retrieved from the server.
 
 	$this->ftp->close();
 
-In this example a local directory is mirrored on the server.
+以下の例では、ローカルディレクトリがサーバにミラーされます。
 ::
 
 	$this->load->library('ftp');
@@ -98,11 +98,11 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Connects and logs into to the FTP server. Connection preferences are set
-		by passing an array to the function, or you can store them in a config
-		file.
+		FTP サーバに接続してログインします。
+		接続の設定は、配列で渡すか設定ファイルに
+		保管しておくことができます。
 
-		Here is an example showing how you set preferences manually::
+		以下は、手動で設定をセットする方法を示した例です::
 
 			$this->load->library('ftp');
 
@@ -115,24 +115,24 @@ In this example a local directory is mirrored on the server.
 
 			$this->ftp->connect($config);
 
-		**Setting FTP Preferences in a Config File**
+		**設定ファイルでの FTP の設定**
 
-		If you prefer you can store your FTP preferences in a config file.
-		Simply create a new file called the ftp.php, add the $config array in
-		that file. Then save the file at *application/config/ftp.php* and it
-		will be used automatically.
+		必要であれば、FTP の設定を設定ファイルに保管することもできます。
+		単純に、 ftp.php という名前で新しいファイルを作成し、そのファイルに
+		$config という名前の設定用配列を追加します。 *application/config/ftp.php* ファイルに
+		保存すると、自動的にそれが使われます。
 
-		**Available connection options**
+		**利用できる接続オプション**
 
 		============== =============== =============================================================================
 		選択肢         初期値          説明
 		============== =============== =============================================================================
-		**hostname**   n/a             FTP hostname (usually something like: ftp.example.com)
-		**username**   n/a             FTP username
-		**password**   n/a             FTP password
-		**port**       21              FTP server port number
-		**debug**      FALSE           TRUE/FALSE (boolean): Whether to enable debugging to display error messages
-		**passive**    TRUE            TRUE/FALSE (boolean): Whether to use passive mode
+		**hostname**   n/a             FTP ホスト名（通常は次のようになります: ftp.example.com）
+		**username**   n/a             FTP ユーザ名
+		**password**   n/a             FTP パスワード
+		**port**       21              FTP ポート番号
+		**debug**      FALSE           TRUE/FALSE （ブール値）: デバッグ用にエラーメッセージを表示するかどうか
+		**passive**    TRUE            TRUE/FALSE （ブール値）: PASSIVE モードを使用するかどうか
 		============== =============== =============================================================================
 
 	.. php:method:: upload($locpath, $rempath[, $mode = 'auto'[, $permissions = NULL]])
@@ -144,9 +144,9 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Uploads a file to your server. You must supply the local path and the
-		remote path, and you can optionally set the mode and permissions.
-		Example::
+		サーバにファイルをアップロードします。ローカルのパスとリモートのパス、オプションで、
+		転送モードとパーミッションを設定します。
+		例::
 
 			$this->ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);
 
@@ -162,15 +162,15 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Downloads a file from your server. You must supply the remote path and
-		the local path, and you can optionally set the mode. Example::
+		サーバからファイルをダウンロードします。リモートとローカルのパスを指定
+		する必要があります。オプションでモードを指定できます。 例::
 
 			$this->ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');
 
 		If 'auto' mode is used it will base the mode on the file extension of the source file.
 
-		Returns FALSE if the download does not execute successfully
-		(including if PHP does not have permission to write the local file).
+		ダウンロードに成功しなかった場合は FALSE を返します。
+		（ローカルファイルに対するパーミッションがなかった場合も含む）
 
 	.. php:method:: rename($old_file, $new_file[, $move = FALSE])
 
@@ -180,10 +180,10 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Permits you to rename a file. Supply the source file name/path and the new file name/path.
+		ファイルをリネームします。変更するファイルの名前/パスと、新しいファイルの名前/パスを指定します。
 		::
 
-			// Renames green.html to blue.html
+			// green.html を blue.html にリネームします。
 			$this->ftp->rename('/public_html/foo/green.html', '/public_html/foo/blue.html');
 
 	.. php:method:: move($old_file, $new_file)
@@ -193,12 +193,12 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Lets you move a file. Supply the source and destination paths::
+		ファイルを移動できます。移動元と移動先のパスを指定します::
 
-			// Moves blog.html from "joe" to "fred"
+			// blog.html を "joe" から "fred" に移動します。
 			$this->ftp->move('/public_html/joe/blog.html', '/public_html/fred/blog.html');
 
-		.. note:: If the destination file name is different the file will be renamed.
+		.. note:: 移動先のファイル名が元と違う場合はリネームされます。
 
 	.. php:method:: delete_file($filepath)
 
@@ -206,7 +206,7 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Lets you delete a file. Supply the source path with the file name.
+		ファイルを削除できます。削除するファイルのパスとファイル名を指定します。
 		::
 
 			 $this->ftp->delete_file('/public_html/joe/blog.html');
@@ -217,8 +217,8 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Lets you delete a directory and everything it contains. Supply the
-		source path to the directory with a trailing slash.
+		ディレクトリとそのディレクトリに含まれるものをすべて削除します。
+		削除するディレクトリへのパスを末尾にスラッシュをつけて指定します。
 
 		.. important:: Be VERY careful with this method!
 			It will recursively delete **everything** within the supplied path,
@@ -235,8 +235,8 @@ In this example a local directory is mirrored on the server.
 		:returns:	An array list of files or FALSE on failure
 		:rtype:	array
 
-		Permits you to retrieve a list of files on your server returned as an
-		array. You must supply the path to the desired directory.
+		サーバにあるファイルのリストを取得して 配列 として返します。
+		取得したいディレクトリへのパスを指定する必要があります。
 		::
 
 			$list = $this->ftp->list_files('/public_html/');
@@ -249,10 +249,10 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Recursively reads a local folder and everything it contains (including
-		sub-folders) and creates a mirror via FTP based on it. Whatever the
-		directory structure of the original file path will be recreated on the
-		server. You must supply a source path and a destination path::
+		ローカルフォルダ内のすべて(サブフォルダ含む)を再帰的に読み取って、
+		FTP 経由で読み取ったもののミラーを作成します。
+		元のファイルパスのディレクトリ構造がサーバに再作成されます。
+		作成元のパスと作成先のパスを指定する必要があります::
 
 			 $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 
@@ -263,13 +263,13 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Lets you create a directory on your server. Supply the path ending in
-		the folder name you wish to create, with a trailing slash.
+		サーバにディレクトリを作成できます。作成したいフォルダ名を末尾にスラッ
+		シュをつけて指定します。
 
-		Permissions can be set by passing an octal value in the second parameter.
+		パーミッションは、 8進数の値で第2引数に指定できます。
 		::
 
-			// Creates a folder named "bar"
+			// "bar"という名前のフォルダを作成します。
 			$this->ftp->mkdir('/public_html/foo/bar/', 0755);
 
 	.. php:method:: chmod($path, $perm)
@@ -279,10 +279,10 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Permits you to set file permissions. Supply the path to the file or
-		directory you wish to alter permissions on::
+		ファイルのパーミッションをセットできます。パーミッションを設定したいファイルまたは
+		ディレクトリのパスを指定します::
 
-			// Chmod "bar" to 755
+			// "bar" に755のパーミッションを設定します。
 			$this->ftp->chmod('/public_html/foo/bar/', 0755);
 
 	.. php:method:: changedir($path[, $suppress_debug = FALSE])
@@ -302,5 +302,5 @@ In this example a local directory is mirrored on the server.
 		:returns:	TRUE on success, FALSE on failure
 		:rtype:	bool
 
-		Closes the connection to your server. It's recommended that you use this
-		when you are finished uploading.
+		サーバとのコネクションを切断します。アップロードが終わったら、
+		このメソッドを使うのをおすすめします。
