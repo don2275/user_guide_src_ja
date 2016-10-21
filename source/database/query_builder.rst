@@ -694,7 +694,7 @@ Example::
 
 **$this->db->replace()**
 
-このメソッドは REPLACE 分を実行します, これは基本的には SQL
+このメソッドは REPLACE 文を実行します, これは基本的には SQL
 標準の（必要なら）DELETE + INSERT で、 *PRIMARY* と *UNIQUE*
 キーを判定要素として使用します。
 これにより、複雑なロジックを組み込む必要を抑えられます。
@@ -713,7 +713,7 @@ Example::
 
 	// 次を生成: REPLACE INTO mytable (title, name, date) VALUES ('My title', 'My name', 'My date')
 
-上記の例では、もし *title* フィールドを主キーと決めつけるならば、
+上記の例では、*title* フィールドを主キーとすると、
 *title* の値に 'My title' を含む行があれば、その行は
 新しいデータで置き換えられる形で削除されます。
 
