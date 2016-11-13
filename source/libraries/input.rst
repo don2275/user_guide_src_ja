@@ -2,13 +2,13 @@
 入力クラス
 ##########
 
-The Input Class serves two purposes:
+入力クラスには2つの目的があります:
 
-#. It pre-processes global input data for security.
-#. It provides some helper methods for fetching input data and pre-processing it.
+#. グローバルな入力データをセキュリティのために前処理します。
+#. 入力データを取り出し、前処理するためのヘルパーメソッドを提供します。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスは、システムで自動的に初期化されるので、
+	手動で初期化する必要はありません。
 
 .. contents::
   :local:
@@ -24,61 +24,61 @@ The Input Class serves two purposes:
 セキュリティフィルタリング
 ==========================
 
-The security filtering method is called automatically when a new
-:doc:`controller <../general/controllers>` is invoked. It does the
-following:
+セキュリティフィルタ機能は、新しい :doc:`コントローラ<../general/controllers>` が
+起動されると自動的に呼び出されます。
+フィルタ機能は、次のことを行います:
 
--  If ``$config['allow_get_array']`` is FALSE (default is TRUE), destroys
-   the global GET array.
--  Destroys all global variables in the event register_globals is
-   turned on.
--  Filters the GET/POST/COOKIE array keys, permitting only alpha-numeric
-   (and a few other) characters.
--  Provides XSS (Cross-site Scripting Hacks) filtering. This can be
-   enabled globally, or upon request.
--  Standardizes newline characters to ``PHP_EOL`` (\\n in UNIX-based OSes,
-   \\r\\n under Windows). This is configurable.
+-  ``$config['allow_get_array']`` が FALSE に設定されている場合（デフォルトは TRUE ）、
+   グローバルな GET配列($_GET) のデータを消去します。
+-  register_globals が ON
+   に設定されているときにセットされるグローバル変数は消去されます。
+-  英数字 (と少数の他の文字) だけを許可するよう GET/POST/COOKIE
+   配列のキーがフィルタリングされます。
+-  XSS (クロスサイトスクリプティング攻撃) フィルタリングを提供します。
+   この機能は、グローバルまたは、リクエストごとに有効化できます。
+-  改行文字を ``PHP_EOL`` に統一します( UNIX ベースでのOSであれば \\n 、
+   Windowsでは \\r\\n )。これは設定可能です。
 
 XSS フィルタリング
 ==================
 
-The Input class has the ability to filter input automatically to prevent
-cross-site scripting attacks. If you want the filter to run
-automatically every time it encounters POST or COOKIE data you can
-enable it by opening your *application/config/config.php* file and setting
+入力クラスではクロスサイトスクリプティング攻撃を防ぐ為、自動的に入力値
+をフィルタする機能が備わっています。 *application/config/config.php* ファイルを
+次のように設定することで POST または COOKIE
+データを扱う際、自動的にフィルタを実行することができます
 this::
 
 	$config['global_xss_filtering'] = TRUE;
 
-Please refer to the :doc:`Security class <security>` documentation for
-information on using XSS Filtering in your application.
+アプリケーション内で XSS フィルタリングを利用する方法については
+:doc:`セキュリティクラス <security>` を参照してください。
 
-.. important:: The 'global_xss_filtering' setting is DEPRECATED and kept
-	solely for backwards-compatibility purposes. XSS escaping should
-	be performed on *output*, not *input*!
+.. important:: 'global_xss_filtering' を設定することは推奨されていません。
+	後方互換の為にのみ維持されているものです。 XSS エスケープは *出力値* にのみ行われ、
+	*入力値* には行われません！
 
 *******************
 Accessing form data
 *******************
 
-Using POST, GET, COOKIE, or SERVER Data
-=======================================
+POST、GET、COOKIE あるいは SERVER データの使用
+==========================================
 
-CodeIgniter comes with helper methods that let you fetch POST, GET,
-COOKIE or SERVER items. The main advantage of using the provided
-methods rather than fetching an item directly (``$_POST['something']``)
-is that the methods will check to see if the item is set and return
-NULL if not. This lets you conveniently use data without
-having to test whether an item exists first. In other words, normally
-you might do something like this::
+CodeIgniter には、POST、GET、COOKIE あるいは SERVER
+のデータを取得するためのヘルパーメソッドが備わっています。 
+直接項目を取得する(例: ``$_POST['something']`` )のでなく、このクラスが
+提供するメソッドを使う主な利点は、メソッドにより値がセットされているかチェックされ、
+セットされていない場合は、 NULL を返すということです。 
+このメソッドを利用すれば、項目が存在するかどうかをまずテストすることなく、便利にデータを使えます。 
+つまり、通常は、次のようなコードになりますが::
 
 	$something = isset($_POST['something']) ? $_POST['something'] : NULL;
 
-With CodeIgniter's built in methods you can simply do this::
+CodeIgniter の組み込みメソッドを使うと、単純に次のようになります::
 
 	$something = $this->input->post('something');
 
-The main methods are:
+よく使用するメソッドは次の通りです:
 
 -  ``$this->input->post()``
 -  ``$this->input->get()``
@@ -88,35 +88,35 @@ The main methods are:
 php://input streamを使う
 ========================
 
-If you want to utilize the PUT, DELETE, PATCH or other exotic request
-methods, they can only be accessed via a special input stream, that
-can only be read once. This isn't as easy as just reading from e.g.
-the ``$_POST`` array, because it will always exist and you can try
-and access multiple variables without caring that you might only have
-one shot at all of the POST data.
+PUT、DELETE、PATCH 及び他の特殊なリクエストメソッドを使用する場合、
+リクエスト値は特殊な入力ストリーム経由で一度だけ読み出すことが出来ます。
+これらの値を読み出すことは簡単ではありません。
+``$_POST`` の配列は常に存在し、
+POST データに一度だけアクセスしたかを気にすることなく、複数の値に
+アクセスすることができるからです。
 
-CodeIgniter will take care of that for you, and you can read the data
-from the **php://input** stream at any time, just by using the
-``$raw_input_stream`` property::
+CodeIgniter は ``$raw_input_stream`` 変数を使用することで、
+**php://input** ストリームからの
+データをいつでも読み出すことができます::
 
 	$this->input->raw_input_stream;
 
-Additionally if the input stream is form-encoded like $_POST you can 
-access its values by calling the
-``input_stream()`` method::
+加えて、入力ストリームを $_POST のように
+フォームエンコードされた値で取得したい場合は
+``input_stream()`` を使用してください::
 
 	$this->input->input_stream('key');
 
-Similar to other methods such as ``get()`` and ``post()``, if the
-requested data is not found, it will return NULL and you can also
-decide whether to run the data through ``xss_clean()`` by passing
-a boolean value as the second parameter::
+他の ``get()`` や ``post()`` と同様に、
+リクエストされたデータが見つからない場合、 NULL を返却します。
+リクエストデータに ``xss_clean()`` を適用するかどうかを制御したい場合は
+第二引数にブール値を渡してください。::
 
 	$this->input->input_stream('key', TRUE); // XSS Clean
 	$this->input->input_stream('key', FALSE); // No XSS filter
 
-.. note:: You can utilize ``method()`` in order to know if you're reading
-	PUT, DELETE or PATCH data.
+.. note:: 読み込んだデータが PUT、 DELETE または PATCH かを知りたい場合
+	``method()`` を使用してください。
 
 ******************
 クラスリファレンス
@@ -126,186 +126,186 @@ a boolean value as the second parameter::
 
 	.. attribute:: $raw_input_stream
 		
-		Read only property that will return php://input data as is.
+		php://input データから返却される読み取り専用の値。
 		
-		The property can be read multiple times.
+		この変数は何度でも参照可能です。
 
 	.. php:method:: post([$index = NULL[, $xss_clean = NULL]])
 
-		:param	mixed	$index: POST parameter name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	$_POST if no parameters supplied, otherwise the POST value if found or NULL if not
+		:param	mixed	$index: POST パラメータの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	$_POST パラメータが指定されていない場合は NULL 、それ以外は $_POST パラメータの値
 		:rtype:	mixed
 
-		The first parameter will contain the name of the POST item you are
-		looking for::
+		第1引数は、コレクションの中から探し出す POST
+		された項目の名前になります::
 
 			$this->input->post('some_data');
 
-		The method returns NULL if the item you are attempting to retrieve
-		does not exist.
+		このメソッドは、取り出そうとして見つからなかった場合、 NULL
+		を返します。
 
-		The second optional parameter lets you run the data through the XSS
-		filter. It's enabled by setting the second parameter to boolean TRUE
-		or by setting your ``$config['global_xss_filtering']`` to TRUE.
+		第二引数は XSSフィルタをデータに適用できるようにするオプションのパラメータです。
+		第二引数にブール値の TRUE を設定するか ``$config['global_xss_filtering']``を
+		ブール値の TRUE にすることで有効になります。
 		::
 
 			$this->input->post('some_data', TRUE);
 
-		To return an array of all POST items call without any parameters.
+		引数を指定せずに呼び出すことで、 POST されたすべての値を連想配列で返します。
 
-		To return all POST items and pass them through the XSS filter set the
-		first parameter NULL while setting the second parameter to boolean TRUE.
+		第1引数を NULL 、第2引数にブール値の TRUE を指定することで、POST
+		されたすべての値を XSS フィルタに通すことができます。
 		::
 
-			$this->input->post(NULL, TRUE); // returns all POST items with XSS filter
-			$this->input->post(NULL, FALSE); // returns all POST items without XSS filter
+			$this->input->post(NULL, TRUE); // POST された値を XSS フィルタを通して返します
+			$this->input->post(NULL, FALSE); // POST された値を XSS フィルタを通さずに返します
 
-		To return an array of multiple POST parameters, pass all the required keys
-		as an array.
+		複数の POST パラメータの配列を返却したい時は必要なキーを
+		配列で渡してください。
 		::
 
 			$this->input->post(array('field1', 'field2'));
 
-		Same rule applied here, to retrive the parameters with XSS filtering enabled, set the
-		second parameter to boolean TRUE.
+		ここではXSS フィルタリングを有効にしてパラメータを取得するために
+		同じルールを適用し、第二引数のパラメータにブール値の TRUE を設定してください。
 		::
 
 			$this->input->post(array('field1', 'field2'), TRUE);
 
 	.. php:method:: get([$index = NULL[, $xss_clean = NULL]])
 
-		:param	mixed	$index: GET parameter name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	$_GET if no parameters supplied, otherwise the GET value if found or NULL if not
+		:param	mixed	$index: GET パラメータの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	$_GET パラメータが指定されていない場合はNULL、それ以外は $_GET パラメータの値
 		:rtype:	mixed
 
-		This method is identical to ``post()``, only it fetches GET data.
+		このメソッドは、get データを取り出すということ以外は、 ``post()`` メソッドと同じです
 		::
 
 			$this->input->get('some_data', TRUE);
 
-		To return an array of all GET items call without any parameters.
+		引数を指定せずに呼び出すことで、 GET されたすべての値を連想配列で返します。
 
-		To return all GET items and pass them through the XSS filter set the
-		first parameter NULL while setting the second parameter to boolean TRUE.
+		第1引数を NULL 、第2引数にブール値の TRUE を指定することで、
+		GET されたすべての値を XSS フィルタに通すことができます。
 		::
 
-			$this->input->get(NULL, TRUE); // returns all GET items with XSS filter
-			$this->input->get(NULL, FALSE); // returns all GET items without XSS filtering
+			$this->input->get(NULL, TRUE); // GET された値を XSS フィルタを通して返します
+			$this->input->get(NULL, FALSE); // GET された値を XSS フィルタを通さずに返します
 
-		To return an array of multiple GET parameters, pass all the required keys
-		as an array.
+		複数の POST パラメータの配列を返却したい時は必要なキーを
+		配列で渡してください。
 		::
 
 			$this->input->get(array('field1', 'field2'));
 
-		Same rule applied here, to retrive the parameters with XSS filtering enabled, set the
-		second parameter to boolean TRUE.
+		ここではXSS フィルタリングを有効にしてパラメータを取得するために
+		同じルールを適用し、第二引数のパラメータにブール値の TRUE を設定してください。
 		::
 
 			$this->input->get(array('field1', 'field2'), TRUE);
 
 	.. php:method:: post_get($index[, $xss_clean = NULL])
 
-		:param	string	$index: POST/GET parameter name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	POST/GET value if found, NULL if not
+		:param	string	$index: POST/GET パラメータの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	POST/GET の値があれば POST/GET の値、ない場合は NULL
 		:rtype:	mixed
 
-		This method works pretty much the same way as ``post()`` and ``get()``,
-		only combined. It will search through both POST and GET streams for data,
-		looking in POST first, and then in GET::
+		このメソッドは組み合わされているだけで、``post()`` や ``get()`` と
+		同様に動作します。 POST と GET の両方のストリームデータを探し、
+		初めにPOST、その後に GET を探します。::
 
 			$this->input->post_get('some_data', TRUE);
 
 	.. php:method:: get_post($index[, $xss_clean = NULL])
 
-		:param	string	$index: GET/POST parameter name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	GET/POST value if found, NULL if not
+		:param	string	$index: GET/POST のパラメータの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	GET/POST の値があれば POST/GET の値、ない場合は NULL
 		:rtype:	mixed
 
-		This method works the same way as ``post_get()`` only it looks for GET
-		data first.
+		このメソッドは GET データを初めに探しにいく以外 ``post_get()`` と
+		同じように動作します。
 
 			$this->input->get_post('some_data', TRUE);
 
-		.. note:: This method used to act EXACTLY like ``post_get()``, but it's
-			behavior has changed in CodeIgniter 3.0.
+		.. note:: このメソッドは ``post_get()`` と同じように動作していました。しかし、
+			CodeIgniter 3.0でこの動作は変更されました。
 
 	.. php:method:: cookie([$index = NULL[, $xss_clean = NULL]])
 
-		:param	mixed	$index: COOKIE name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	$_COOKIE if no parameters supplied, otherwise the COOKIE value if found or NULL if not
+		:param	mixed	$index: COOKIE の名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	$_COOKIE パラメータが指定されていない場合はNULL、それ以外は COOKIE の値
 		:rtype:	mixed
 
-		This method is identical to ``post()`` and ``get()``, only it fetches cookie
-		data::
+		このメソッドは、クッキーデータを取り出すということ以外は、
+		``post()`` や ``get()`` メソッドと同じです::
 
 			$this->input->cookie('some_cookie');
 			$this->input->cookie('some_cookie', TRUE); // with XSS filter
 
-		To return an array of multiple cookie values, pass all the required keys
-		as an array.
+		複数のクッキーの配列を返却したい時は必要なキーを
+		配列で渡してください。
 		::
 
 			$this->input->cookie(array('some_cookie', 'some_cookie2'));
 
-		.. note:: Unlike the :doc:`Cookie Helper <../helpers/cookie_helper>`
-			function :php:func:`get_cookie()`, this method does NOT prepend
-			your configured ``$config['cookie_prefix']`` value.
+		.. note:: doc:`Cookie Helper <../helpers/cookie_helper>`
+			function :php:func:`get_cookie()` とは異なり、
+			このメソッドは先頭に ``$config['cookie_prefix']`` に設定された値を付与しません。
 
 	.. php:method:: server($index[, $xss_clean = NULL])
 
-		:param	mixed	$index: Value name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	$_SERVER item value if found, NULL if not
+		:param	mixed	$index: 値の名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	$_SERVER の値があれば　$_SERVER の値、ない場合は NULL
 		:rtype:	mixed
 
-		This method is identical to the ``post()``, ``get()`` and ``cookie()``
-		methods, only it fetches server data (``$_SERVER``)::
+		このメソッドは、 SERVER データ(``$_SERVER``)を取り出すということ以外は、
+		``post()`` 、 ``get()`` や ``cookie()`` と同じです:: 
 
 			$this->input->server('some_data');
 
-		To return an array of multiple ``$_SERVER`` values, pass all the required keys
-		as an array.
+		複数の ``$_SERVER`` の配列を返却したい時は必要なキーを
+		配列で渡してください。
 		::
 
 			$this->input->server(array('SERVER_PROTOCOL', 'REQUEST_URI'));
 
 	.. php:method:: input_stream([$index = NULL[, $xss_clean = NULL]])
 
-		:param	mixed	$index: Key name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	Input stream array if no parameters supplied, otherwise the specified value if found or NULL if not
+		:param	mixed	$index: キーの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	入力ストリームのパラメータが指定されていない場合は NULL、 それ以外は入力ストリームの値
 		:rtype:	mixed
 
-		This method is identical to ``get()``, ``post()`` and ``cookie()``,
-		only it fetches the *php://input* stream data.
+		このメソッドは *php://input* ストリームデータを取得する以外は
+		``get()``、 ``post()`` および ``cookie()`` と同じです。
 
 	.. php:method:: set_cookie($name = ''[, $value = ''[, $expire = ''[, $domain = ''[, $path = '/'[, $prefix = ''[, $secure = FALSE[, $httponly = FALSE]]]]]]])
 
-		:param	mixed	$name: Cookie name or an array of parameters
-		:param	string	$value: Cookie value
-		:param	int	$expire: Cookie expiration time in seconds
-		:param	string	$domain: Cookie domain
-		:param	string	$path: Cookie path
-		:param	string	$prefix: Cookie name prefix
-		:param	bool	$secure: Whether to only transfer the cookie through HTTPS
-		:param	bool	$httponly: Whether to only make the cookie accessible for HTTP requests (no JavaScript)
+		:param	mixed	$name: クッキー名または配列のパラメータ
+		:param	string	$value: クッキーの値
+		:param	int	$expire: クッキーの有効期限の秒数
+		:param	string	$domain: クッキーのドメイン
+		:param	string	$path: クッキーのパス
+		:param	string	$prefix: クッキーの値の接頭辞
+		:param	bool	$secure: HTTPS 経由でのみクッキーを転送するかどうか
+		:param	bool	$httponly: HTTP リクエストでクッキーのアクセスを可能とするかどうか ( JavaScript でアクセスさせるかどうか)
 		:rtype:	void
 
 
-		Sets a cookie containing the values you specify. There are two ways to
-		pass information to this method so that a cookie can be set: Array
-		Method, and Discrete Parameters:
+		指定した値を含むクッキーをセットします。 クッキーをセットする為に
+		このメソッドに情報を渡すには、2つの方法があります: 配列で渡す方法と
+		個々のパラメータを渡す方法です:
 
-		**Array Method**
+		**配列で渡す方法**
 
-		Using this method, an associative array is passed to the first
-		パラメータ::
+		この方法では、第1引数に連想配列が
+		渡されます::
 
 			$cookie = array(
 				'name'   => 'The Cookie Name',
@@ -321,60 +321,61 @@ a boolean value as the second parameter::
 
 		**Notes**
 
-		Only the name and value are required. To delete a cookie set it with the
-		expiration blank.
+		name と value のみが必須属性となりますクッキーを削除するには
+		有効期限に空白をセットします。
 
-		The expiration is set in **seconds**, which will be added to the current
-		time. Do not include the time, but rather only the number of seconds
-		from *now* that you wish the cookie to be valid. If the expiration is
-		set to zero the cookie will only last as long as the browser is open.
+		有効期限は現在時刻から数えた **秒数** で指定します。
+		時刻を指定するのではなく、クッキーを *現在時刻* から
+		何秒間有効かを秒数だけで指定します。 有効期限を 0 にセットすると、
+		ブラウザが開いている間だけ、クッキーが有効になります。
 
-		For site-wide cookies regardless of how your site is requested, add your
-		URL to the **domain** starting with a period, like this:
+		どのようにリクエストを受け付けたかにかかわらず、サイト全体で使うクッキーには、
+		次のように **domain** にピリオドから始まる URL を追加してください:
 		.your-domain.com
 
-		The path is usually not needed since the method sets a root path.
+		パスは、メソッドがルートパスをセットするので通常は必要ありません。
 
-		The prefix is only needed if you need to avoid name collisions with
-		other identically named cookies for your server.
+		プリフィックスは、同一のサーバによってセットされたクッキーにおける
+		名前の衝突を回避したい場合にのみ必要です。
 
-		The secure boolean is only needed if you want to make it a secure cookie
-		by setting it to TRUE.
+		セキュアのブール値は、セキュアなクッキーを使用したい場合のみ TRUE
+		にする必要があります。
 
-		**Discrete Parameters**
+		**個々のパラメータを渡す方法**
 
-		If you prefer, you can set the cookie by passing data using individual
-		パラメータ::
+		希望であれば、個別のパラメータを使ってデータを渡してクッキーを
+		セットすることができます::
 
 			$this->input->set_cookie($name, $value, $expire, $domain, $path, $prefix, $secure);
 
 	.. php:method:: ip_address()
 
-		:returns:	Visitor's IP address or '0.0.0.0' if not valid
+		:returns:	アクセスしてきたIPアドレスまたはアドレスが正しくない場合は '0.0.0.0'
 		:rtype:	string
 
-		Returns the IP address for the current user. If the IP address is not
-		valid, the method will return '0.0.0.0'::
+		現在のユーザの IP アドレスを返します。
+		アドレスが正しくない場合、このメソッドは、 '0.0.0.0' を返却します::
 
 			echo $this->input->ip_address();
 
-		.. important:: This method takes into account the ``$config['proxy_ips']``
-			setting and will return the reported HTTP_X_FORWARDED_FOR,
-			HTTP_CLIENT_IP, HTTP_X_CLIENT_IP or HTTP_X_CLUSTER_CLIENT_IP
-			address for the allowed IP addresses.
+		.. important:: このメソッドは ``$config['proxy_ips']`` の設定値を考慮して、
+			報告された HTTP_X_FORWARDED_FOR、HTTP_CLIENT_IP、 HTTP_X_CLIENT_IP または
+			HTTP_X_CLUSTER_CLIENT_IP のアドレスを有効なIPアドレスとして返却します。
 
 	.. php:method:: valid_ip($ip[, $which = ''])
 
-		:param	string	$ip: IP address
-		:param	string	$which: IP protocol ('ipv4' or 'ipv6')
-		:returns:	TRUE if the address is valid, FALSE if not
+		:param	string	$ip: IPアドレス
+		:param	string	$which: IPプロトコル ('ipv4' または 'ipv6')
+		:returns:	正常あれば TRUE、そうでない場合は FALSE
 		:rtype:	bool
 
-		Takes an IP address as input and returns TRUE or FALSE (boolean) depending
-		on whether it is valid or not.
+		入力値にIPアドレスを渡すとIPアドレスが有効かどうかを
+		TRUE または FALSE (ブール値) で返却します。
 
-		.. note:: The $this->input->ip_address() method above automatically
+		.. note:: $this->input->ip_address() 
 			validates the IP address.
+		.. note:: 上記の $this->input->ip_address() メソッドは自動的に
+			IPアドレスの検証を行います。
 
 		::
 
@@ -387,86 +388,86 @@ a boolean value as the second parameter::
 				echo 'Valid';
 			}
 
-		Accepts an optional second string parameter of 'ipv4' or 'ipv6' to specify
-		an IP format. The default checks for both formats.
+		第二引数はオプションで特定のIPの形式を 'ipv4' または 'ipv6' で指定します。
+		デフォルトはどちらの形式もチェックします。
 
 	.. php:method:: user_agent([$xss_clean = NULL])
 
-		:returns:	User agent string or NULL if not set
-		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	ユーザーエージェント または設定されていない場合は NULL
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
 		:rtype:	mixed
 
-		Returns the user agent string (web browser) being used by the current user,
-		or NULL if it's not available.
+		現在のユーザが使用しているユーザエージェント(Webブラウザ)を返します。
+		利用できないときは NULL を返します。
 		::
 
 			echo $this->input->user_agent();
 
-		See the :doc:`User Agent Class <user_agent>` for methods which extract
-		information from the user agent string.
+		ユーザエージェントの文字列から情報を抽出する方法は
+		:doc:`ユーザエージェントクラス <user_agent>` を参照してください。
 
 	.. php:method:: request_headers([$xss_clean = FALSE])
 
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	An array of HTTP request headers
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	HTTP リクエストヘッダの配列
 		:rtype:	array
 
-		Returns an array of HTTP request headers.
-		Useful if running in a non-Apache environment where
-		`apache_request_headers() <http://php.net/apache_request_headers>`_
-		will not be supported.
+		HTTP リクエストヘッダの配列を返します。
+		Apache 以外 の( `apache_request_headers()
+		<http://php.net/apache_request_headers>`_ をサポートしない)
+		環境で有効です。
 		::
 
 			$headers = $this->input->request_headers();
 
 	.. php:method:: get_request_header($index[, $xss_clean = FALSE])
 
-		:param	string	$index: HTTP request header name
-		:param	bool	$xss_clean: Whether to apply XSS filtering
-		:returns:	    An HTTP request header or NULL if not found
+		:param	string	$index: HTTP リクエストヘッダの名前
+		:param	bool	$xss_clean: XSS フィルタリングを適用するかどうか
+		:returns:	    見つからなかった場合は NULL、 それ以外は HTTP リクエストヘッダの値
 		:rtype:	string
 
-		Returns a single member of the request headers array or NULL
-		if the searched header is not found.
+		検索されたヘッダが見つかればリクエストヘッダの配列の要素を返却し、
+		見つからない場合は NULL を返却します。
 		::
 
 			$this->input->get_request_header('some-header', TRUE);
 
 	.. php:method:: is_ajax_request()
 
-		:returns:	TRUE if it is an Ajax request, FALSE if not
+		:returns:	Ajax リクエストであれば TRUE、それ以外は FALSE
 		:rtype:	bool
 
-		Checks to see if the HTTP_X_REQUESTED_WITH server header has been
-		set, and returns boolean TRUE if it is or FALSE if not.
+		サーバのヘッダに HTTP_X_REQUESTED_WITH がセットされているかチェックし、
+		セットされている場合はブール値の TRUE 、セットされていない場合は FALSE を返します。
 
 	.. php:method:: is_cli_request()
 
-		:returns:	TRUE if it is a CLI request, FALSE if not
+		:returns:	CLI リクエストの場合は TRUE、そうでない場合は FALSE
 		:rtype:	bool
 
-		Checks to see if the application was run from the command-line
-		interface.
+		アプリケーションがコマンドラインから実行されているかを
+		チェックします。
 
-		.. note:: This method checks both the PHP SAPI name currently in use
-			and if the ``STDIN`` constant is defined, which is usually a
-			failsafe way to see if PHP is being run via the command line.
+		.. note:: このメソッドは現在使用されている PHP SAPI の名前と
+			``STDIN`` 定数が定義されている事をチェックします。
+			これは通常、PHP がコマンドライン経由で実行されている事を確認する安全な方法です。
 
 		::
 
 			$this->input->is_cli_request()
 
-		.. note:: This method is DEPRECATED and is now just an alias for the
-			:func:`is_cli()` function.
+		.. note:: このメソッドは推奨されておらず、
+			現在は :func:`is_cli()` ファンクションのエイリアスです。
 
 	.. php:method:: method([$upper = FALSE])
 
-		:param	bool	$upper: Whether to return the request method name in upper or lower case
-		:returns:	    HTTP request method
+		:param	bool	$upper: リクエストメソッドの名前を大文字のみまたは小文字のみで返却するかどうか
+		:returns:	    HTTP リクエストメソッド
 		:rtype:	string
 
-		Returns the ``$_SERVER['REQUEST_METHOD']``, with the option to set it
-		in uppercase or lowercase.
+		設定したオプションにより
+		大文字のみまたは小文字のみで ``$_SERVER['REQUEST_METHOD']`` の値を返却します。
 		::
 
 			echo $this->input->method(TRUE); // Outputs: POST
