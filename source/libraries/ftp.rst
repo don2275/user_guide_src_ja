@@ -288,14 +288,11 @@ $this->load->library メソッドを使って初期化します::
 	.. php:method:: changedir($path[, $suppress_debug = FALSE])
 
 		:param	string	$path: ディレクトリのパス
-		:param	bool	$suppress_debug: デバッグメッセージをオフにするかどうか
 		:returns:	成功時は TRUE 、 失敗時は FALSE
 		:rtype:	bool
 
 		作業ディレクトリを指定したパスへ変更します。
 
-		``$suppress_debug`` パラメータは FTP 上で ``is_dir()`` メソッドを
-                使用したい場合[ 訳注: ディレクトリの存在確認等 ]の代替になります。
 
 	.. php:method:: close()
 
