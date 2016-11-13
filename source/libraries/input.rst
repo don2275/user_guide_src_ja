@@ -358,10 +358,9 @@ CodeIgniter は ``$raw_input_stream`` 変数を使用することで、
 
 			echo $this->input->ip_address();
 
-		.. important:: This method takes into account the ``$config['proxy_ips']``
-			setting and will return the reported HTTP_X_FORWARDED_FOR,
-			HTTP_CLIENT_IP, HTTP_X_CLIENT_IP or HTTP_X_CLUSTER_CLIENT_IP
-			address for the allowed IP addresses.
+		.. important:: このメソッドは ``$config['proxy_ips']`` の設定値を考慮して、
+			報告された HTTP_X_FORWARDED_FOR、HTTP_CLIENT_IP、 HTTP_X_CLIENT_IP または
+			HTTP_X_CLUSTER_CLIENT_IP のアドレスを有効なIPアドレスとして返却します。
 
 	.. php:method:: valid_ip($ip[, $which = ''])
 
