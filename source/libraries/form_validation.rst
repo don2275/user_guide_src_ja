@@ -957,16 +957,16 @@ use:
 **is_unique**             Yes        Returns FALSE if the form element is not unique to the table and field name in the            is_unique[table.field]
                                      parameter. Note: This rule requires :doc:`Query Builder <../database/query_builder>` to be
                                      enabled in order to work.
-**min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。								 	                   min_length[3]
-**max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。	             		 							   max_length[12]
-**exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。								                       exact_length[8]
-**greater_than**          Yes        指定した値よりも（数字的に）小さいか、数字でない時にFALSEを							       		   greater_than[8]
+**min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。                                                  min_length[3]
+**max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。                                                    max_length[12]
+**exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。                                                exact_length[8]
+**greater_than**          Yes        指定した値よりも（数字的に）等しいもしくは小さいか、数字でない時にFALSEを                          greater_than[8]
                                      返します。
-**greater_than_equal_to** Yes        指定した値よりも（数字的に）等しいもしくは小さいか、数字でない時にFALSEを                           	   greater_than_equal_to[8]
+**greater_than_equal_to** Yes        指定した値よりも（数字的に）小さいか、数字でない時にFALSEを                           	           greater_than_equal_to[8]
                                      返します。
-**less_than**             Yes        指定した値よりも（数字的に）大きいか、数字でない時にFALSEを         								   less_than[8]
+**less_than**             Yes        指定した値よりも（数字的に）等しいもしくは大きいか、数字でない時にFALSEを                          less_than[8]
                                      返します。
-**less_than_equal_to**    Yes        指定した値よりも（数字的に）等しいもしくは大きいか、数字でない時にFALSEを                        	   less_than_equal_to[8]
+**less_than_equal_to**    Yes        指定した値よりも（数字的に）大きいか、数字でない時にFALSEを                                       less_than_equal_to[8]
                                      返します。
 **in_list**               Yes        Returns FALSE if the form element is not within a predetermined list.                         in_list[red,blue,green]
 **alpha**                 No         アルファベット以外の文字を含む場合、FALSEを返します。
